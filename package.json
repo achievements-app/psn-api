@@ -1,0 +1,50 @@
+{
+  "name": "psn-api",
+  "version": "1.0.0",
+  "main": "dist/psn-api.js",
+  "module": "dist/psn-api.mjs",
+  "typings": "dist/psn-api.d.ts",
+  "author": "Wes Copeland",
+  "license": "MIT",
+  "scripts": {
+    "dev": "ts-node-dev --respawn --clear --quiet src/__dev.ts",
+    "build": "rollup -c",
+    "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
+    "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
+    "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^6.0.1",
+    "@types/node": "^16.10.3",
+    "@typescript-eslint/eslint-plugin": "^4.33.0",
+    "@typescript-eslint/parser": "^4.33.0",
+    "esbuild": "^0.13.4",
+    "eslint": "^8.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-import-resolver-typescript": "^2.5.0",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-simple-import-sort": "^7.0.0",
+    "eslint-plugin-sonarjs": "^0.10.0",
+    "eslint-plugin-unicorn": "^36.0.0",
+    "prettier": "2.4.1",
+    "rollup": "^2.58.0",
+    "rollup-plugin-dts": "^4.0.0",
+    "rollup-plugin-esbuild": "^4.5.0",
+    "size-limit": "^6.0.1",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3"
+  },
+  "size-limit": [
+    {
+      "path": "dist/psn-api.js"
+    }
+  ],
+  "dependencies": {
+    "ky": "^0.28.5",
+    "ky-universal": "^0.9.1"
+  }
+}
