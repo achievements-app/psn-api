@@ -123,17 +123,17 @@ Click the function names for complete docs.
 
 ### Authentication
 
-- [`exchangeCodeForAccessToken()`](src/authenticate/exchangeCodeForAccessToken.md)
-- [`exchangeNpssoForCode()`](src/authenticate/exchangeNpssoForCode.md)
+- [`exchangeCodeForAccessToken()`](src/authenticate/exchangeCodeForAccessToken.md) - Exchange your access code for access and refresh tokens.
+- [`exchangeNpssoForCode()`](src/authenticate/exchangeNpssoForCode.md) - Exchange your NPSSO for an access code.
 
 ### Trophies
 
-- [`getSummarizedTrophiesByTrophyGroup()`](src/trophy/getSummarizedTrophiesByTrophyGroup.md)
-- [`getTitleTrophyGroups()`](src/trophy/getTitleTrophyGroups.md)
-- [`getTrophiesEarnedForTitle()`](src/trophy/getTrophiesEarnedForTitle.md)
-- [`getTrophiesForTitle()`](src/trophy/getTrophiesForTitle.md)
-- [`getTrophyProfileSummary()`](src/trophy/getTrophyProfileSummary.md)
-- [`getTrophyTitlesForUser()`](src/trophy/getTrophyTitlesForUser.md)
+- [`getSummarizedTrophiesByTrophyGroup()`](src/trophy/getSummarizedTrophiesByTrophyGroup.md) - Get a summary of trophies earned for a user broken down by trophy group within a title.
+- [`getTitleTrophyGroups()`](src/trophy/getTitleTrophyGroups.md) - Get a list of trophy groups (typically the base set and DLCs) for a title.
+- [`getTrophiesEarnedForTitle()`](src/trophy/getTrophiesEarnedForTitle.md) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
+- [`getTrophiesForTitle()`](src/trophy/getTrophiesForTitle.md) - Retrieve the individual trophy details of a single or all trophy groups for a title.
+- [`getTrophyProfileSummary()`](src/trophy/getTrophyProfileSummary.md) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
+- [`getTrophyTitlesForUser()`](src/trophy/getTrophyTitlesForUser.md) - Retrieve a list of the titles associated with an account and a summary of trophies earned from them.
 
 ## Examples
 
