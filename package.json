@@ -1,5 +1,6 @@
 {
   "name": "psn-api",
+  "description": "A low-level API for getting data from the PlayStation Network.",
   "version": "0.0.0-development",
   "main": "dist/psn-api.js",
   "module": "dist/psn-api.mjs",
@@ -20,7 +21,6 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "form-data": "^4.0.0",
     "isomorphic-unfetch": "^3.1.0",
     "urlcat": "^2.0.4"
   },
