@@ -7,7 +7,7 @@
   "author": "Wes Copeland",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --respawn --clear --quiet src/__dev.ts",
+    "dev": "ts-node-dev --respawn --clear --quiet src/__dev-playground.ts",
     "build": "rollup -c",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
@@ -20,6 +20,7 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^6.0.1",
+    "@types/faker": "^5.5.8",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.10.3",
     "@typescript-eslint/eslint-plugin": "^4.33.0",
@@ -32,6 +33,7 @@
     "eslint-plugin-simple-import-sort": "^7.0.0",
     "eslint-plugin-sonarjs": "^0.10.0",
     "eslint-plugin-unicorn": "^36.0.0",
+    "faker": "^5.5.3",
     "jest": "^27.2.5",
     "msw": "^0.35.0",
     "prettier": "2.4.1",

@@ -19,7 +19,7 @@ describe("Function: exchangeCodeForAccessToken", () => {
     expect(exchangeCodeForAccessToken).toBeDefined();
   });
 
-  it("can make a call to exchange an access code for a set of OAuth tokens", async () => {
+  it("makes a call to exchange an access code for a set of OAuth tokens", async () => {
     // ARRANGE
     const mockAccessTokenResponse: AccessTokenResponse = {
       accessToken: "mockAccessToken",

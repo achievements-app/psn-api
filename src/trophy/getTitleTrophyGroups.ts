@@ -1,6 +1,10 @@
 import urlcat from "urlcat";
 
-import type { AuthorizationPayload, CallValidHeaders } from "@/models";
+import type {
+  AuthorizationPayload,
+  CallValidHeaders,
+  TitleTrophyGroupsResponse
+} from "@/models";
 
 import { call } from "../call";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
@@ -44,7 +48,7 @@ export const getTitleTrophyGroups = async (
 ) => {
   const url = buildRequestUrl(npCommunicationId, options);
 
-  return await call<unknown>(
+  return await call<TitleTrophyGroupsResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );

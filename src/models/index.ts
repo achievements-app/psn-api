@@ -4,6 +4,7 @@ export * from "./call-valid-headers.model";
 export * from "./summarized-trophies-by-trophy-group-response.model";
 export * from "./title-platform.model";
 export * from "./title-trophies-response.model";
+export * from "./title-trophy-groups-response.model";
 export * from "./trophies-earned-for-title-response.model";
 export * from "./trophy-counts.model";
 export * from "./trophy-profile-summary-response.model";
