@@ -1,0 +1,10 @@
+version: "2"
+
+exclude_patterns:
+  - "src/test/**"
+  - "examples/**"
+
+checks:
+  method-lines:
+    config:
+      threshold: 125
