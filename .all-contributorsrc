@@ -25,6 +25,15 @@
         "ideas",
         "userTesting"
       ]
+    },
+    {
+      "login": "andshrew",
+      "name": "andshrew",
+      "avatar_url": "https://avatars.githubusercontent.com/u/7409326?v=4",
+      "profile": "https://github.com/andshrew",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,

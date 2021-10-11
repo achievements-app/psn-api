@@ -156,6 +156,7 @@ Click the function names for complete docs.
   <tr>
     <td align="center"><a href="https://github.com/wescopeland"><img src="https://avatars.githubusercontent.com/u/3984985?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Wes Copeland</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=wescopeland" title="Code">💻</a> <a href="#example-wescopeland" title="Examples">💡</a> <a href="https://github.com/achievements-app/psn-api/commits?author=wescopeland" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/xelnia"><img src="https://avatars.githubusercontent.com/u/14896738?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xelnia</b></sub></a><br /><a href="#ideas-xelnia" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-xelnia" title="User Testing">📓</a></td>
+    <td align="center"><a href="https://github.com/andshrew"><img src="https://avatars.githubusercontent.com/u/7409326?v=4?s=100" width="100px;" alt=""/><br /><sub><b>andshrew</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=andshrew" title="Documentation">📖</a></td>
   </tr>
 </table>
 
