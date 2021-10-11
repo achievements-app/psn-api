@@ -137,6 +137,8 @@ Click the function names for complete docs.
 
 ## Examples
 
+- [Build a user's complete trophy list and write it to a JSON file](examples/buildUserTrophyList.ts)
+
 ## How to contribute
 
 ## Contributors
