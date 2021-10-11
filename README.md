@@ -116,3 +116,21 @@ const trophyTitlesResponse = await getTrophyTitlesForUser(
   "me"
 );
 ```
+
+## API
+
+Click the function names for complete docs.
+
+### Authentication
+
+- [`exchangeCodeForAccessToken()`](src/authenticate/exchangeCodeForAccessToken.md)
+- [`exchangeNpssoForCode()`](src/authenticate/exchangeNpssoForCode.md)
+
+### Trophies
+
+- `getSummarizedTrophiesByTrophyGroup()`
+- `getTitleTrophyGroups()`
+- `getTrophiesEarnedForTitle()`
+- `getTrophiesForTitle()`
+- `getTrophyProfileSummary()`
+- `getTrophyTitlesForUser()`

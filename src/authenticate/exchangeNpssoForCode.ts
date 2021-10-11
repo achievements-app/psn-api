@@ -14,7 +14,9 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
  * console.log(code) // --> "v3.XXXXXX"
  * ```
  */
-export const exchangeNpssoForCode = async (npssoToken: string) => {
+export const exchangeNpssoForCode = async (
+  npssoToken: string
+): Promise<string> => {
   const requestUrl = urlcat(AUTH_BASE_URL, "/authorize", {
     access_type: "offline",
     client_id: "ac8d161a-d966-4728-b0ea-ffec22f69edc",
