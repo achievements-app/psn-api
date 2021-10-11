@@ -36,7 +36,7 @@ export const getTrophyProfileSummary = async (
   authorization: AuthorizationPayload,
   accountId: string,
   options?: Partial<GetTrophyProfileSummaryOptions>
-) => {
+): Promise<TrophyProfileSummaryResponse> => {
   const url = buildRequestUrl(accountId);
 
   return await call<TrophyProfileSummaryResponse>(

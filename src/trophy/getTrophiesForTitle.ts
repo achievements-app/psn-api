@@ -56,7 +56,7 @@ export const getTrophiesForTitle = async (
   npCommunicationId: string,
   trophyGroupId: string,
   options?: Partial<GetTrophiesForTitleOptions>
-) => {
+): Promise<TitleTrophiesResponse> => {
   const url = buildRequestUrl(npCommunicationId, trophyGroupId, options);
 
   return await call<TitleTrophiesResponse>(

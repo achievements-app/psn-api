@@ -1,37 +1,6 @@
-import urlcat from "urlcat";
+# getTrophiesEarnedForTitle
 
-import type {
-  AuthorizationPayload,
-  CallValidHeaders,
-  TrophiesEarnedForTitleResponse
-} from "@/models";
-
-import { call } from "../call";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
-
-interface GetTrophiesEarnedForTitleOptions {
-  /**
-   * Not required unless the platform is PS3, PS4, or PS Vita.
-   * If one of these platforms, the value __must__ be `"trophy"`.
-   *
-   * `"trophy"` for PS3, PS4, or PS Vita platforms.
-   * `"trophy2"` for the PS5 platform.
-   */
-  npServiceName: "trophy" | "trophy2";
-
-  /** Limit the number of trophies returned. */
-  limit: number;
-
-  /** Return trophy data from this result onwards. */
-  offset: number;
-
-  /*
-   * Override the headers in the request to the PSN API,
-   * such as to change the language.
-   */
-  headerOverrides: CallValidHeaders;
-}
-
+```ts
 /**
  * A request to this URL will retrieve the earned status of trophies for a user
  * from either a single - or all - trophy groups in a title. A title can have
@@ -71,37 +40,49 @@ export const getTrophiesEarnedForTitle = async (
   npCommunicationId: string,
   trophyGroupId: string,
   options?: Partial<GetTrophiesEarnedForTitleOptions>
-): Promise<TrophiesEarnedForTitleResponse> => {
-  const url = buildRequestUrl(
-    accountId,
-    npCommunicationId,
-    trophyGroupId,
-    options
-  );
+): Promise<TrophiesEarnedForTitleResponse> => { ... }
+```
 
-  return await call<TrophiesEarnedForTitleResponse>(
-    { url, headers: options?.headerOverrides },
-    authorization
-  );
-};
+```ts
+interface TrophiesEarnedForTitleResponse {
+  /** The current version of the trophy set. Some trophy sets receive updates. */
+  trophySetVersion: string;
 
-const buildRequestUrl = (
-  accountId: string,
-  npCommunicationId: string,
-  trophyGroupId: string,
-  options: Partial<GetTrophiesEarnedForTitleOptions> = {}
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
-  const { headerOverrides, ...pickedOptions } = options;
+  /** `true` if this title has additional trophy groups. */
+  hasTrophyGroups: boolean;
 
-  return urlcat(
-    TROPHY_BASE_URL,
-    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups/:trophyGroupId/trophies",
-    {
-      accountId,
-      npCommunicationId,
-      trophyGroupId,
-      ...pickedOptions
-    }
-  );
-};
+  /** Date of the user's most recent trophy earned for the title. */
+  lastUpdatedDateTime: string;
+
+  /** Individual object for each trophy. */
+  trophies: Trophy[];
+
+  /** Total trophies in the group (or total trophies for the title if `"all"` is specified). */
+  totalItemCount: number;
+
+  /**
+   * Individual object for each trophy.
+   * Returns the trophy where earned is `true` with the lowest `trophyEarnedRate`.
+   * Returns nothing if no trophies are earned.
+   */
+  rarestTrophies?: Trophy[];
+
+  nextOffset?: number;
+  previousOffset?: number;
+}
+```
+
+```ts
+// Usage example
+
+// Returns a list of all trophies earned for all trophy groups of Astro's Playroom.
+// This response contains very minimal metadata for each trophy. For extended
+// metadata, take a look at `getTrophiesForTitle()`.
+const response = await getTrophiesEarnedForTitle(
+  authorization,
+  "me",
+  "NPWR20188_00",
+  "all",
+  { npServiceName: "trophy2" }
+);
+```

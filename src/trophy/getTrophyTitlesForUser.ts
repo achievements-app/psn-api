@@ -50,7 +50,7 @@ export const getTrophyTitlesForUser = async (
   authorization: AuthorizationPayload,
   accountId: string,
   options?: Partial<GetTrophyTitlesForUserOptions>
-) => {
+): Promise<UserTrophyTitlesResponse> => {
   const url = buildRequestUrl(accountId, options);
 
   return await call<UserTrophyTitlesResponse>(

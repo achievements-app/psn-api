@@ -128,9 +128,15 @@ Click the function names for complete docs.
 
 ### Trophies
 
-- `getSummarizedTrophiesByTrophyGroup()`
-- `getTitleTrophyGroups()`
-- `getTrophiesEarnedForTitle()`
-- `getTrophiesForTitle()`
-- `getTrophyProfileSummary()`
-- `getTrophyTitlesForUser()`
+- [`getSummarizedTrophiesByTrophyGroup()`](src/trophy/getSummarizedTrophiesByTrophyGroup.md)
+- [`getTitleTrophyGroups()`](src/trophy/getTitleTrophyGroups.md)
+- [`getTrophiesEarnedForTitle()`](src/trophy/getTrophiesEarnedForTitle.md)
+- [`getTrophiesForTitle()`](src/trophy/getTrophiesForTitle.md)
+- [`getTrophyProfileSummary()`](src/trophy/getTrophyProfileSummary.md)
+- [`getTrophyTitlesForUser()`](src/trophy/getTrophyTitlesForUser.md)
+
+## Examples
+
+## How to contribute
+
+## Contributors

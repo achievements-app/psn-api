@@ -1,31 +1,6 @@
-import urlcat from "urlcat";
+# getSummarizedTrophiesByTrophyGroup
 
-import type {
-  AuthorizationPayload,
-  CallValidHeaders,
-  SummarizedTrophiesByTrophyGroupResponse
-} from "@/models";
-
-import { call } from "../call";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
-
-interface GetSummarizedTrophiesByTrophyGroupOptions {
-  /**
-   * Not required unless the platform is PS3, PS4, or PS Vita.
-   * If one of these platforms, the value __must__ be `"trophy"`.
-   *
-   * `"trophy"` for PS3, PS4, or PS Vita platforms.
-   * `"trophy2"` for the PS5 platform.
-   */
-  npServiceName: "trophy" | "trophy2";
-
-  /*
-   * Override the headers in the request to the PSN API,
-   * such as to change the language.
-   */
-  headerOverrides: CallValidHeaders;
-}
-
+```ts
 /**
  * A request to this URL will retrieve a summary of the trophies earned for
  * a user broken down by trophy group within a title. A title can have
@@ -60,26 +35,43 @@ export const getSummarizedTrophiesByTrophyGroup = async (
   accountId: string,
   npCommunicationId: string,
   options?: Partial<GetSummarizedTrophiesByTrophyGroupOptions>
-): Promise<SummarizedTrophiesByTrophyGroupResponse> => {
-  const url = buildRequestUrl(accountId, npCommunicationId, options);
+): Promise<SummarizedTrophiesByTrophyGroupResponse> => { ... }
+```
 
-  return await call<SummarizedTrophiesByTrophyGroupResponse>(
-    { url, headers: options?.headerOverrides },
-    authorization
-  );
-};
+```ts
+interface SummarizedTrophiesByTrophyGroupResponse {
+  /** The current version of the trophy set. Some trophy sets receive updates. */
+  trophySetVersion: string;
 
-const buildRequestUrl = (
-  accountId: string,
-  npCommunicationId: string,
-  options: Partial<GetSummarizedTrophiesByTrophyGroupOptions> = {}
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
-  const { headerOverrides, ...pickedOptions } = options;
+  /**
+   * Title has been hidden on the accounts trophy list.
+   * This applies to the authenticating account only.
+   * The title will not be returned if it has been hidden on another account.
+   */
+  hiddenFlag: boolean;
 
-  return urlcat(
-    TROPHY_BASE_URL,
-    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups",
-    { accountId, npCommunicationId, ...pickedOptions }
-  );
-};
+  /** The account's percentage process towards the next trophy level. */
+  progress: number;
+
+  /** The account's number of earned trophies by type. */
+  earnedTrophies: TrophyCounts;
+
+  /** Individual object for each trophy group returned. */
+  trophyGroups: TrophyGroup[];
+
+  /** Date of the user's most recent trophy earned for the title. */
+  lastUpdatedDateTime: string;
+}
+```
+
+```ts
+// Usage example
+
+// Returns a summary of your trophies earned for Astro's Playroom (NPWR20188_00).
+const response = await getSummarizedTrophiesByTrophyGroup(
+  authorization,
+  "me",
+  "NPWR20188_00",
+  { npServiceName: "trophy2" }
+);
+```
