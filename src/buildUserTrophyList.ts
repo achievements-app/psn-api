@@ -1,11 +1,10 @@
 import fs from "fs";
 
 import {
-  call as psnCall,
   getAuthenticationToken,
-  getTitleTrophies,
-  getUserEarnedTrophiesForTitle,
-  getUserTitles
+  getTrophiesEarnedForTitle,
+  getTrophiesForTitle,
+  getTrophyTitlesForUser
 } from ".";
 import { Trophy } from "./models/trophy.model";
 import { TrophyRarity } from "./models/trophy-rarity.model";
@@ -14,31 +13,33 @@ const npsso =
   "1ZJugQkLgxvWHAyJL48azw6rYkH28qul5zvP7et8khlElTqamBVsDcRntHRBfO0w";
 
 export const buildUserTrophyList = async (userId: string) => {
-  const { accessToken } = await getAuthenticationToken(npsso);
+  const authorization = await getAuthenticationToken(npsso);
 
-  const { trophyTitles } = await getUserTitles(userId, {
-    accessToken
-  });
+  const { trophyTitles } = await getTrophyTitlesForUser(authorization, userId);
 
   const games: any[] = [];
 
   let count = 1;
   for (const title of trophyTitles) {
-    const { trophies: titleTrophies } = await getTitleTrophies(
+    const { trophies: titleTrophies } = await getTrophiesForTitle(
+      authorization,
       title.npCommunicationId,
       "all",
       {
-        accessToken
-      },
-      { platform: title.trophyTitlePlatform }
+        npServiceName:
+          title.trophyTitlePlatform !== "PS5" ? "trophy" : undefined
+      }
     );
 
-    const { trophies: earnedTrophies } = await getUserEarnedTrophiesForTitle(
+    const { trophies: earnedTrophies } = await getTrophiesEarnedForTitle(
+      authorization,
       userId,
       title.npCommunicationId,
       "all",
-      { accessToken },
-      { platform: title.trophyTitlePlatform }
+      {
+        npServiceName:
+          title.trophyTitlePlatform !== "PS5" ? "trophy" : undefined
+      }
     );
 
     const mergedTrophies = mergeTrophyLists(titleTrophies, earnedTrophies);

@@ -1,3 +1,3 @@
-export * from "./getTitleTrophies";
-export * from "./getUserEarnedTrophiesForTitle";
-export * from "./getUserTitles";
+export * from "./getTrophiesEarnedForTitle";
+export * from "./getTrophiesForTitle";
+export * from "./getTrophyTitlesForUser";

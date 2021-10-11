@@ -1,11 +1,13 @@
 import fetch from "isomorphic-unfetch";
 
+import type { AuthorizationPayload } from "@/models";
+
 export const call = async <T>(
   config: {
     url: string;
     method?: "GET" | "POST";
   },
-  authorization: { accessToken: string }
+  authorization: AuthorizationPayload
 ) => {
   const response = await fetch(config.url, {
     method: config?.method ?? "GET",
