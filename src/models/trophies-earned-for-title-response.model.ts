@@ -1,7 +1,7 @@
 import type { Trophy } from "./trophy.model";
 
 export interface TrophiesEarnedForTitleResponse {
-  /** The current version of the trophy set. */
+  /** The current version of the trophy set. Some trophy sets receive updates. */
   trophySetVersion: string;
 
   /** `true` if this title has additional trophy groups. */

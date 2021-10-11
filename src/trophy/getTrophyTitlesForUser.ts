@@ -40,7 +40,7 @@ interface GetTrophyTitlesForUserOptions {
  * so the first result will be the title for which a trophy was recently earned
  * (or synced for the first time in the case of a game with 0% progress).
  *
- * @param authorization An object containing your access token, typically retrieved with `getAuthenticationToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.limit Limit the number of titles returned.
  * @param options.offset Return title data from this result onwards.
@@ -53,7 +53,10 @@ export const getTrophyTitlesForUser = async (
 ) => {
   const url = buildRequestUrl(accountId, options);
 
-  return await call<UserTrophyTitlesResponse>({ url }, authorization);
+  return await call<UserTrophyTitlesResponse>(
+    { url, headers: options?.headerOverrides },
+    authorization
+  );
 };
 
 const buildRequestUrl = (
