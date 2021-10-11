@@ -77,3 +77,42 @@ exchangeCodeForAccessToken("myCode").then((accessTokenResponse) => {
 const accessTokenResponse = await exchangeCodeForAccessToken("myCode");
 console.log({ accessTokenResponse });
 ```
+
+## How to obtain an authentication token
+
+To use any endpoint function in the API, you must first be authorized by PSN. Fortunately, this is a fairly straightforward process.
+
+1. In your web browser, visit [https://my.playstation.com/](https://my.playstation.com/) and log in with a PSN account.
+
+2. In the same browser (due to a persisted cookie), visit [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie). You will see a JSON response that looks something like:
+
+```js
+{"npsso":"Hwl9Vq..."}
+```
+
+Copy your NPSSO. **Do not expose it anywhere publicly, it is equivalent to your password.**
+
+3. You can now obtain an authentication token using your NPSSO with the following function calls from this package.
+
+```ts
+// This is the value you copied from the previous step.
+const myNpsso = "Hwl9Vq...";
+
+// We'll exchange your NPSSO for a special access code.
+const accessCode = await exchangeNpssoForCode(npsso);
+
+// We can use the access code to get your access token and refresh token.
+const authorization = await exchangeCodeForAccessToken(accessCode);
+```
+
+4. You should now be all set to use any endpoint provided by this package. Each function requires as its first argument an object containing your access token. ex:
+
+```ts
+const authorization = await exchangeCodeForAccessToken(accessCode);
+
+// This returns a list of all the games you've earned trophies for.
+const trophyTitlesResponse = await getTrophyTitlesForUser(
+  { accessToken: authorization.accessToken },
+  "me"
+);
+```
