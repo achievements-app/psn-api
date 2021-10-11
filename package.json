@@ -44,7 +44,8 @@
     }
   ],
   "dependencies": {
-    "ky": "^0.28.5",
-    "ky-universal": "^0.9.1"
+    "form-data": "^4.0.0",
+    "isomorphic-unfetch": "^3.1.0",
+    "urlcat": "^2.0.4"
   }
 }

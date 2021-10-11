@@ -1,3 +1,3 @@
-export default function main() {
-  console.log("hello world");
-}
+export * from "./authenticate";
+export * from "./call";
+export * from "./trophy";
