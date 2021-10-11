@@ -1,6 +1,10 @@
 import urlcat from "urlcat";
 
-import type { AuthorizationPayload, UserTrophyTitlesResponse } from "@/models";
+import type {
+  AuthorizationPayload,
+  CallValidHeaders,
+  UserTrophyTitlesResponse
+} from "@/models";
 
 import { call } from "../call";
 import { baseUrl } from "./baseUrl";
@@ -9,8 +13,14 @@ interface GetTrophyTitlesForUserOptions {
   /** Limit the number of titles returned. */
   limit: number;
 
-  /** Returns title data from this result onwards. */
+  /** Return title data from this result onwards. */
   offset: number;
+
+  /*
+   * Override the headers in the request to the PSN API,
+   * such as to change the language.
+   */
+  headerOverrides: CallValidHeaders;
 }
 
 /**
@@ -33,7 +43,8 @@ interface GetTrophyTitlesForUserOptions {
  * @param authorization An object containing your access token, typically retrieved with `getAuthenticationToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.limit Limit the number of titles returned.
- * @param options.offset Returns title data from this result onwards.
+ * @param options.offset Return title data from this result onwards.
+ * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
 export const getTrophyTitlesForUser = async (
   authorization: AuthorizationPayload,
@@ -47,10 +58,13 @@ export const getTrophyTitlesForUser = async (
 
 const buildRequestUrl = (
   accountId: string,
-  options?: Partial<GetTrophyTitlesForUserOptions>
+  options: Partial<GetTrophyTitlesForUserOptions> = {}
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
+  const { headerOverrides, ...pickedOptions } = options;
+
   return urlcat(baseUrl, "/v1/users/:accountId/trophyTitles", {
     accountId,
-    ...options
+    ...pickedOptions
   });
 };

@@ -1,6 +1,10 @@
 import urlcat from "urlcat";
 
-import type { AuthorizationPayload, TitleTrophiesResponse } from "@/models";
+import type {
+  AuthorizationPayload,
+  CallValidHeaders,
+  TitleTrophiesResponse
+} from "@/models";
 
 import { call } from "../call";
 import { baseUrl } from "./baseUrl";
@@ -18,8 +22,14 @@ interface GetTrophiesForTitleOptions {
   /** Limit the number of trophies returned. */
   limit: number;
 
-  /** Returns trophy data from this result onwards. */
+  /** Return trophy data from this result onwards. */
   offset: number;
+
+  /*
+   * Override the headers in the request to the PSN API,
+   * such as to change the language.
+   */
+  headerOverrides: CallValidHeaders;
 }
 
 /**
@@ -38,7 +48,8 @@ interface GetTrophiesForTitleOptions {
  * @param trophyGroupId `"all"` to return all trophies for the title, otherwise restrict results to a specific trophy group (such as a DLC).
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.limit Limit the number of trophies returned.
- * @param options.offset Returns trophy data from this result onwards.
+ * @param options.offset Return trophy data from this result onwards.
+ * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
 export const getTrophiesForTitle = async (
   authorization: AuthorizationPayload,
@@ -54,15 +65,18 @@ export const getTrophiesForTitle = async (
 const buildRequestUrl = (
   npCommunicationId: string,
   trophyGroupId: string,
-  options?: Partial<GetTrophiesForTitleOptions>
+  options: Partial<GetTrophiesForTitleOptions> = {}
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
+  const { headerOverrides, ...pickedOptions } = options;
+
   return urlcat(
     baseUrl,
     "/v1/npCommunicationIds/:npCommunicationId/trophyGroups/:trophyGroupId/trophies",
     {
       npCommunicationId,
       trophyGroupId,
-      ...options
+      ...pickedOptions
     }
   );
 };
