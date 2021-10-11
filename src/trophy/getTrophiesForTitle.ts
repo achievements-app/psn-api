@@ -7,7 +7,7 @@ import type {
 } from "@/models";
 
 import { call } from "../call";
-import { baseUrl } from "./baseUrl";
+import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
 interface GetTrophiesForTitleOptions {
   /**
@@ -74,7 +74,7 @@ const buildRequestUrl = (
   const { headerOverrides, ...pickedOptions } = options;
 
   return urlcat(
-    baseUrl,
+    TROPHY_BASE_URL,
     "/v1/npCommunicationIds/:npCommunicationId/trophyGroups/:trophyGroupId/trophies",
     {
       npCommunicationId,

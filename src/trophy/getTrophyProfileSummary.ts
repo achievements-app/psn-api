@@ -7,7 +7,7 @@ import type {
 } from "@/models";
 
 import { call } from "../call";
-import { baseUrl } from "./baseUrl";
+import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
 interface GetTrophyProfileSummaryOptions {
   /*
@@ -46,7 +46,7 @@ export const getTrophyProfileSummary = async (
 };
 
 const buildRequestUrl = (accountId: string) => {
-  return urlcat(baseUrl, "/v1/users/:accountId/trophySummary", {
+  return urlcat(TROPHY_BASE_URL, "/v1/users/:accountId/trophySummary", {
     accountId
   });
 };

@@ -1,7 +1,8 @@
 import fs from "fs";
 
 import {
-  getAuthenticationToken,
+  exchangeCodeForAccessToken,
+  exchangeNpssoForCode,
   getTrophiesEarnedForTitle,
   getTrophiesForTitle,
   getTrophyTitlesForUser
@@ -13,7 +14,10 @@ const npsso =
   "1ZJugQkLgxvWHAyJL48azw6rYkH28qul5zvP7et8khlElTqamBVsDcRntHRBfO0w";
 
 export const buildUserTrophyList = async (userId: string) => {
-  const authorization = await getAuthenticationToken(npsso);
+  const accessCode = await exchangeNpssoForCode(npsso);
+  const authorization = await exchangeCodeForAccessToken(accessCode);
+  console.log(authorization);
+  return;
 
   const { trophyTitles } = await getTrophyTitlesForUser(authorization, userId);
 

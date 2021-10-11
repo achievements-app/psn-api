@@ -1,7 +1,7 @@
 import fetch from "isomorphic-unfetch";
 import urlcat from "urlcat";
 
-const BASE_URL = "https://ca.account.sony.com/api";
+import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
 /**
  *
@@ -15,7 +15,7 @@ const BASE_URL = "https://ca.account.sony.com/api";
  * ```
  */
 export const exchangeNpssoForCode = async (npssoToken: string) => {
-  const requestUrl = urlcat(BASE_URL, "/authz/v3/oauth/authorize", {
+  const requestUrl = urlcat(AUTH_BASE_URL, "/authorize", {
     access_type: "offline",
     client_id: "ac8d161a-d966-4728-b0ea-ffec22f69edc",
     redirect_uri: "com.playstation.PlayStationApp://redirect",

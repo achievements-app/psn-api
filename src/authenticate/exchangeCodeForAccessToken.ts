@@ -1,14 +1,20 @@
 import fetch from "isomorphic-unfetch";
-import { query } from "urlcat";
+import urlcat, { query } from "urlcat";
 
 import type { AccessTokenResponse } from "@/models";
 
+import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
+
+/**
+ * @param accessCode Your access code, typically retrieved by using `exchangeNpssoForCode()`.
+ * @returns An object containing an access token, refresh token, and expiry times for both.
+ */
 export const exchangeCodeForAccessToken = async (
   accessCode: string
 ): Promise<AccessTokenResponse> => {
-  const BASE_URL = "https://ca.account.sony.com/api/authz/v3/oauth/token";
+  const requestUrl = urlcat(AUTH_BASE_URL, "/token");
 
-  const res = await fetch(BASE_URL, {
+  const res = await fetch(requestUrl, {
     method: "POST",
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
