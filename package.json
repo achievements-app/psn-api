@@ -1,6 +1,6 @@
 {
   "name": "psn-api",
-  "version": "1.0.0",
+  "version": "0.0.0-development",
   "main": "dist/psn-api.js",
   "module": "dist/psn-api.mjs",
   "typings": "dist/psn-api.d.ts",
@@ -16,7 +16,8 @@
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
     "test": "jest",
     "size": "size-limit",
-    "analyze": "size-limit --why"
+    "analyze": "size-limit --why",
+    "semantic-release": "semantic-release"
   },
   "dependencies": {
     "form-data": "^4.0.0",
@@ -53,7 +54,8 @@
     "size-limit": "^6.0.1",
     "ts-jest": "^27.0.5",
     "ts-node-dev": "^1.1.8",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "semantic-release": "^18.0.0"
   },
   "size-limit": [
     {
@@ -70,5 +72,9 @@
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/achievements-app/psn-api.git"
   }
 }
