@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="60%" height="60%" src="psx.png">
+  <img width="40%" height="40%" src="psx.png">
 </p>
 
 # PSN API
