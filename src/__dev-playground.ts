@@ -1,5 +1,3 @@
-import { buildUserTrophyList } from "./buildUserTrophyList";
-
 console.log("👷‍♂️ Started dev playground.");
 console.log("Output is being dumped from src/dev.ts.\n");
 
@@ -8,7 +6,7 @@ console.log("Output is being dumped from src/dev.ts.\n");
 async function main() {
   // 👉 👉 👉 Start building here.
   // You'll see this code be called when you're running `yarn dev`.
-  buildUserTrophyList("aaa");
+  console.log("Hello from dev playground!");
 }
 
 main();

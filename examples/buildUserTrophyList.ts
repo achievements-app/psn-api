@@ -1,12 +1,14 @@
 import fs from "fs";
-import type { Trophy, TrophyRarity } from "psn-api";
+
+import type { Trophy } from "@/index";
 import {
   exchangeCodeForAccessToken,
   exchangeNpssoForCode,
   getTrophiesEarnedForTitle,
   getTrophiesForTitle,
-  getTrophyTitlesForUser
-} from "psn-api";
+  getTrophyTitlesForUser,
+  TrophyRarity
+} from "@/index";
 
 // To build your own trophy list, use "me" as the `userId`.
 export const buildUserTrophyList = async (userId: string, npsso: string) => {
