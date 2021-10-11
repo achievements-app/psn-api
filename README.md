@@ -30,3 +30,50 @@ PSN API is a reference implementation of a [community effort](https://andshrew.g
 ✅ &nbsp;Tiny, <2Kb.
 
 <hr />
+
+## Getting started
+
+### Install
+
+```
+npm install --save psn-api
+```
+
+OR
+
+```
+yarn add psn-api
+```
+
+### Usage with Node
+
+Node 14 and above are officially supported. The package can be imported via:
+
+```js
+const psn = require("psn-api");
+```
+
+### Usage with TypeScript
+
+You can use `import` syntax to utilize the package in your app. This library provides its own type definitions. "It just works", no need to install anything from `@types`.
+
+```ts
+import { getTrophiesEarnedForTitle } from "psn-api";
+```
+
+### Understanding the Promise-based API
+
+All methods in the API are async and return a [native Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
+
+These methods can be used with the native Promise API or the more modern async/await syntax.
+
+```ts
+// Native Promise API.
+exchangeCodeForAccessToken("myCode").then((accessTokenResponse) => {
+  console.log({ accessTokenResponse });
+});
+
+// async/await syntax.
+const accessTokenResponse = await exchangeCodeForAccessToken("myCode");
+console.log({ accessTokenResponse });
+```
