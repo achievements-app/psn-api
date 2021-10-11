@@ -30,7 +30,7 @@ PSN API is a reference implementation of a [community effort](https://andshrew.g
 
 ## Features
 
-✅ &nbsp;Modular by design, supports tree-shaking.  
+✅ &nbsp;Modular by design, and supports tree-shaking.  
 ✅ &nbsp;Aligns with the [community PSN API documentation](https://andshrew.github.io/PlayStation-Trophies/#/).  
 ✅ &nbsp;Supports Node environments (14 and above).  
 ✅ &nbsp;Supports browsers.  
