@@ -1,8 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, TitleTrophiesResponse } from "@/models";
-
+import type { AuthorizationPayload, TitleTrophiesResponse } from "../models";
 import { getTrophiesForTitle } from "./getTrophiesForTitle";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
@@ -38,7 +37,7 @@ describe("Function: getTrophiesForTitle", () => {
     server.use(
       rest.get(
         `${TROPHY_BASE_URL}/v1/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
-        (req, res, ctx) => {
+        (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
       )

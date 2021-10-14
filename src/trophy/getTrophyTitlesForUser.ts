@@ -1,12 +1,11 @@
 import urlcat from "urlcat";
 
+import { call } from "../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
   UserTrophyTitlesResponse
-} from "@/models";
-
-import { call } from "../call";
+} from "../models";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
 interface GetTrophyTitlesForUserOptions {

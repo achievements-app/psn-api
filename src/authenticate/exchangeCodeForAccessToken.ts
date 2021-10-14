@@ -1,8 +1,7 @@
 import fetch from "isomorphic-unfetch";
 import urlcat, { query } from "urlcat";
 
-import type { AccessTokenResponse } from "@/models";
-
+import type { AccessTokenResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
 /**

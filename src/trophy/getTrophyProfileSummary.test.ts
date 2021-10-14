@@ -4,9 +4,8 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   TrophyProfileSummaryResponse
-} from "@/models";
-import { generateTrophyCounts } from "@/test/generators";
-
+} from "../models";
+import { generateTrophyCounts } from "../test/generators";
 import { getTrophyProfileSummary } from "./getTrophyProfileSummary";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
@@ -42,7 +41,7 @@ describe("Function: getTrophyProfileSummary", () => {
     server.use(
       rest.get(
         `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/trophySummary`,
-        (req, res, ctx) => {
+        (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
       )

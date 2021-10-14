@@ -1,8 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AccessTokenResponse } from "@/models";
-
+import type { AccessTokenResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 import { exchangeCodeForAccessToken } from "./exchangeCodeForAccessToken";
 
@@ -32,7 +31,7 @@ describe("Function: exchangeCodeForAccessToken", () => {
     };
 
     server.use(
-      rest.post(`${AUTH_BASE_URL}/token`, (req, res, ctx) => {
+      rest.post(`${AUTH_BASE_URL}/token`, (_, res, ctx) => {
         return res(
           ctx.json({
             access_token: mockAccessTokenResponse.accessToken,

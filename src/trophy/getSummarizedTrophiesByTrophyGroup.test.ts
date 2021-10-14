@@ -4,9 +4,8 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   SummarizedTrophiesByTrophyGroupResponse
-} from "@/models";
-import { generateTrophyCounts } from "@/test/generators";
-
+} from "../models";
+import { generateTrophyCounts } from "../test/generators";
 import { getSummarizedTrophiesByTrophyGroup } from "./getSummarizedTrophiesByTrophyGroup";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
@@ -44,7 +43,7 @@ describe("Function: getSummarizedTrophiesByTrophyGroup", () => {
     server.use(
       rest.get(
         `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups`,
-        (req, res, ctx) => {
+        (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
       )

@@ -4,8 +4,7 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   TrophiesEarnedForTitleResponse
-} from "@/models";
-
+} from "../models";
 import { getTrophiesEarnedForTitle } from "./getTrophiesEarnedForTitle";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
@@ -43,7 +42,7 @@ describe("Function: getTrophiesEarnedForTitle", () => {
     server.use(
       rest.get(
         `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
-        (req, res, ctx) => {
+        (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
       )

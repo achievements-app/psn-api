@@ -2,22 +2,25 @@
   "name": "psn-api",
   "description": "A low-level API for getting data from the PlayStation Network.",
   "version": "0.0.0-development",
-  "main": "dist/psn-api.js",
-  "module": "dist/psn-api.mjs",
-  "typings": "dist/psn-api.d.ts",
+  "main": "dist/index.js",
+  "module": "dist/psn-api.esm.js",
+  "typings": "dist/index.d.ts",
   "author": "Wes Copeland",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src"
+  ],
   "scripts": {
-    "preversion": "npm run format && npm run build",
-    "prepublishOnly": "npm run format && npm run test && npm run build",
-    "dev": "ts-node-dev --respawn --clear --quiet src/__dev-playground.ts",
-    "build": "rollup -c",
+    "dev": "dts watch",
+    "build": "dts build",
+    "prepare": "dts build",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
-    "test": "jest",
+    "test": "dts test",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "semantic-release": "semantic-release"
@@ -26,6 +29,7 @@
     "isomorphic-unfetch": "^3.1.0",
     "urlcat": "^2.0.4"
   },
+  "peerDependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
@@ -36,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild": "^0.13.4",
+    "dts-cli": "^0.19.2",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
@@ -46,22 +50,22 @@
     "eslint-plugin-unicorn": "^36.0.0",
     "faker": "^5.5.3",
     "husky": "^4.3.8",
-    "jest": "^27.2.5",
     "msw": "^0.35.0",
     "prettier": "2.4.1",
     "pretty-quick": "^3.1.1",
-    "rollup": "^2.58.0",
-    "rollup-plugin-dts": "^4.0.0",
-    "rollup-plugin-esbuild": "^4.5.0",
-    "size-limit": "^6.0.1",
-    "ts-jest": "^27.0.5",
-    "ts-node-dev": "^1.1.8",
-    "typescript": "^4.4.3",
-    "semantic-release": "^18.0.0"
+    "semantic-release": "^18.0.0",
+    "size-limit": "^6.0.3",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4"
   },
   "size-limit": [
     {
-      "path": "dist/psn-api.js"
+      "path": "dist/psn-api.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/psn-api.esm.js",
+      "limit": "10 KB"
     }
   ],
   "husky": {

@@ -15,8 +15,6 @@ yarn
 
 ## Local development
 
-Start a local dev server in watch mode with `yarn dev`.
-
-There is a dev playground set up in _src/\_\_dev-playground.ts_. When changes are made to this file, you will see updates in your terminal.
+This package uses [dts-cli](https://github.com/weiran-zsd/dts-cli), a fork of tsdx. Local dev with watch mode can be enabled with `yarn dev`.
 
 Tests can be executed using `yarn test`.

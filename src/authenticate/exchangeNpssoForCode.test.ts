@@ -23,7 +23,7 @@ describe("Function: exchangeNpssoForCode", () => {
     const mockLocationHeaderResponse = `com.playstation.PlayStationApp://redirect/?code=${mockCode}&cid=36e3823a-8049-4c36-9021-b154315ae2ad`;
 
     server.use(
-      rest.get(`${AUTH_BASE_URL}/authorize`, (req, res, ctx) => {
+      rest.get(`${AUTH_BASE_URL}/authorize`, (_, res, ctx) => {
         return res(
           ctx.status(302),
           ctx.set("Location", mockLocationHeaderResponse)
@@ -41,7 +41,7 @@ describe("Function: exchangeNpssoForCode", () => {
   it("throws an error if we receive an unexpected response", async () => {
     // ARRANGE
     server.use(
-      rest.get(`${AUTH_BASE_URL}/authorize`, (req, res, ctx) => {
+      rest.get(`${AUTH_BASE_URL}/authorize`, (_, res, ctx) => {
         return res(ctx.json({}));
       })
     );

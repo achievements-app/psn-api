@@ -1,6 +1,6 @@
 import fs from "fs";
 
-import type { Trophy } from "@/index";
+import type { Trophy } from "../src";
 import {
   exchangeCodeForAccessToken,
   exchangeNpssoForCode,
@@ -8,7 +8,7 @@ import {
   getTrophiesForTitle,
   getTrophyTitlesForUser,
   TrophyRarity
-} from "@/index";
+} from "../src";
 
 // To build your own trophy list, use "me" as the `userId`.
 export const buildUserTrophyList = async (userId: string, npsso: string) => {

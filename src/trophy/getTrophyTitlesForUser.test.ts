@@ -1,9 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, UserTrophyTitlesResponse } from "@/models";
-import { generateTrophyTitle } from "@/test/generators";
-
+import type { AuthorizationPayload, UserTrophyTitlesResponse } from "../models";
+import { generateTrophyTitle } from "../test/generators";
 import { getTrophyTitlesForUser } from "./getTrophyTitlesForUser";
 import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
@@ -36,7 +35,7 @@ describe("Function: getTrophyTitlesForUser", () => {
     server.use(
       rest.get(
         `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/trophyTitles`,
-        (req, res, ctx) => {
+        (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
       )
