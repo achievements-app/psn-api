@@ -40,7 +40,7 @@
     "@typescript-eslint/eslint-plugin": "^4.33.0",
     "@typescript-eslint/parser": "^4.33.0",
     "cz-conventional-changelog": "^3.3.0",
-    "dts-cli": "^0.19.2",
+    "dts-cli": "^0.19.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-import-resolver-typescript": "^2.5.0",
