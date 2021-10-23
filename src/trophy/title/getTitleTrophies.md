@@ -1,8 +1,8 @@
-# getTrophiesForTitle
+# getTitleTrophies
 
 ```ts
 /**
- * A request to this URL will retrieve the individual trophy detail of a
+ * A call to this function will retrieve the individual trophy detail of a
  * single - or all - trophy groups for a title. A title can have multiple
  * groups of trophies (a `default` group which all titles have, and additional
  * groups named `"001"` incrementing for each additional group). To retrieve
@@ -20,11 +20,11 @@
  * @param options.offset Return trophy data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophiesForTitle = async (
+export const getTitleTrophies = async (
   authorization: AuthorizationPayload,
   npCommunicationId: string,
   trophyGroupId: string,
-  options?: Partial<GetTrophiesForTitleOptions>
+  options?: Partial<GetTitleTrophiesOptions>
 ): Promise<TitleTrophiesResponse> => { ... }
 ```
 
@@ -52,10 +52,7 @@ interface TitleTrophiesResponse {
 
 // Returns a list of all trophies for all groups of Astro's Playroom.
 // This response contains extended metadata for each trophy.
-const response = await getTrophiesForTitle(
-  authorization,
-  "NPWR20188_00",
-  "all",
-  { npServiceName: "trophy2" }
-);
+const response = await getTitleTrophies(authorization, "NPWR20188_00", "all", {
+  npServiceName: "trophy2"
+});
 ```

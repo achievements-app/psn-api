@@ -1,8 +1,8 @@
-# getTrophiesEarnedForTitle
+# getUserTrophiesEarnedForTitle
 
 ```ts
 /**
- * A request to this URL will retrieve the earned status of trophies for a user
+ * A call to this function will retrieve the earned status of trophies for a user
  * from either a single - or all - trophy groups in a title. A title can have
  * multiple groups of trophies (a `"default"` group which all titles have, and
  * additional groups starting with a name of `"001"` and incrementing for each
@@ -34,17 +34,17 @@
  * @param options.offset Return trophy data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophiesEarnedForTitle = async (
+export const getUserTrophiesEarnedForTitle = async (
   authorization: AuthorizationPayload,
   accountId: string,
   npCommunicationId: string,
   trophyGroupId: string,
-  options?: Partial<GetTrophiesEarnedForTitleOptions>
-): Promise<TrophiesEarnedForTitleResponse> => { ... }
+  options?: Partial<GetUserTrophiesEarnedForTitleOptions>
+): Promise<UserTrophiesEarnedForTitleResponse> => { ... }
 ```
 
 ```ts
-interface TrophiesEarnedForTitleResponse {
+interface UserTrophiesEarnedForTitleResponse {
   /** The current version of the trophy set. Some trophy sets receive updates. */
   trophySetVersion: string;
 
@@ -77,8 +77,8 @@ interface TrophiesEarnedForTitleResponse {
 
 // Returns a list of all trophies earned for all trophy groups of Astro's Playroom.
 // This response contains very minimal metadata for each trophy. For extended
-// metadata, take a look at `getTrophiesForTitle()`.
-const response = await getTrophiesEarnedForTitle(
+// metadata, take a look at `getTitleTrophies()`.
+const response = await getUserTrophiesEarnedForTitle(
   authorization,
   "me",
   "NPWR20188_00",

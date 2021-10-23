@@ -1,14 +1,14 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
-  SummarizedTrophiesByTrophyGroupResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserSummarizedTrophiesByTrophyGroupResponse
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetSummarizedTrophiesByTrophyGroupOptions {
+interface GetUserSummarizedTrophiesByTrophyGroupOptions {
   /**
    * Not required unless the platform is PS3, PS4, or PS Vita.
    * If one of these platforms, the value __must__ be `"trophy"`.
@@ -26,7 +26,7 @@ interface GetSummarizedTrophiesByTrophyGroupOptions {
 }
 
 /**
- * A request to this URL will retrieve a summary of the trophies earned for
+ * A request to this endpoint function will retrieve a summary of the trophies earned for
  * a user broken down by trophy group within a title. A title can have
  * multiple groups of trophies (a `"default"` group which all titles have,
  * and additional groups beginning with the name `"001"` and incrementing for
@@ -54,15 +54,15 @@ interface GetSummarizedTrophiesByTrophyGroupOptions {
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getSummarizedTrophiesByTrophyGroup = async (
+export const getUserSummarizedTrophiesByTrophyGroup = async (
   authorization: AuthorizationPayload,
   accountId: string,
   npCommunicationId: string,
-  options?: Partial<GetSummarizedTrophiesByTrophyGroupOptions>
-): Promise<SummarizedTrophiesByTrophyGroupResponse> => {
+  options?: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions>
+): Promise<UserSummarizedTrophiesByTrophyGroupResponse> => {
   const url = buildRequestUrl(accountId, npCommunicationId, options);
 
-  return await call<SummarizedTrophiesByTrophyGroupResponse>(
+  return await call<UserSummarizedTrophiesByTrophyGroupResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
@@ -71,7 +71,7 @@ export const getSummarizedTrophiesByTrophyGroup = async (
 const buildRequestUrl = (
   accountId: string,
   npCommunicationId: string,
-  options: Partial<GetSummarizedTrophiesByTrophyGroupOptions> = {}
+  options: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions> = {}
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
   const { headerOverrides, ...pickedOptions } = options;

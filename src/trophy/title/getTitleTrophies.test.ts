@@ -1,13 +1,13 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, TitleTrophiesResponse } from "../models";
-import { getTrophiesForTitle } from "./getTrophiesForTitle";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+import type { AuthorizationPayload, TitleTrophiesResponse } from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
+import { getTitleTrophies } from "./getTitleTrophies";
 
 const server = setupServer();
 
-describe("Function: getTrophiesForTitle", () => {
+describe("Function: getTitleTrophies", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -15,7 +15,7 @@ describe("Function: getTrophiesForTitle", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getTrophiesForTitle).toBeDefined();
+    expect(getTitleTrophies).toBeDefined();
   });
 
   it("retrieves trophies for a given title", async () => {
@@ -44,7 +44,7 @@ describe("Function: getTrophiesForTitle", () => {
     );
 
     // ACT
-    const response = await getTrophiesForTitle(
+    const response = await getTitleTrophies(
       mockAuthorization,
       mockNpCommunicationId,
       mockTrophyGroupId

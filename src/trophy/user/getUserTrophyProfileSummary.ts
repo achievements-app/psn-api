@@ -1,14 +1,14 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
-  TrophyProfileSummaryResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserTrophyProfileSummaryResponse
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetTrophyProfileSummaryOptions {
+interface GetUserTrophyProfileSummaryOptions {
   /*
    * Override the headers in the request to the PSN API,
    * such as to change the language.
@@ -17,7 +17,7 @@ interface GetTrophyProfileSummaryOptions {
 }
 
 /**
- * A request to this URL will retrieve an overall summary of the number of
+ * A call to this function will retrieve an overall summary of the number of
  * trophies earned for a user broken down by type, as well as their current
  * overall trophy level, progress towards the next level and which tier their
  * current level falls in to. The tiers are based on the [level changes introduced in 2020](https://andshrew.github.io/PlayStation-Trophies/images/psn-trophy-tiers.png).
@@ -31,14 +31,14 @@ interface GetTrophyProfileSummaryOptions {
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophyProfileSummary = async (
+export const getUserTrophyProfileSummary = async (
   authorization: AuthorizationPayload,
   accountId: string,
-  options?: Partial<GetTrophyProfileSummaryOptions>
-): Promise<TrophyProfileSummaryResponse> => {
+  options?: Partial<GetUserTrophyProfileSummaryOptions>
+): Promise<UserTrophyProfileSummaryResponse> => {
   const url = buildRequestUrl(accountId);
 
-  return await call<TrophyProfileSummaryResponse>(
+  return await call<UserTrophyProfileSummaryResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );

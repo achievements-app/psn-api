@@ -3,15 +3,15 @@ import { setupServer } from "msw/node";
 
 import type {
   AuthorizationPayload,
-  SummarizedTrophiesByTrophyGroupResponse
-} from "../models";
-import { generateTrophyCounts } from "../test/generators";
-import { getSummarizedTrophiesByTrophyGroup } from "./getSummarizedTrophiesByTrophyGroup";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserSummarizedTrophiesByTrophyGroupResponse
+} from "../../models";
+import { generateTrophyCounts } from "../../test/generators";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
+import { getUserSummarizedTrophiesByTrophyGroup } from "./getUserSummarizedTrophiesByTrophyGroup";
 
 const server = setupServer();
 
-describe("Function: getSummarizedTrophiesByTrophyGroup", () => {
+describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -19,7 +19,7 @@ describe("Function: getSummarizedTrophiesByTrophyGroup", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getSummarizedTrophiesByTrophyGroup).toBeDefined();
+    expect(getUserSummarizedTrophiesByTrophyGroup).toBeDefined();
   });
 
   it("retrieves a summarized count of trophy earnings for a given user", async () => {
@@ -31,7 +31,7 @@ describe("Function: getSummarizedTrophiesByTrophyGroup", () => {
     const mockAccountId = "mockAccountId";
     const mockNpCommunicationId = "mockNpCommunicationId";
 
-    const mockResponse: SummarizedTrophiesByTrophyGroupResponse = {
+    const mockResponse: UserSummarizedTrophiesByTrophyGroupResponse = {
       trophySetVersion: "1.00",
       hiddenFlag: false,
       progress: 80,
@@ -50,7 +50,7 @@ describe("Function: getSummarizedTrophiesByTrophyGroup", () => {
     );
 
     // ACT
-    const response = await getSummarizedTrophiesByTrophyGroup(
+    const response = await getUserSummarizedTrophiesByTrophyGroup(
       mockAuthorization,
       mockAccountId,
       mockNpCommunicationId

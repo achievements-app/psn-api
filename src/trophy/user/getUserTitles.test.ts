@@ -1,14 +1,14 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, UserTrophyTitlesResponse } from "../models";
-import { generateTrophyTitle } from "../test/generators";
-import { getTrophyTitlesForUser } from "./getTrophyTitlesForUser";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+import type { AuthorizationPayload, UserTitlesResponse } from "../../models";
+import { generateTrophyTitle } from "../../test/generators";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
+import { getUserTitles } from "./getUserTitles";
 
 const server = setupServer();
 
-describe("Function: getTrophyTitlesForUser", () => {
+describe("Function: getUserTitles", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -16,7 +16,7 @@ describe("Function: getTrophyTitlesForUser", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getTrophyTitlesForUser).toBeDefined();
+    expect(getUserTitles).toBeDefined();
   });
 
   it("makes a call to get the list of trophy titles for a given user", async () => {
@@ -27,7 +27,7 @@ describe("Function: getTrophyTitlesForUser", () => {
       accessToken: "mockAccessToken"
     };
 
-    const mockResponse: UserTrophyTitlesResponse = {
+    const mockResponse: UserTitlesResponse = {
       trophyTitles: [generateTrophyTitle()],
       totalItemCount: 1
     };
@@ -42,10 +42,7 @@ describe("Function: getTrophyTitlesForUser", () => {
     );
 
     // ACT
-    const response = await getTrophyTitlesForUser(
-      mockAuthorization,
-      mockAccountId
-    );
+    const response = await getUserTitles(mockAuthorization, mockAccountId);
 
     // ASSERT
     expect(response).toEqual(mockResponse);

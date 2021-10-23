@@ -1,6 +1,6 @@
 import type { TrophyTitle } from "./trophy-title.model";
 
-export interface UserTrophyTitlesResponse {
+export interface UserTitlesResponse {
   trophyTitles: TrophyTitle[];
   totalItemCount: number;
 }

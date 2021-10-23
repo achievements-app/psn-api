@@ -1,14 +1,14 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
-  UserTrophyTitlesResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserTitlesResponse
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetTrophyTitlesForUserOptions {
+interface GetUserTitlesOptions {
   /** Limit the number of titles returned. */
   limit: number;
 
@@ -23,8 +23,12 @@ interface GetTrophyTitlesForUserOptions {
 }
 
 /**
- * Requests to this URL will retrieve a list of the titles associated with an account,
- * and a summary of trophies earned from them.
+ * A call to this function will retrieve the earned status of trophies for a user
+ * from either a single - or all - trophy groups in a title. A title can have
+ * multiple groups of trophies (a `"default"` group which all titles have, and
+ * additional groups starting with a name of `"001"` and incrementing for each
+ * additional group). To retrieve trophies from all groups within a title
+ * (ie. the full trophy set) then `trophyGroupId` should be set to `"all"`.
  *
  * The numeric `accountId` can be that of any PSN account for which the authenticating
  * account has permissions to view the trophy list. When querying the titles
@@ -45,14 +49,14 @@ interface GetTrophyTitlesForUserOptions {
  * @param options.offset Return title data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophyTitlesForUser = async (
+export const getUserTitles = async (
   authorization: AuthorizationPayload,
   accountId: string,
-  options?: Partial<GetTrophyTitlesForUserOptions>
-): Promise<UserTrophyTitlesResponse> => {
+  options?: Partial<GetUserTitlesOptions>
+): Promise<UserTitlesResponse> => {
   const url = buildRequestUrl(accountId, options);
 
-  return await call<UserTrophyTitlesResponse>(
+  return await call<UserTitlesResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
@@ -60,7 +64,7 @@ export const getTrophyTitlesForUser = async (
 
 const buildRequestUrl = (
   accountId: string,
-  options: Partial<GetTrophyTitlesForUserOptions> = {}
+  options: Partial<GetUserTitlesOptions> = {}
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
   const { headerOverrides, ...pickedOptions } = options;

@@ -1,14 +1,14 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
-  TrophiesEarnedForTitleResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserTrophiesEarnedForTitleResponse
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetTrophiesEarnedForTitleOptions {
+interface GetUserTrophiesEarnedForTitleOptions {
   /**
    * Not required unless the platform is PS3, PS4, or PS Vita.
    * If one of these platforms, the value __must__ be `"trophy"`.
@@ -64,13 +64,13 @@ interface GetTrophiesEarnedForTitleOptions {
  * @param options.offset Return trophy data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophiesEarnedForTitle = async (
+export const getUserTrophiesEarnedForTitle = async (
   authorization: AuthorizationPayload,
   accountId: string,
   npCommunicationId: string,
   trophyGroupId: string,
-  options?: Partial<GetTrophiesEarnedForTitleOptions>
-): Promise<TrophiesEarnedForTitleResponse> => {
+  options?: Partial<GetUserTrophiesEarnedForTitleOptions>
+): Promise<UserTrophiesEarnedForTitleResponse> => {
   const url = buildRequestUrl(
     accountId,
     npCommunicationId,
@@ -78,7 +78,7 @@ export const getTrophiesEarnedForTitle = async (
     options
   );
 
-  return await call<TrophiesEarnedForTitleResponse>(
+  return await call<UserTrophiesEarnedForTitleResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
@@ -88,7 +88,7 @@ const buildRequestUrl = (
   accountId: string,
   npCommunicationId: string,
   trophyGroupId: string,
-  options: Partial<GetTrophiesEarnedForTitleOptions> = {}
+  options: Partial<GetUserTrophiesEarnedForTitleOptions> = {}
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
   const { headerOverrides, ...pickedOptions } = options;

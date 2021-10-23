@@ -1,6 +1,6 @@
 import type { TrophyCounts } from "./trophy-counts.model";
 
-export interface TrophyProfileSummaryResponse {
+export interface UserTrophyProfileSummaryResponse {
   /** The ID of the account being accessed. */
   accountId: string;
 

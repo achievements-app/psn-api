@@ -1,8 +1,8 @@
-# getTrophyProfileSummary
+# getUserTrophyProfileSummary
 
 ```ts
 /**
- * A request to this URL will retrieve an overall summary of the number of
+ * A call to this function will retrieve an overall summary of the number of
  * trophies earned for a user broken down by type, as well as their current
  * overall trophy level, progress towards the next level and which tier their
  * current level falls in to. The tiers are based on the [level changes introduced in 2020](https://andshrew.github.io/PlayStation-Trophies/images/psn-trophy-tiers.png).
@@ -16,15 +16,15 @@
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophyProfileSummary = async (
+export const getUserTrophyProfileSummary = async (
   authorization: AuthorizationPayload,
   accountId: string,
-  options?: Partial<GetTrophyProfileSummaryOptions>
-): Promise<TrophyProfileSummaryResponse> => {
+  options?: Partial<GetUserTrophyProfileSummaryOptions>
+): Promise<UserTrophyProfileSummaryResponse> => {
 ```
 
 ```ts
-interface TrophyProfileSummaryResponse {
+interface UserTrophyProfileSummaryResponse {
   /** The ID of the account being accessed. */
   accountId: string;
 
@@ -61,5 +61,5 @@ interface TrophyProfileSummaryResponse {
 // Usage example
 
 // Returns a high-level overview of your overall trophy earnings.
-const response = await getTrophyProfileSummary(authorization, "me");
+const response = await getUserTrophyProfileSummary(authorization, "me");
 ```

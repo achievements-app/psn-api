@@ -1,12 +1,12 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
   TitleTrophyGroupsResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
 interface GetTitleTrophyGroupsOptions {
   /**

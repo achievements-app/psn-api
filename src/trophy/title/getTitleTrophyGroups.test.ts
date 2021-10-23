@@ -4,10 +4,10 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   TitleTrophyGroupsResponse
-} from "../models";
-import { generateTrophyCounts } from "../test/generators";
+} from "../../models";
+import { generateTrophyCounts } from "../../test/generators";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getTitleTrophyGroups } from "./getTitleTrophyGroups";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
 
 const server = setupServer();
 

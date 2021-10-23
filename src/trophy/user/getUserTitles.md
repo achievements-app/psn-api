@@ -1,8 +1,8 @@
-# getTrophyTitlesForUser
+# getUserTitles
 
 ```ts
 /**
- * Requests to this URL will retrieve a list of the titles associated with an account,
+ * Calls to this function will retrieve a list of the titles associated with an account,
  * and a summary of trophies earned from them.
  *
  * The numeric `accountId` can be that of any PSN account for which the authenticating
@@ -24,15 +24,15 @@
  * @param options.offset Return title data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophyTitlesForUser = async (
+export const getUserTitles = async (
   authorization: AuthorizationPayload,
   accountId: string,
-  options?: Partial<GetTrophyTitlesForUserOptions>
-): Promise<UserTrophyTitlesResponse> => { ... }
+  options?: Partial<GetUserTitlesOptions>
+): Promise<UserTitlesResponse> => { ... }
 ```
 
 ```ts
-interface UserTrophyTitlesResponse {
+interface UserTitlesResponse {
   trophyTitles: TrophyTitle[];
   totalItemCount: number;
 }
@@ -99,5 +99,5 @@ interface TrophyTitle {
 // Usage example
 
 // Returns a list of all titles you've earned trophies for.
-const response = await getTrophyTitlesForUser(authorization, "me");
+const response = await getUserTitles(authorization, "me");
 ```

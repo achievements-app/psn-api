@@ -3,15 +3,15 @@ import { setupServer } from "msw/node";
 
 import type {
   AuthorizationPayload,
-  TrophyProfileSummaryResponse
-} from "../models";
-import { generateTrophyCounts } from "../test/generators";
-import { getTrophyProfileSummary } from "./getTrophyProfileSummary";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserTrophyProfileSummaryResponse
+} from "../../models";
+import { generateTrophyCounts } from "../../test/generators";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
+import { getUserTrophyProfileSummary } from "./getUserTrophyProfileSummary";
 
 const server = setupServer();
 
-describe("Function: getTrophyProfileSummary", () => {
+describe("Function: getUserTrophyProfileSummary", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -19,7 +19,7 @@ describe("Function: getTrophyProfileSummary", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getTrophyProfileSummary).toBeDefined();
+    expect(getUserTrophyProfileSummary).toBeDefined();
   });
 
   it("makes a call to retrieve a given user's trophy collection summary", async () => {
@@ -30,7 +30,7 @@ describe("Function: getTrophyProfileSummary", () => {
       accessToken: "mockAccessToken"
     };
 
-    const mockResponse: TrophyProfileSummaryResponse = {
+    const mockResponse: UserTrophyProfileSummaryResponse = {
       accountId: mockAccountId,
       trophyLevel: "403",
       progress: 80,
@@ -48,7 +48,7 @@ describe("Function: getTrophyProfileSummary", () => {
     );
 
     // ACT
-    const response = await getTrophyProfileSummary(
+    const response = await getUserTrophyProfileSummary(
       mockAuthorization,
       mockAccountId
     );

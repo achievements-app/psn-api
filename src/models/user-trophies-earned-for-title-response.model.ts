@@ -1,6 +1,6 @@
 import type { Trophy } from "./trophy.model";
 
-export interface TrophiesEarnedForTitleResponse {
+export interface UserTrophiesEarnedForTitleResponse {
   /** The current version of the trophy set. Some trophy sets receive updates. */
   trophySetVersion: string;
 

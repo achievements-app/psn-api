@@ -1,14 +1,14 @@
 import urlcat from "urlcat";
 
-import { call } from "../call";
+import { call } from "../../call";
 import type {
   AuthorizationPayload,
   CallValidHeaders,
   TitleTrophiesResponse
-} from "../models";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetTrophiesForTitleOptions {
+interface GetTitleTrophiesOptions {
   /**
    * Not required unless the platform is PS3, PS4, or PS Vita.
    * If one of these platforms, the value __must__ be `"trophy"`.
@@ -32,7 +32,7 @@ interface GetTrophiesForTitleOptions {
 }
 
 /**
- * A request to this URL will retrieve the individual trophy detail of a
+ * A call to this function will retrieve the individual trophy detail of a
  * single - or all - trophy groups for a title. A title can have multiple
  * groups of trophies (a `default` group which all titles have, and additional
  * groups named `"001"` incrementing for each additional group). To retrieve
@@ -50,11 +50,11 @@ interface GetTrophiesForTitleOptions {
  * @param options.offset Return trophy data from this result onwards.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getTrophiesForTitle = async (
+export const getTitleTrophies = async (
   authorization: AuthorizationPayload,
   npCommunicationId: string,
   trophyGroupId: string,
-  options?: Partial<GetTrophiesForTitleOptions>
+  options?: Partial<GetTitleTrophiesOptions>
 ): Promise<TitleTrophiesResponse> => {
   const url = buildRequestUrl(npCommunicationId, trophyGroupId, options);
 
@@ -67,7 +67,7 @@ export const getTrophiesForTitle = async (
 const buildRequestUrl = (
   npCommunicationId: string,
   trophyGroupId: string,
-  options: Partial<GetTrophiesForTitleOptions> = {}
+  options: Partial<GetTitleTrophiesOptions> = {}
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
   const { headerOverrides, ...pickedOptions } = options;

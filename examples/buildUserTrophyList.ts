@@ -4,9 +4,9 @@ import type { Trophy } from "../src";
 import {
   exchangeCodeForAccessToken,
   exchangeNpssoForCode,
-  getTrophiesEarnedForTitle,
-  getTrophiesForTitle,
-  getTrophyTitlesForUser,
+  getTitleTrophies,
+  getUserTitles,
+  getUserTrophiesEarnedForTitle,
   TrophyRarity
 } from "../src";
 
@@ -15,13 +15,13 @@ export const buildUserTrophyList = async (userId: string, npsso: string) => {
   const accessCode = await exchangeNpssoForCode(npsso);
   const authorization = await exchangeCodeForAccessToken(accessCode);
 
-  const { trophyTitles } = await getTrophyTitlesForUser(authorization, userId);
+  const { trophyTitles } = await getUserTitles(authorization, userId);
 
   const games: any[] = [];
 
   let count = 1;
   for (const title of trophyTitles) {
-    const { trophies: titleTrophies } = await getTrophiesForTitle(
+    const { trophies: titleTrophies } = await getTitleTrophies(
       authorization,
       title.npCommunicationId,
       "all",
@@ -31,7 +31,7 @@ export const buildUserTrophyList = async (userId: string, npsso: string) => {
       }
     );
 
-    const { trophies: earnedTrophies } = await getTrophiesEarnedForTitle(
+    const { trophies: earnedTrophies } = await getUserTrophiesEarnedForTitle(
       authorization,
       userId,
       title.npCommunicationId,

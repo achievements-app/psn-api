@@ -1,8 +1,8 @@
-# getSummarizedTrophiesByTrophyGroup
+# getUserSummarizedTrophiesByTrophyGroup
 
 ```ts
 /**
- * A request to this URL will retrieve a summary of the trophies earned for
+ * A call to this function will retrieve a summary of the trophies earned for
  * a user broken down by trophy group within a title. A title can have
  * multiple groups of trophies (a `"default"` group which all titles have,
  * and additional groups beginning with the name `"001"` and incrementing for
@@ -30,16 +30,16 @@
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getSummarizedTrophiesByTrophyGroup = async (
+export const getUserSummarizedTrophiesByTrophyGroup = async (
   authorization: AuthorizationPayload,
   accountId: string,
   npCommunicationId: string,
-  options?: Partial<GetSummarizedTrophiesByTrophyGroupOptions>
-): Promise<SummarizedTrophiesByTrophyGroupResponse> => { ... }
+  options?: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions>
+): Promise<UserSummarizedTrophiesByTrophyGroupResponse> => { ... }
 ```
 
 ```ts
-interface SummarizedTrophiesByTrophyGroupResponse {
+interface UserSummarizedTrophiesByTrophyGroupResponse {
   /** The current version of the trophy set. Some trophy sets receive updates. */
   trophySetVersion: string;
 
@@ -68,7 +68,7 @@ interface SummarizedTrophiesByTrophyGroupResponse {
 // Usage example
 
 // Returns a summary of your trophies earned for Astro's Playroom (NPWR20188_00).
-const response = await getSummarizedTrophiesByTrophyGroup(
+const response = await getUserSummarizedTrophiesByTrophyGroup(
   authorization,
   "me",
   "NPWR20188_00",

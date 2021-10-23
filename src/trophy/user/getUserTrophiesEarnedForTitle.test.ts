@@ -3,14 +3,14 @@ import { setupServer } from "msw/node";
 
 import type {
   AuthorizationPayload,
-  TrophiesEarnedForTitleResponse
-} from "../models";
-import { getTrophiesEarnedForTitle } from "./getTrophiesEarnedForTitle";
-import { TROPHY_BASE_URL } from "./TROPHY_BASE_URL";
+  UserTrophiesEarnedForTitleResponse
+} from "../../models";
+import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
+import { getUserTrophiesEarnedForTitle } from "./getUserTrophiesEarnedForTitle";
 
 const server = setupServer();
 
-describe("Function: getTrophiesEarnedForTitle", () => {
+describe("Function: getUserTrophiesEarnedForTitle", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -18,7 +18,7 @@ describe("Function: getTrophiesEarnedForTitle", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getTrophiesEarnedForTitle).toBeDefined();
+    expect(getUserTrophiesEarnedForTitle).toBeDefined();
   });
 
   it("retrieves trophies earned by a given user for a given title", async () => {
@@ -31,7 +31,7 @@ describe("Function: getTrophiesEarnedForTitle", () => {
     const mockNpCommunicationId = "mockNpCommunicationId";
     const mockTrophyGroupId = "mockTrophyGroupId";
 
-    const mockResponse: TrophiesEarnedForTitleResponse = {
+    const mockResponse: UserTrophiesEarnedForTitleResponse = {
       trophySetVersion: "1.00",
       hasTrophyGroups: false,
       lastUpdatedDateTime: "mockLastUpdatedDateTime",
@@ -49,7 +49,7 @@ describe("Function: getTrophiesEarnedForTitle", () => {
     );
 
     // ACT
-    const response = await getTrophiesEarnedForTitle(
+    const response = await getUserTrophiesEarnedForTitle(
       mockAuthorization,
       mockAccountId,
       mockNpCommunicationId,
