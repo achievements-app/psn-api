@@ -1,35 +1,16 @@
-import urlcat from "urlcat";
-
+import { buildRequestUrl } from "../../buildRequestUrl";
 import { call } from "../../call";
 import type {
+  AllCallOptions,
   AuthorizationPayload,
-  CallValidHeaders,
   UserTrophiesEarnedForTitleResponse
 } from "../../models";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetUserTrophiesEarnedForTitleOptions {
-  /**
-   * Not required unless the platform is PS3, PS4, or PS Vita.
-   * If one of these platforms, the value __must__ be `"trophy"`.
-   *
-   * `"trophy"` for PS3, PS4, or PS Vita platforms.
-   * `"trophy2"` for the PS5 platform.
-   */
-  npServiceName: "trophy" | "trophy2";
-
-  /** Limit the number of trophies returned. */
-  limit: number;
-
-  /** Return trophy data from this result onwards. */
-  offset: number;
-
-  /*
-   * Override the headers in the request to the PSN API,
-   * such as to change the language.
-   */
-  headerOverrides: CallValidHeaders;
-}
+type GetUserTrophiesEarnedForTitleOptions = Pick<
+  AllCallOptions,
+  "offset" | "npServiceName" | "limit" | "headerOverrides"
+>;
 
 /**
  * A request to this URL will retrieve the earned status of trophies for a user
@@ -72,35 +53,14 @@ export const getUserTrophiesEarnedForTitle = async (
   options?: Partial<GetUserTrophiesEarnedForTitleOptions>
 ): Promise<UserTrophiesEarnedForTitleResponse> => {
   const url = buildRequestUrl(
-    accountId,
-    npCommunicationId,
-    trophyGroupId,
-    options
+    TROPHY_BASE_URL,
+    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups/:trophyGroupId/trophies",
+    options,
+    { accountId, npCommunicationId, trophyGroupId }
   );
 
   return await call<UserTrophiesEarnedForTitleResponse>(
     { url, headers: options?.headerOverrides },
     authorization
-  );
-};
-
-const buildRequestUrl = (
-  accountId: string,
-  npCommunicationId: string,
-  trophyGroupId: string,
-  options: Partial<GetUserTrophiesEarnedForTitleOptions> = {}
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
-  const { headerOverrides, ...pickedOptions } = options;
-
-  return urlcat(
-    TROPHY_BASE_URL,
-    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups/:trophyGroupId/trophies",
-    {
-      accountId,
-      npCommunicationId,
-      trophyGroupId,
-      ...pickedOptions
-    }
   );
 };

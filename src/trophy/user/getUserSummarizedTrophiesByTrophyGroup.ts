@@ -1,5 +1,4 @@
-import urlcat from "urlcat";
-
+import { buildRequestUrl } from "../../buildRequestUrl";
 import { call } from "../../call";
 import type {
   AuthorizationPayload,
@@ -60,25 +59,15 @@ export const getUserSummarizedTrophiesByTrophyGroup = async (
   npCommunicationId: string,
   options?: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions>
 ): Promise<UserSummarizedTrophiesByTrophyGroupResponse> => {
-  const url = buildRequestUrl(accountId, npCommunicationId, options);
+  const url = buildRequestUrl(
+    TROPHY_BASE_URL,
+    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups",
+    options,
+    { accountId, npCommunicationId }
+  );
 
   return await call<UserSummarizedTrophiesByTrophyGroupResponse>(
     { url, headers: options?.headerOverrides },
     authorization
-  );
-};
-
-const buildRequestUrl = (
-  accountId: string,
-  npCommunicationId: string,
-  options: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions> = {}
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
-  const { headerOverrides, ...pickedOptions } = options;
-
-  return urlcat(
-    TROPHY_BASE_URL,
-    "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups",
-    { accountId, npCommunicationId, ...pickedOptions }
   );
 };

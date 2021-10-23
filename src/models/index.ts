@@ -1,4 +1,5 @@
 export * from "./access-token-response.model";
+export * from "./all-call-options.model";
 export * from "./authorization-payload.model";
 export * from "./call-valid-headers.model";
 export * from "./title-platform.model";

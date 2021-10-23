@@ -1,20 +1,16 @@
-import urlcat from "urlcat";
-
+import { buildRequestUrl } from "../../buildRequestUrl";
 import { call } from "../../call";
 import type {
+  AllCallOptions,
   AuthorizationPayload,
-  CallValidHeaders,
   UserTrophyProfileSummaryResponse
 } from "../../models";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetUserTrophyProfileSummaryOptions {
-  /*
-   * Override the headers in the request to the PSN API,
-   * such as to change the language.
-   */
-  headerOverrides: CallValidHeaders;
-}
+type GetUserTrophyProfileSummaryOptions = Pick<
+  AllCallOptions,
+  "headerOverrides"
+>;
 
 /**
  * A call to this function will retrieve an overall summary of the number of
@@ -36,16 +32,15 @@ export const getUserTrophyProfileSummary = async (
   accountId: string,
   options?: Partial<GetUserTrophyProfileSummaryOptions>
 ): Promise<UserTrophyProfileSummaryResponse> => {
-  const url = buildRequestUrl(accountId);
+  const url = buildRequestUrl(
+    TROPHY_BASE_URL,
+    "/v1/users/:accountId/trophySummary",
+    options,
+    { accountId }
+  );
 
   return await call<UserTrophyProfileSummaryResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
-};
-
-const buildRequestUrl = (accountId: string) => {
-  return urlcat(TROPHY_BASE_URL, "/v1/users/:accountId/trophySummary", {
-    accountId
-  });
 };

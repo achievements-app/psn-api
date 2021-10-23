@@ -1,29 +1,16 @@
-import urlcat from "urlcat";
-
+import { buildRequestUrl } from "../../buildRequestUrl";
 import { call } from "../../call";
 import type {
+  AllCallOptions,
   AuthorizationPayload,
-  CallValidHeaders,
   TitleTrophyGroupsResponse
 } from "../../models";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetTitleTrophyGroupsOptions {
-  /**
-   * Not required unless the platform is PS3, PS4, or PS Vita.
-   * If one of these platforms, the value __must__ be `"trophy"`.
-   *
-   * `"trophy"` for PS3, PS4, or PS Vita platforms.
-   * `"trophy2"` for the PS5 platform.
-   */
-  npServiceName: "trophy" | "trophy2";
-
-  /*
-   * Override the headers in the request to the PSN API,
-   * such as to change the language.
-   */
-  headerOverrides: CallValidHeaders;
-}
+type GetTitleTrophyGroupsOptions = Pick<
+  AllCallOptions,
+  "npServiceName" | "headerOverrides"
+>;
 
 /**
  * A title may have additional groups of trophies. This is most commonly
@@ -45,24 +32,15 @@ export const getTitleTrophyGroups = async (
   npCommunicationId: string,
   options?: Partial<GetTitleTrophyGroupsOptions>
 ): Promise<TitleTrophyGroupsResponse> => {
-  const url = buildRequestUrl(npCommunicationId, options);
+  const url = buildRequestUrl(
+    TROPHY_BASE_URL,
+    "/v1/npCommunicationIds/:npCommunicationId/trophyGroups",
+    options,
+    { npCommunicationId }
+  );
 
   return await call<TitleTrophyGroupsResponse>(
     { url, headers: options?.headerOverrides },
     authorization
-  );
-};
-
-const buildRequestUrl = (
-  npCommunicationId: string,
-  options: Partial<GetTitleTrophyGroupsOptions> = {}
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
-  const { headerOverrides, ...pickedOptions } = options;
-
-  return urlcat(
-    TROPHY_BASE_URL,
-    "/v1/npCommunicationIds/:npCommunicationId/trophyGroups",
-    { npCommunicationId, ...pickedOptions }
   );
 };
