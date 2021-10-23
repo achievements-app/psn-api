@@ -90,7 +90,7 @@ console.log({ accessTokenResponse });
 
 To use any endpoint function in the API, you must first be authorized by PSN. Fortunately, this is a fairly straightforward process.
 
-1. In your web browser, visit [https://my.playstation.com/](https://my.playstation.com/) and log in with a PSN account.
+1. In your web browser, visit [https://my.playstation.com/](https://my.playstation.com/), click the "Sign In" button, and log in with a PSN account. [This URL](https://my.account.sony.com/central/signin/?duid=0000000700090100b69080accc7544c22051e1a9ba543a018dc996b954c3726be9345a0cd6a4cdfb&response_type=code&client_id=e4a62faf-4b87-4fea-8565-caaabb3ac918&scope=web%3Acore&access_type=offline&state=9c739bfc1fd7dc35a458d2da36b994ad56557a96d080ecec76363b08330d7039&service_entity=urn%3Aservice-entity%3Apsn&ui=pr&smcid=web%3Apdc&redirect_uri=https%3A%2F%2Fweb.np.playstation.com%2Fapi%2Fsession%2Fv1%2Fsession%3Fredirect_uri%3Dhttps%253A%252F%252Fio.playstation.com%252Fcentral%252Fauth%252Flogin%253Flocale%253Den_US%2526postSignInURL%253Dhttps%25253A%25252F%25252Fwww.playstation.com%25252Fen-us%25252F%2526cancelURL%253Dhttps%25253A%25252F%25252Fwww.playstation.com%25252Fen-us%25252F%26x-psn-app-ver%3D%2540sie-ppr-web-session%252Fsession%252Fv5.12.0&auth_ver=v3&error=login_required&error_code=4165&error_description=User+is+not+authenticated&no_captcha=false&cid=53267f24-1887-4bfb-be7b-f96e1f33ee11#/signin/ca?entry=ca) might take you directly to a sign-in page.
 
 2. In the same browser (due to a persisted cookie), visit [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie). You will see a JSON response that looks something like:
 
