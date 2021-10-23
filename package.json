@@ -21,6 +21,8 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
     "test": "dts test",
+    "test:coverage": "dts test --coverage",
+    "verify": "npm run format:check && npm run lint && npm run test:coverage && npm run build && npm run size",
     "size": "size-limit",
     "analyze": "size-limit --why",
     "semantic-release": "semantic-release"
