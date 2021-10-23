@@ -66,7 +66,7 @@ const psn = require("psn-api");
 You can use `import` syntax to utilize the package in your app. This library provides its own type definitions. "It just works", no need to install anything from `@types`.
 
 ```ts
-import { getTrophiesEarnedForTitle } from "psn-api";
+import { getUserTrophiesEarnedForTitle } from "psn-api";
 ```
 
 ### Understanding the Promise-based API
@@ -119,7 +119,7 @@ const authorization = await exchangeCodeForAccessToken(accessCode);
 const authorization = await exchangeCodeForAccessToken(accessCode);
 
 // This returns a list of all the games you've earned trophies for.
-const trophyTitlesResponse = await getTrophyTitlesForUser(
+const trophyTitlesResponse = await getUserTitles(
   { accessToken: authorization.accessToken },
   "me"
 );
