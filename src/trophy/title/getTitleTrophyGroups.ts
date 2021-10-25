@@ -13,17 +13,17 @@ type GetTitleTrophyGroupsOptions = Pick<
 >;
 
 /**
- * A title may have additional groups of trophies. This is most commonly
- * seen in games which have expansions where additional trophies are added.
+ * A title may have multiple groups of trophies. This is most commonly
+ * seen in games which have DLC expansions where additional trophies are added.
  *
- * You can make a request to this URL for a specific title - using the
- * unique `npCommunicationId` for the title - and in response will receive a
+ * You can call this function for a specific title - using the
+ * unique `npCommunicationId` for the title - and you will receive a
  * summary of all of the trophy groups associated with the title.
  * This also includes a summary of the number of trophies for the
- * title broken down by group and type (gold, silver etc.).
+ * title, broken down by group and grade (gold, silver, etc.).
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
- * @param npCommunicationId Unique ID of the title.
+ * @param npCommunicationId The unique ID of the game title you wish to retrieve the trophy groups list for.
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */

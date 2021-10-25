@@ -1,4 +1,5 @@
-import type { Trophy } from "./trophy.model";
+import type { RarestThinTrophy } from "./rarest-thin-trophy.model";
+import type { UserThinTrophy } from "./user-thin-trophy.model";
 
 export interface UserTrophiesEarnedForTitleResponse {
   /** The current version of the trophy set. Some trophy sets receive updates. */
@@ -11,7 +12,7 @@ export interface UserTrophiesEarnedForTitleResponse {
   lastUpdatedDateTime: string;
 
   /** Individual object for each trophy. */
-  trophies: Trophy[];
+  trophies: UserThinTrophy[];
 
   /** Total trophies in the group (or total trophies for the title if `"all"` is specified). */
   totalItemCount: number;
@@ -19,9 +20,10 @@ export interface UserTrophiesEarnedForTitleResponse {
   /**
    * Individual object for each trophy.
    * Returns the trophy where earned is `true` with the lowest `trophyEarnedRate`.
+   * If multiple trophies have the same `trophyEarnedRate`, it returns those trophies instead of just an array containing a single trophy.
    * Returns nothing if no trophies are earned.
    */
-  rarestTrophies?: Trophy[];
+  rarestTrophies?: RarestThinTrophy[];
 
   nextOffset?: number;
   previousOffset?: number;

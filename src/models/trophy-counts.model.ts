@@ -1,13 +1,13 @@
 export interface TrophyCounts {
-  /** Total bronze trophies from all trophy groups. */
+  /** Total count of bronze trophies. */
   bronze: number;
 
-  /** Total silver trophies from all trophy groups. */
+  /** Total count of silver trophies. */
   silver: number;
 
-  /** Total gold trophies from all trophy groups. */
+  /** Total count of gold trophies. */
   gold: number;
 
-  /** Total platinum trophies from all trophy groups. */
-  platinum: number;
+  /** 1 if the group contains a platinum trophy. */
+  platinum: 0 | 1;
 }

@@ -14,7 +14,7 @@ export interface Trophy {
   /** `true` if this trophy has been earned. */
   earned?: boolean;
 
-  /** Date trophy was earned. Only returned if `earned` is `true`. */
+  /** An ISO 8601 string representing the date the trophy was earned. Only returned if `earned` is `true`. eg: `"2021-08-15T21:22:08Z"` */
   earnedDateTime?: string;
 
   /** Description of the trophy. */

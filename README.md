@@ -1,18 +1,18 @@
 <p align="center">
-  <img width="40%" height="40%" src="psx.png">
+  <img width="40%" height="40%" src="psx.png" />
 </p>
 
 # PSN API
 
-> A low-level API for getting data from the PlayStation Network.
+> A low-level API for getting trophy data from the PlayStation Network.
 
 <p align="center">
   <a href="https://github.com/prettier/prettier">
-    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square" alt="Styled with Prettier">
+    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square" alt="Styled with Prettier" />
   </a>
 
   <a href="https://github.com/semantic-release/semantic-release">
-    <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release">
+    <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release" />
   </a>
 
   <a href="https://codeclimate.com/github/achievements-app/psn-api/maintainability">

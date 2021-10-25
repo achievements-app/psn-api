@@ -13,12 +13,12 @@ type GetTitleTrophiesOptions = Pick<
 >;
 
 /**
- * A call to this function will retrieve the individual trophy detail of a
+ * A call to this function will retrieve the trophy list of a
  * single - or all - trophy groups for a title. A title can have multiple
- * groups of trophies (a `default` group which all titles have, and additional
- * groups named `"001"` incrementing for each additional group). To retrieve
- * trophies from all groups within a title (ie. the full trophy set) then
- * `trophyGroupId` should be set to all.
+ * groups of trophies (a `"default"` group which all titles have, and additional
+ * groups starting with the name `"001"` and incrementing for each additional group). To retrieve
+ * trophies from all groups within a title (ie. the full trophy set), then
+ * `trophyGroupId` should be set to `"all"`.
  *
  * When the title platform is PS3, PS4 or PS Vita you __must__ specify the
  * `npServiceName` parameter as `"trophy"`.
