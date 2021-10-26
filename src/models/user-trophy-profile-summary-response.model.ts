@@ -7,7 +7,7 @@ export interface UserTrophyProfileSummaryResponse {
   /** The account's overall trophy level. */
   trophyLevel: string;
 
-  /** The account's percentage process towards the next trophy level. */
+  /** The account's percentage progress towards the next trophy level. */
   progress: number;
 
   /**
@@ -28,6 +28,6 @@ export interface UserTrophyProfileSummaryResponse {
    */
   tier: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 
-  /** The account's number of earned trophies by type. */
+  /** The account's number of earned trophies by grade. */
   earnedTrophies: TrophyCounts;
 }

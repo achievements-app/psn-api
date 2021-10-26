@@ -14,8 +14,8 @@ type GetUserTrophyProfileSummaryOptions = Pick<
 
 /**
  * A call to this function will retrieve an overall summary of the number of
- * trophies earned for a user broken down by type, as well as their current
- * overall trophy level, progress towards the next level and which tier their
+ * trophies earned for a user broken down by grade, as well as their current
+ * overall trophy level, progress towards the next level, and which tier their
  * current level falls in to. The tiers are based on the [level changes introduced in 2020](https://andshrew.github.io/PlayStation-Trophies/images/psn-trophy-tiers.png).
  *
  * The numeric `accountId` can be that of any PSN account for which the
