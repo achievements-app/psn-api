@@ -5,7 +5,8 @@ export interface TrophyGroup {
    * ID of the trophy group.
    *
    * A game's standard set of trophies will have a value of `"default"`,
-   * whereas DLC increments in values such as `"001"` and `"002"`.
+   * whereas additional groups (such as those added from DLC) will
+   * increment in values such as `"001"` and `"002"`.
    * @example "default"
    * @example "001"
    */

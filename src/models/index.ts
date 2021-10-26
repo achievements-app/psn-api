@@ -9,6 +9,7 @@ export * from "./title-trophies-response.model";
 export * from "./title-trophy-groups-response.model";
 export * from "./trophy.model";
 export * from "./trophy-counts.model";
+export * from "./trophy-group-earnings.model";
 export * from "./trophy-rarity.model";
 export * from "./trophy-title.model";
 export * from "./trophy-title.model";

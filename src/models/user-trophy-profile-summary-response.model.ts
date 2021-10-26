@@ -13,7 +13,7 @@ export interface UserTrophyProfileSummaryResponse {
   /**
    * The tier this trophy level is in.
    *
-   * | Tier | Grade | `trophyLevel` Ranges |
+   * | Tier | Grade | trophyLevel Ranges |
    * | --- | --- | ---: |
    * | 1 | Bronze | 1 - 99 |
    * | 2 | Bronze | 100 - 199 |

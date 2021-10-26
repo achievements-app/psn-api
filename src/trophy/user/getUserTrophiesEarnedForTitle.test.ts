@@ -59,4 +59,42 @@ describe("Function: getUserTrophiesEarnedForTitle", () => {
     // ASSERT
     expect(response).toEqual(mockResponse);
   });
+
+  it("throws an error if we receive a response containing an `error` object", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockAccountId = "mockAccountId";
+    const mockNpCommunicationId = "mockNpCommunicationId";
+    const mockTrophyGroupId = "mockTrophyGroupId";
+
+    const mockResponse = {
+      error: {
+        referenceId: "mockReferenceId",
+        code: "mockCode",
+        message: "Resource not found"
+      }
+    };
+
+    server.use(
+      rest.get(
+        `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
+        (_, res, ctx) => {
+          return res(ctx.json(mockResponse));
+        }
+      )
+    );
+
+    // ASSERT
+    await expect(
+      getUserTrophiesEarnedForTitle(
+        mockAuthorization,
+        mockAccountId,
+        mockNpCommunicationId,
+        mockTrophyGroupId
+      )
+    ).rejects.toThrow();
+  });
 });
