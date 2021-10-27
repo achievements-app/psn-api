@@ -4,7 +4,7 @@ psn-api functions work in isolation. **They are tree-shakeable**, and will only 
 
 You can use any of the functions as demonstrated in this documentation. Please refer to each function's docs page to see how they should be used.
 
-## Quick start
+## Quick Start
 
 Install the package:
 

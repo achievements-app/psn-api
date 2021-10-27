@@ -24,20 +24,24 @@
   </a>
 </p>
 
-PSN API is a reference implementation of a [community effort](https://andshrew.github.io/PlayStation-Trophies/#/) to document Sony's APIs for PlayStation authorization and trophy metadata. It saves you the hassle of implementing this community reference yourself by offering a strongly-typed, well-tested, and lightweight package.
+psn-api is a reference implementation of a [community effort](https://andshrew.github.io/PlayStation-Trophies/#/) to document Sony's APIs for PlayStation authorization and trophy metadata. It saves you the hassle of implementing this community reference yourself by offering a strongly-typed, well-tested, and lightweight package.
 
 <hr />
 
 ## Features
 
 ✅ &nbsp;Modular by design, and supports tree-shaking.  
-✅ &nbsp;Aligns with the [community PSN API documentation](https://andshrew.github.io/PlayStation-Trophies/#/).  
+✅ &nbsp;Aligns with the [community API documentation](https://andshrew.github.io/PlayStation-Trophies/#/).  
 ✅ &nbsp;Supports Node environments (14 and above).  
 ✅ &nbsp;Supports browsers.  
 ✅ &nbsp;Ships with TypeScript support and types.  
 ✅ &nbsp;Tiny, <2Kb.
 
 <hr />
+
+## Docs site
+
+The docs site for the library can be found at [https://psn-api.achievements.app](https://psn-api.achievements.app).
 
 ## Getting started
 
@@ -131,17 +135,17 @@ Click the function names for complete docs.
 
 ### Authentication
 
-- [`exchangeCodeForAccessToken()`](src/authenticate/exchangeCodeForAccessToken.md) - Exchange your access code for access and refresh tokens.
-- [`exchangeNpssoForCode()`](src/authenticate/exchangeNpssoForCode.md) - Exchange your NPSSO for an access code.
+- [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
+- [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange your NPSSO for an access code.
 
 ### Trophies
 
-- [`getTitleTrophies()`](src/trophy/title/getTitleTrophies.md) - Retrieve the individual trophy details of a single or all trophy groups for a title.
-- [`getTitleTrophyGroups()`](src/trophy/title/getTitleTrophyGroups.md) - Get a list of trophy groups (typically the base set and DLCs) for a title.
-- [`getUserSummarizedTrophiesByTrophyGroup()`](src/trophy/user/getUserSummarizedTrophiesByTrophyGroup.md) - Get a summary of trophies earned for a user broken down by trophy group within a title.
-- [`getUserTitles()`](src/trophy/user/getUserTitles.md) - Retrieve a list of the titles associated with an account and a summary of trophies earned from them.
-- [`getUserTrophiesEarnedForTitle()`](src/trophy/user/getUserTrophiesEarnedForTitle.md) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
-- [`getUserTrophyProfileSummary()`](src/trophy/user/getUserTrophyProfileSummary.md) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
+- [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the individual trophy details of a single or all trophy groups for a title.
+- [`getTitleTrophyGroups()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophygroups) - Get a list of trophy groups (typically the base set and DLCs) for a title.
+- [`getUserSummarizedTrophiesByTrophyGroup()`](https://psn-api.achievements.app/api-docs/user-trophies#getusersummarizedtrophiesbytrophygroup) - Get a summary of trophies earned for a user broken down by trophy group within a title.
+- [`getUserTitles()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertitles) - Retrieve a list of the titles associated with an account and a summary of trophies earned from them.
+- [`getUserTrophiesEarnedForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophiesearnedfortitle) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
+- [`getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
 
 ## Examples
 
