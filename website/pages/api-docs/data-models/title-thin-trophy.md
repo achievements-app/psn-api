@@ -1,6 +1,6 @@
 # TitleThinTrophy
 
-The `TitleThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getTitleTrophies()`](/api-docs/trophy/title/getTitleTrophies) function.
+The `TitleThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getTitleTrophies()`](/api-docs/title-trophies#getTitleTrophies) function.
 
 | Name            | Type                                                 | Description                                                                                                                                                                      |
 | :-------------- | :--------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

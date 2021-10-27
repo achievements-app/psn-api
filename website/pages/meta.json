@@ -1,6 +1,5 @@
 {
-  "index": "Introduction",
-  "get-started": "Get Started",
+  "index": "Get Started",
   "authentication": "How to Authenticate",
   "api-docs": "API"
 }

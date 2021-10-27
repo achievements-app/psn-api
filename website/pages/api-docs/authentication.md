@@ -62,7 +62,7 @@ console.log(accessCode); // --> "v3.ABCDEF"
 
 `Promise<string>`
 
-An access code, which can be exchanged for access and refresh tokens with [exchangeCodeForAccessToken()](/api-docs/authenticate/exchangeCodeForAccessToken).
+An access code, which can be exchanged for access and refresh tokens with [exchangeCodeForAccessToken()](/api-docs/authentication#exchangeCodeForAccessToken).
 
 ### Source
 

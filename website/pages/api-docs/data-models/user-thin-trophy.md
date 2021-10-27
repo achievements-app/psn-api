@@ -1,6 +1,6 @@
 # UserThinTrophy
 
-The `UserThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getUserTrophiesEarnedForTitle()`](/api-docs/trophy/user/getUserTrophiesEarnedForTitle) function.
+The `UserThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getUserTrophiesEarnedForTitle()`](/api-docs/user-trophies#getUserTrophiesEarnedForTitle) function.
 
 | Name                        | Type                                                  | Description                                                                                                                                                                                                      |
 | :-------------------------- | :---------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
