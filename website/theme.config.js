@@ -1,7 +1,7 @@
 export default {
   github: "https://github.com/achievements-app/psn-api",
   docsRepositoryBase:
-    "https://github.com/achievements-app/psn-api/blob/main/website",
+    "https://github.com/achievements-app/psn-api/blob/main/website/pages",
   titleSuffix: " | psn-api",
   logo: <span className="font-extrabold hidden md:inline">psn-api</span>,
   head: <></>,

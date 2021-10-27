@@ -32,7 +32,7 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 #### Get your summarized trophies for a PS5 game
 
 ```ts
-import { getUserSummarizedTophiesByTrophyGroup } from "psn-api";
+import { getUserSummarizedTrophiesByTrophyGroup } from "psn-api";
 
 const response = await getUserSummarizedTrophiesByTrophyGroup(
   authorization,
@@ -49,7 +49,7 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 | `hiddenFlag`          | `boolean`                                                              | `true` is the title has been hidden on the account's trophy list. This applies only to the current authentication context. The title will not be returned if it has been hidden on another account. |
 | `progress`            | `number`                                                               | The account's percentage of trophies earned for the title.                                                                                                                                          |
 | `earnedTrophies`      | [`TrophyCounts`](/api-docs/data-models/trophy-counts)                  | The account's number of earned trophies for the title by grade.                                                                                                                                     |
-| `trophyGroups`        | [`TrophyGroupEarnings[]`](/api-docs/data-models/trophy-group-earnings) | The trophy group entities for the                                                                                                                                                                   |
+| `trophyGroups`        | [`TrophyGroupEarnings[]`](/api-docs/data-models/trophy-group-earnings) | The trophy group entities for the individual trophy groups earned.                                                                                                                                  |
 | `lastUpdatedDateTime` | `string`                                                               | An ISO 8601 string representing the date the title progress was updated (such as when a trophy was earned for a group). ex- `"2021-08-15T21:22:08Z"`                                                |
 
 ### Parameters
