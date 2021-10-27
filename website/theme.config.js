@@ -26,7 +26,7 @@ export default {
       <meta name="twitter:site" content="@wescopeland_" />
       <meta
         name="twitter:image"
-        content="https://github.com/achievements-app/psn-api/blob/main/twitter.png"
+        content="https://github.com/achievements-app/psn-api/blob/main/twitter.png?raw=true"
       />
 
       <meta
@@ -36,7 +36,7 @@ export default {
       <meta name="og:url" content="https://psn-api.achievements.app" />
       <meta
         name="og:image"
-        content="https://github.com/achievements-app/psn-api/blob/main/twitter.png"
+        content="https://github.com/achievements-app/psn-api/blob/main/twitter.png?raw=true"
       />
 
       <meta name="apple-mobile-web-app-title" content="psn-api" />
