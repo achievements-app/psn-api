@@ -13,28 +13,28 @@ type GetUserTrophiesEarnedForTitleOptions = Pick<
 >;
 
 /**
- * A request to this URL will retrieve the earned status of trophies for a user
+ * A call to this function will retrieve the earned status of trophies for a user
  * from either a single - or all - trophy groups in a title. A title can have
  * multiple groups of trophies (a `"default"` group which all titles have, and
  * additional groups starting with a name of `"001"` and incrementing for each
  * additional group). To retrieve trophies from all groups within a title
- * (ie. the full trophy set) then `trophyGroupId` should be set to `"all"`.
+ * (ie. the full trophy set), then `trophyGroupId` should be set to `"all"`.
  *
  * The numeric `accountId` can be that of any PSN account for which the
  * authenticating account has permissions to view the trophy list.
- * When querying the titles associated with the authenticating account the
+ * When querying the titles associated with the authenticating account, the
  * numeric `accountId` can be substituted with `"me"`.
  *
- * This function calls an endpoint that returns the earned status of the
+ * This function returns the earned status of the
  * trophy only and no additional descriptive metadata (ie. trophy name,
- * trophy description). Use `getTrophiesForTitle()` to obtain this information.
+ * trophy description). Use `getTitleTrophies()` to obtain this information.
  *
- * When the title platform is PS3, PS4 or PS Vita you __must__ specify the
- * `npServiceName` parameter as `"trophy"`.
+ * When the title platform is PS3, PS4, or PS Vita, you __must__ specify the
+ * `npServiceName` option as `"trophy"`.
  *
  * If you attempt to query a title which the user does not have associated
  * with their account (ie. the title has not been launched and allowed to
- * sync at least once) then a Resource Not Found error will be returned.
+ * sync at least once) then a Resource Not Found error will be thrown.
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
@@ -59,8 +59,14 @@ export const getUserTrophiesEarnedForTitle = async (
     { accountId, npCommunicationId, trophyGroupId }
   );
 
-  return await call<UserTrophiesEarnedForTitleResponse>(
+  const response = await call<UserTrophiesEarnedForTitleResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
+
+  if ((response as any)?.error) {
+    throw new Error((response as any)?.error?.message ?? "Unexpected Error");
+  }
+
+  return response;
 };

@@ -38,14 +38,14 @@ interface GetUserSummarizedTrophiesByTrophyGroupOptions {
  *
  * This function calls an endpoint that returns the earned status of the
  * trophy only and no additional descriptive metadata (ie. trophy name,
- * trophy description). Use `getTrophiesForTitle()` to obtain this information.
+ * trophy description). Use `getTitleTrophies()` to obtain this information.
  *
  *  When the title platform is PS3, PS4 or PS Vita you __must__ specify the
- * `npServiceName` parameter as `"trophy"`.
+ * `npServiceName` option as `"trophy"`.
  *
  * If you attempt to query a title which the user does not have associated
  * with their account (ie. the title has not been launched and allowed to
- * sync at least once) then a Resource Not Found error will be returned.
+ * sync at least once) then a Resource Not Found error will be thrown.
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
@@ -66,8 +66,14 @@ export const getUserSummarizedTrophiesByTrophyGroup = async (
     { accountId, npCommunicationId }
   );
 
-  return await call<UserSummarizedTrophiesByTrophyGroupResponse>(
+  const response = await call<UserSummarizedTrophiesByTrophyGroupResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );
+
+  if ((response as any)?.error) {
+    throw new Error((response as any)?.error?.message ?? "Unexpected Error");
+  }
+
+  return response;
 };

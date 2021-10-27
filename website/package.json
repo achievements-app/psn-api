@@ -1,0 +1,23 @@
+{
+  "name": "website2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Wes Copeland",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "11.0.1",
+    "nextra": "1.1.0",
+    "nextra-theme-docs": "1.2.2",
+    "react": "17.0.1",
+    "react-dom": "17.0.1"
+  },
+  "devDependencies": {
+    "eslint-config-next": "^12.0.0"
+  }
+}

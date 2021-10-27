@@ -10,10 +10,10 @@ export interface AllCallOptions {
    */
   npServiceName: "trophy" | "trophy2";
 
-  /** Limit the number of titles returned. */
+  /** Limit the number of entities returned. */
   limit: number;
 
-  /** Return title data from this result onwards. */
+  /** Return entity data from this result onwards. */
   offset: number;
 
   /*
