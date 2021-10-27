@@ -1,6 +1,6 @@
 # RarestThinTrophy
 
-The `RarestThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getUserTrophiesEarnedForTitle()`](/api-docs/user-trophies#getUserTrophiesEarnedForTitle) function.
+The `RarestThinTrophy` entity is a thin subset of the [`Trophy`](/api-docs/data-models/trophy) model. These entities are generally returned when using the [`getUserTrophiesEarnedForTitle()`](/api-docs/user-trophies#getusertrophiesearnedfortitle) function.
 
 | Name               | Type                                                  | Description                                                                                         |
 | :----------------- | :---------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |

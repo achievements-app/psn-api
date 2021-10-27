@@ -2,7 +2,7 @@
   <img width="40%" height="40%" src="psx.png" />
 </p>
 
-# PSN API
+# psn-api
 
 > A low-level API for getting trophy data from the PlayStation Network.
 

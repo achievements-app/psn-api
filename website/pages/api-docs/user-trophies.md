@@ -8,7 +8,7 @@ The numeric `accountId` can be that of any PSN account for which your authentica
 
 When querying the titles associated with yourself (the authentication context), the numeric `accountId` can be substituted with `"me"`.
 
-Only the earned status of the trophy is returned. No additional descriptive metadata (ie. trophy name, trophy description) is given. Use [`getTitleTrophies()`](../title/getTitleTrophies) to obtain this information.
+Only the earned status of the trophy is returned. No additional descriptive metadata (ie. trophy name, trophy description) is given. Use [`getTitleTrophies()`](/api-docs/title-trophies#gettitletrophies) to obtain this information.
 
 **When the title platform is PS3, PS4, or PS Vita you _must_ specify the `npServiceName` option as `"trophy"`.**
 
@@ -43,34 +43,34 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 
 ### Returns
 
-| Name                  | Type                                                               | Description                                                                                                                                                                                         |
-| :-------------------- | :----------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `trophySetVersion`    | `string`                                                           | The current version of the trophy set. Some trophy sets receive updates from the developer.                                                                                                         |
-| `hiddenFlag`          | `boolean`                                                          | `true` is the title has been hidden on the account's trophy list. This applies only to the current authentication context. The title will not be returned if it has been hidden on another account. |
-| `progress`            | `number`                                                           | The account's percentage of trophies earned for the title.                                                                                                                                          |
-| `earnedTrophies`      | [`TrophyCounts`](../../data-models/trophy-counts)                  | The account's number of earned trophies for the title by grade.                                                                                                                                     |
-| `trophyGroups`        | [`TrophyGroupEarnings[]`](../../data-models/trophy-group-earnings) | The trophy group entities for the                                                                                                                                                                   |
-| `lastUpdatedDateTime` | `string`                                                           | An ISO 8601 string representing the date the title progress was updated (such as when a trophy was earned for a group). ex- `"2021-08-15T21:22:08Z"`                                                |
+| Name                  | Type                                                                   | Description                                                                                                                                                                                         |
+| :-------------------- | :--------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `trophySetVersion`    | `string`                                                               | The current version of the trophy set. Some trophy sets receive updates from the developer.                                                                                                         |
+| `hiddenFlag`          | `boolean`                                                              | `true` is the title has been hidden on the account's trophy list. This applies only to the current authentication context. The title will not be returned if it has been hidden on another account. |
+| `progress`            | `number`                                                               | The account's percentage of trophies earned for the title.                                                                                                                                          |
+| `earnedTrophies`      | [`TrophyCounts`](/api-docs/data-models/trophy-counts)                  | The account's number of earned trophies for the title by grade.                                                                                                                                     |
+| `trophyGroups`        | [`TrophyGroupEarnings[]`](/api-docs/data-models/trophy-group-earnings) | The trophy group entities for the                                                                                                                                                                   |
+| `lastUpdatedDateTime` | `string`                                                               | An ISO 8601 string representing the date the title progress was updated (such as when a trophy was earned for a group). ex- `"2021-08-15T21:22:08Z"`                                                |
 
 ### Parameters
 
-| Name                | Type                                                              | Description                                                                                                                                                                                        |
-| :------------------ | :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization`     | [`AuthorizationPayload`](../../data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](../../../authentication/authenticating-manually) for how to get one.                                                                 |
-| `accountId`         | `string`                                                          | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account.                                                                                                       |
-| `npCommunicationId` | `string`                                                          | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
-| `options`           | `GetUserSummarizedTrophiesByTrophyGroupOptions`                   | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
+| Name                | Type                                                                  | Description                                                                                                                                                                                        |
+| :------------------ | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization`     | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                         |
+| `accountId`         | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account.                                                                                                       |
+| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
+| `options`           | `GetUserSummarizedTrophiesByTrophyGroupOptions`                       | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
 
 ### Options
 
-| Name              | Type                                                       | Description                                                                                                                                       |
-| :---------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `npServiceName`   | `"trophy"` \| `"trophy2"`                                  | **`"trophy"` is required for titles belonging to the PS3, PS4, or PS Vita platforms.** `"trophy2"` is used for the PS5 platform, but is optional. |
-| `headerOverrides` | [`CallValidHeaders`](../../data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language.                                                               |
+| Name              | Type                                                           | Description                                                                                                                                       |
+| :---------------- | :------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `npServiceName`   | `"trophy"` \| `"trophy2"`                                      | **`"trophy"` is required for titles belonging to the PS3, PS4, or PS Vita platforms.** `"trophy2"` is used for the PS5 platform, but is optional. |
+| `headerOverrides` | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language.                                                               |
 
 ### Source
 
-[trophy/title/getUserSummarizedTrophiesByTrophyGroup.ts](https://github.com/achievements-app/psn-api/blob/main/src/trophy/title/getUserSummarizedTrophiesByTrophyGroup.ts)
+[trophy/title/getUserSummarizedTrophiesByTrophyGroup.ts](https://github.com/achievements-app/psn-api/blob/main/src/trophy/user/getUserSummarizedTrophiesByTrophyGroup.ts)
 
 ---
 
@@ -96,26 +96,26 @@ const response = await getUserTitles(authorization, "me");
 
 ### Returns
 
-| Name             | Type                                              | Description                                                     |
-| :--------------- | :------------------------------------------------ | :-------------------------------------------------------------- |
-| `trophyTitles`   | [`TrophyTitle[]`](../../data-models/trophy-title) | The list of games played by the user.                           |
-| `totalItemCount` | `number`                                          | The number of `TrophyTitle` entities returned from the PSN API. |
+| Name             | Type                                                  | Description                                                     |
+| :--------------- | :---------------------------------------------------- | :-------------------------------------------------------------- |
+| `trophyTitles`   | [`TrophyTitle[]`](/api-docs/data-models/trophy-title) | The list of games played by the user.                           |
+| `totalItemCount` | `number`                                              | The number of `TrophyTitle` entities returned from the PSN API. |
 
 ### Parameters
 
-| Name            | Type                                                              | Description                                                                                                                        |
-| :-------------- | :---------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization` | [`AuthorizationPayload`](../../data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](../../../authentication/authenticating-manually) for how to get one. |
-| `accountId`     | `string`                                                          | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                        |
-| `options`       | `GetUserTitlesOptions`                                            | Used for pagination and/or localization options (see Options section below).                                                       |
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `accountId`     | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                |
+| `options`       | `GetUserTitlesOptions`                                                | Used for pagination and/or localization options (see Options section below).                                               |
 
 ### Options
 
-| Name              | Type                                                       | Description                                                                         |
-| :---------------- | :--------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| `headerOverrides` | [`CallValidHeaders`](../../data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
-| `limit`           | `number`                                                   | Limit the number of trophies returned.                                              |
-| `offset`          | `number`                                                   | Return trophy data from this result onwards.                                        |
+| Name              | Type                                                           | Description                                                                         |
+| :---------------- | :------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| `headerOverrides` | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
+| `limit`           | `number`                                                       | Limit the number of trophies returned.                                              |
+| `offset`          | `number`                                                       | Return trophy data from this result onwards.                                        |
 
 ### Source
 
@@ -129,7 +129,7 @@ A call to this function will retrieve the earned status of trophies for a user f
 
 The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`.
 
-This function returns the earned status of the trophy only and no additional descriptive metadata (ie. trophy name, trophy description). Use [`getTitleTrophies()`](../title/getTitleTrophies) to obtain this information.
+This function returns the earned status of the trophy only and no additional descriptive metadata (ie. trophy name, trophy description). Use [`getTitleTrophies()`](/api-docs/title-trophies#gettitletrophies) to obtain this information.
 
 **When the title platform is PS3, PS4, or PS Vita, you _must_ specify the `npServiceName` option as `"trophy"`.**
 
@@ -166,34 +166,34 @@ const response = getUserTrophiesEarnedForTitle(
 
 ### Returns
 
-| Name                  | Type                                                         | Description                                                                                                                                                                                                                                                              |
-| :-------------------- | :----------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `trophySetVersion`    | `string`                                                     | The current version of the trophy set. Some trophy sets receive updates from the developer.                                                                                                                                                                              |
-| `hasTrophyGroups`     | `boolean`                                                    | `true` if this title has additional trophy groups beyond the required `"default"` group.                                                                                                                                                                                 |
-| `lastUpdatedDateTime` | `string`                                                     | An ISO 8601 string representing the date of the user's most recent trophy earned for the title. ex- `"2021-08-15T21:22:08Z"`                                                                                                                                             |
-| `trophies`            | [`UserThinTrophy[]`](../../data-models/user-thin-trophy)     | Individual object for each trophy.                                                                                                                                                                                                                                       |
-| `totalItemCount`      | `number`                                                     | Total trophies in the group (or total trophies for the title if `"all"` is specified).                                                                                                                                                                                   |
-| `rarestTrophies`      | [`RarestThinTrophy[]`](../../data-models/rarest-thin-trophy) | An array which contains the trophy where `earned` is `true` with the lowest `trophyEarnedRate`. If multiple trophies have the same `trophyEarnedRate`, the array contains those trophies instead of just a single trophy. It contains nothing if no trophies are earned. |
-| `nextOffset`          | `number`                                                     |                                                                                                                                                                                                                                                                          |
-| `previousOffset`      | `number`                                                     |                                                                                                                                                                                                                                                                          |
+| Name                  | Type                                                    | Description                                                                                                                                                                                                                                                              |
+| :-------------------- | :------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `trophySetVersion`    | `string`                                                | The current version of the trophy set. Some trophy sets receive updates from the developer.                                                                                                                                                                              |
+| `hasTrophyGroups`     | `boolean`                                               | `true` if this title has additional trophy groups beyond the required `"default"` group.                                                                                                                                                                                 |
+| `lastUpdatedDateTime` | `string`                                                | An ISO 8601 string representing the date of the user's most recent trophy earned for the title. ex- `"2021-08-15T21:22:08Z"`                                                                                                                                             |
+| `trophies`            | [`UserThinTrophy[]`](/data-models/user-thin-trophy)     | Individual object for each trophy.                                                                                                                                                                                                                                       |
+| `totalItemCount`      | `number`                                                | Total trophies in the group (or total trophies for the title if `"all"` is specified).                                                                                                                                                                                   |
+| `rarestTrophies`      | [`RarestThinTrophy[]`](/data-models/rarest-thin-trophy) | An array which contains the trophy where `earned` is `true` with the lowest `trophyEarnedRate`. If multiple trophies have the same `trophyEarnedRate`, the array contains those trophies instead of just a single trophy. It contains nothing if no trophies are earned. |
+| `nextOffset`          | `number`                                                |                                                                                                                                                                                                                                                                          |
+| `previousOffset`      | `number`                                                |                                                                                                                                                                                                                                                                          |
 
 ### Parameters
 
-| Name                | Type                                                              | Description                                                                                                                                                                                        |
-| :------------------ | :---------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization`     | [`AuthorizationPayload`](../../data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](../../../authentication/authenticating-manually) for how to get one.                                                                 |
-| `accountId`         | `string`                                                          | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                                                                                        |
-| `npCommunicationId` | `string`                                                          | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
-| `options`           | `GetUserTrophiesEarnedForTitleOptions`                            | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
+| Name                | Type                                                         | Description                                                                                                                                                                                        |
+| :------------------ | :----------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization`     | [`AuthorizationPayload`](/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                         |
+| `accountId`         | `string`                                                     | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                                                                                        |
+| `npCommunicationId` | `string`                                                     | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
+| `options`           | `GetUserTrophiesEarnedForTitleOptions`                       | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
 
 ### Options
 
-| Name              | Type                                                       | Description                                                                                                                                       |
-| :---------------- | :--------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `npServiceName`   | `"trophy"` \| `"trophy2"`                                  | **`"trophy"` is required for titles belonging to the PS3, PS4, or PS Vita platforms.** `"trophy2"` is used for the PS5 platform, but is optional. |
-| `headerOverrides` | [`CallValidHeaders`](../../data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language.                                                               |
-| `limit`           | `number`                                                   | Limit the number of trophies returned.                                                                                                            |
-| `offset`          | `number`                                                   | Return trophy data from this result onwards.                                                                                                      |
+| Name              | Type                                                  | Description                                                                                                                                       |
+| :---------------- | :---------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `npServiceName`   | `"trophy"` \| `"trophy2"`                             | **`"trophy"` is required for titles belonging to the PS3, PS4, or PS Vita platforms.** `"trophy2"` is used for the PS5 platform, but is optional. |
+| `headerOverrides` | [`CallValidHeaders`](/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language.                                                               |
+| `limit`           | `number`                                              | Limit the number of trophies returned.                                                                                                            |
+| `offset`          | `number`                                              | Return trophy data from this result onwards.                                                                                                      |
 
 ### Source
 
@@ -221,27 +221,27 @@ const response = await getUserTrophyProfileSummary(authorization, "me");
 
 ### Returns
 
-| Name             | Type                                              | Description                                                      |
-| :--------------- | :------------------------------------------------ | :--------------------------------------------------------------- |
-| `accountId`      | `string`                                          | The ID of the account being accessed.                            |
-| `trophyLevel`    | `string`                                          | The account's overall trophy level.                              |
-| `progress`       | `number`                                          | The account's percentage progress towards the next trophy level. |
-| `tier`           | `number`                                          | The tier this user's trophy level is in, ranging from 1 to 10.   |
-| `earnedTrophies` | [`TrophyCounts`](../../data-models/trophy-counts) | The account's number of earned trophies by grade.                |
+| Name             | Type                                                  | Description                                                      |
+| :--------------- | :---------------------------------------------------- | :--------------------------------------------------------------- |
+| `accountId`      | `string`                                              | The ID of the account being accessed.                            |
+| `trophyLevel`    | `string`                                              | The account's overall trophy level.                              |
+| `progress`       | `number`                                              | The account's percentage progress towards the next trophy level. |
+| `tier`           | `number`                                              | The tier this user's trophy level is in, ranging from 1 to 10.   |
+| `earnedTrophies` | [`TrophyCounts`](/api-docs/data-models/trophy-counts) | The account's number of earned trophies by grade.                |
 
 ### Parameters
 
-| Name            | Type                                                              | Description                                                                                                                        |
-| :-------------- | :---------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization` | [`AuthorizationPayload`](../../data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](../../../authentication/authenticating-manually) for how to get one. |
-| `accountId`     | `string`                                                          | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                        |
-| `options`       | `GetUserTrophyProfileSummaryOptions`                              | Used for localization options (see Options section below).                                                                         |
+| Name            | Type                                                         | Description                                                                                                                |
+| :-------------- | :----------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `accountId`     | `string`                                                     | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                |
+| `options`       | `GetUserTrophyProfileSummaryOptions`                         | Used for localization options (see Options section below).                                                                 |
 
 ### Options
 
-| Name              | Type                                                       | Description                                                                         |
-| :---------------- | :--------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| `headerOverrides` | [`CallValidHeaders`](../../data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
+| Name              | Type                                                  | Description                                                                         |
+| :---------------- | :---------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| `headerOverrides` | [`CallValidHeaders`](/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
 
 ### Source
 
