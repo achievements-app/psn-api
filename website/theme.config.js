@@ -40,6 +40,12 @@ export default {
       />
 
       <meta name="apple-mobile-web-app-title" content="psn-api" />
+
+      <script
+        defer
+        data-domain="psn-api.achievements.app"
+        src="https://plausible.io/js/plausible.js"
+      ></script>
     </>
   ),
 
