@@ -4,4 +4,8 @@ const withNextra = require("nextra")({
   unstable_staticImage: true
 });
 
-module.exports = withNextra();
+module.exports = withNextra({
+  eslint: {
+    ignoreDuringBuilds: true
+  }
+});
