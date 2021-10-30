@@ -13,5 +13,8 @@ module.exports = {
     "!src/**/index.ts",
     "!src/test/**/*.ts",
     "!src/__playground.ts"
-  ]
+  ],
+  moduleNameMapper: {
+    "^@/(.*)": "<rootDir>/src/$1"
+  }
 };

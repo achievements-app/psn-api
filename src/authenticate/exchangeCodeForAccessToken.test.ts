@@ -1,7 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AccessTokenResponse } from "../models";
+import type { AccessTokenResponse } from "@/models";
+
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 import { exchangeCodeForAccessToken } from "./exchangeCodeForAccessToken";
 

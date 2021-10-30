@@ -1,10 +1,11 @@
-import { buildRequestUrl } from "../../buildRequestUrl";
-import { call } from "../../call";
 import type {
   AllCallOptions,
   AuthorizationPayload,
   UserTrophyProfileSummaryResponse
-} from "../../models";
+} from "@/models";
+import { buildRequestUrl } from "@/utils/buildRequestUrl";
+import { call } from "@/utils/call";
+
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
 type GetUserTrophyProfileSummaryOptions = Pick<

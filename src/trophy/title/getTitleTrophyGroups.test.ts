@@ -1,11 +1,9 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type {
-  AuthorizationPayload,
-  TitleTrophyGroupsResponse
-} from "../../models";
-import { generateTrophyCounts } from "../../test/generators";
+import type { AuthorizationPayload, TitleTrophyGroupsResponse } from "@/models";
+import { generateTrophyCounts } from "@/test/generators";
+
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getTitleTrophyGroups } from "./getTitleTrophyGroups";
 

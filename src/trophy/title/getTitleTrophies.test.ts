@@ -1,7 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, TitleTrophiesResponse } from "../../models";
+import type { AuthorizationPayload, TitleTrophiesResponse } from "@/models";
+
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getTitleTrophies } from "./getTitleTrophies";
 

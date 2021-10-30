@@ -1,3 +1,5 @@
 coverage
 dist
 website/.next
+website/.docusaurus
+website/build

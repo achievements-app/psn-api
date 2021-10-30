@@ -3,8 +3,9 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
+import type { AuthorizationPayload, CallValidHeaders } from "@/models";
+
 import { call } from "./call";
-import type { AuthorizationPayload, CallValidHeaders } from "./models";
 
 const server = setupServer();
 

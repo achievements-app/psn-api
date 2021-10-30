@@ -1,6 +1,6 @@
 import * as faker from "faker";
 
-import type { TrophyCounts } from "../../models";
+import type { TrophyCounts } from "@/models";
 
 export const generateTrophyCounts = (
   trophyCountsProps?: Partial<TrophyCounts>

@@ -1,6 +1,7 @@
 import * as faker from "faker";
 
-import type { TrophyTitle } from "../../models";
+import type { TrophyTitle } from "@/models";
+
 import { generateTitlePlatform } from "./title-platform.generator";
 import { generateTrophyCounts } from "./trophy-counts.generator";
 

@@ -1,11 +1,12 @@
-import { buildRequestUrl } from "../buildRequestUrl";
-import { call } from "../call";
 import type {
   AuthorizationPayload,
   SocialAccountResult,
   UniversalSearchDomains,
   UniversalSearchResponse
-} from "../models";
+} from "@/models";
+import { buildRequestUrl } from "@/utils/buildRequestUrl";
+import { call } from "@/utils/call";
+
 import { SEARCH_BASE_URL } from "./SEARCH_BASE_URL";
 
 export const makeUniversalSearch = async <R extends UniversalSearchDomains>(
