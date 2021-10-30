@@ -1,5 +1,4 @@
 import fetch from "isomorphic-unfetch";
-import urlcat from "urlcat";
 
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
@@ -17,13 +16,15 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 export const exchangeNpssoForCode = async (
   npssoToken: string
 ): Promise<string> => {
-  const requestUrl = urlcat(AUTH_BASE_URL, "/authorize", {
+  const queryString = new URLSearchParams({
     access_type: "offline",
     client_id: "ac8d161a-d966-4728-b0ea-ffec22f69edc",
     redirect_uri: "com.playstation.PlayStationApp://redirect",
     response_type: "code",
     scope: "psn:mobile.v1 psn:clientapp"
-  });
+  }).toString();
+
+  const requestUrl = `${AUTH_BASE_URL}/authorize?${queryString}`;
 
   // This never returns a 200. As of Oct 10 2021, it seems to return a 302.
   const { headers: responseHeaders } = await fetch(requestUrl, {
