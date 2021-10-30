@@ -12,6 +12,8 @@
  * When querying the titles associated with the authenticating account, the
  * numeric `accountId` can be substituted with `"me"`.
  *
+ * To find a user's `accountId`, the `makeUniversalSearch()` function can be used.
+ *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.

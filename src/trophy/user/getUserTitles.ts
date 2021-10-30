@@ -25,6 +25,8 @@ type GetUserTitlesOptions = Pick<
  * associated with the authenticating account, the numeric `accountId` can be
  * substituted with `"me"`.
  *
+ * To find a user's `accountId`, the `makeUniversalSearch()` function can be used.
+ *
  * Included in the information returned is the titles' unique `npCommunicationId`.
  * This is required to make use of subsequent functions for requesting more specific
  * detail about a title's trophies.

@@ -138,6 +138,10 @@ Click the function names to open their complete docs on the docs site.
 - [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
 - [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange your NPSSO for an access code.
 
+### Search
+
+- [`makeUniversalSearch()`](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch) - Search the PSN API. This is a good way to find a user's `accountId` from their username.
+
 ### Trophies
 
 - [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the individual trophy details of a single or all trophy groups for a title.
