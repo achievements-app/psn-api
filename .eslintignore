@@ -1,2 +1,5 @@
 **/node_modules/*
 **/dist/*
+**/website/node_modules/*
+**/website/.docusaurus/*
+**/website/build/*

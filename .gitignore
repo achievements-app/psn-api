@@ -118,3 +118,8 @@ dist
 .pnp.*
 
 __playground.ts
+
+# Docusaurus
+website/node_modules
+website/.docusaurus
+website/build
