@@ -1,3 +1,8 @@
+---
+sidebar_label: Title Trophies
+sidebar_position: 3
+---
+
 # Title Trophies API
 
 ## getTitleTrophies

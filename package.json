@@ -13,6 +13,7 @@
   ],
   "scripts": {
     "dev": "dts watch",
+    "playground": "ts-node-dev src/playground.ts",
     "build": "dts build",
     "prepare": "dts build",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
@@ -57,6 +58,7 @@
     "pretty-quick": "^3.1.1",
     "semantic-release": "^18.0.0",
     "size-limit": "^6.0.3",
+    "ts-node-dev": "^1.1.8",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   },

@@ -1,3 +1,8 @@
+---
+sidebar_label: User Trophies
+sidebar_position: 4
+---
+
 # User Trophies API
 
 ## getUserSummarizedTrophiesByTrophyGroup

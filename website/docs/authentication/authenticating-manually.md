@@ -1,6 +1,6 @@
 # Authenticating Manually
 
-The most common auth flow that users interacting with PSN's APIs use is the manual authentication flow. This flow is also described in the [Quick Start guide](/#quick-start).
+The most common auth flow that users interacting with PSN's APIs use is the manual authentication flow. This flow is also described in the [Quick Start guide](/intro#quick-start).
 
 The disadvantage to this flow is that after a few months you will need to remember to manually retrieve another NPSSO token to ultimately exchange for access and refresh tokens.
 

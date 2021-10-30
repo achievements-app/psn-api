@@ -1,3 +1,8 @@
+---
+sidebar_label: Universal Search
+sidebar_position: 2
+---
+
 # Universal Search API
 
 ## makeUniversalSearch
