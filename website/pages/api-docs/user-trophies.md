@@ -6,7 +6,7 @@ A call to this function will retrieve a summary of the trophies earned for a use
 
 The numeric `accountId` can be that of any PSN account for which your authentication context has permissions to view.
 
-When querying the titles associated with yourself (the authentication context), the numeric `accountId` can be substituted with `"me"`.
+When querying the titles associated with yourself (the authentication context), the numeric `accountId` can be substituted with `"me"`. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
 
 Only the earned status of the trophy is returned. No additional descriptive metadata (ie. trophy name, trophy description) is given. Use [`getTitleTrophies()`](/api-docs/title-trophies#gettitletrophies) to obtain this information.
 
@@ -54,12 +54,12 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 
 ### Parameters
 
-| Name                | Type                                                                  | Description                                                                                                                                                                                        |
-| :------------------ | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization`     | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                         |
-| `accountId`         | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account.                                                                                                       |
-| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
-| `options`           | `GetUserSummarizedTrophiesByTrophyGroupOptions`                       | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
+| Name                | Type                                                                  | Description                                                                                                                                                                                                                    |
+| :------------------ | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization`     | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                     |
+| `accountId`         | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                                            |
+| `options`           | `GetUserSummarizedTrophiesByTrophyGroupOptions`                       | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below).                             |
 
 ### Options
 
@@ -78,7 +78,7 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 
 A call to this function will retrieve the earned status of trophies for a user from either a single - or all - trophy groups in a title. A title can have multiple groups of trophies (a `"default"` group which all titles have, and additional groups starting with a name of `"001"` and incrementing for each additional group). To retrieve trophies from all groups within a title (ie. the full trophy set), `trophyGroupId` should be set to `"all"`.
 
-The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`.
+The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
 
 Included in the information returned is the titles' unique `npCommunicationId`. This is required to make use of subsequent functions for requesting more specific detail about a title's trophies.
 
@@ -103,11 +103,11 @@ const response = await getUserTitles(authorization, "me");
 
 ### Parameters
 
-| Name            | Type                                                                  | Description                                                                                                                |
-| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
-| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
-| `accountId`     | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                |
-| `options`       | `GetUserTitlesOptions`                                                | Used for pagination and/or localization options (see Options section below).                                               |
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                   |
+| :-------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                    |
+| `accountId`     | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+| `options`       | `GetUserTitlesOptions`                                                | Used for pagination and/or localization options (see Options section below).                                                                                                                                                  |
 
 ### Options
 
@@ -127,7 +127,7 @@ const response = await getUserTitles(authorization, "me");
 
 A call to this function will retrieve the earned status of trophies for a user from either a single - or all - trophy groups in a title. A title can have multiple groups of trphies (a `"default"` group which all titles have, and additional groups starting with a name of `"001"` and incrementing for each additional group). To retrieve trophies from all groups within a title (ie. the full trophy set), then `trophyGroupId` should be set to `"all"`.
 
-The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`.
+The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
 
 This function returns the earned status of the trophy only and no additional descriptive metadata (ie. trophy name, trophy description). Use [`getTitleTrophies()`](/api-docs/title-trophies#gettitletrophies) to obtain this information.
 
@@ -207,7 +207,7 @@ A call to this function will retrieve an overall summary of the number of trophi
 
 The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list.
 
-When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`.
+When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
 
 ### Examples
 

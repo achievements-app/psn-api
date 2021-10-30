@@ -36,6 +36,8 @@ interface GetUserSummarizedTrophiesByTrophyGroupOptions {
  * When querying the titles associated with the authenticating account, the
  * numeric `accountId` can be substituted with `"me"`.
  *
+ * To find a user's `accountId`, the `makeUniversalSearch()` function can be used.
+ *
  * This function calls an endpoint that returns the earned status of the
  * trophy only and no additional descriptive metadata (ie. trophy name,
  * trophy description). Use `getTitleTrophies()` to obtain this information.
