@@ -131,7 +131,7 @@ const trophyTitlesResponse = await getUserTitles(
 
 ## API
 
-Click the function names for complete docs.
+Click the function names to open their complete docs on the docs site.
 
 ### Authentication
 
@@ -150,6 +150,15 @@ Click the function names for complete docs.
 ## Examples
 
 - [Build a user's complete trophy list and write it to a JSON file](examples/buildUserTrophyList.ts)
+
+## Prior Art
+
+[Tustin/psn-php](https://github.com/Tustin/psn-php) - A PHP wrapper for the PSN API
+[andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website
+
+## Disclaimer
+
+This project is not intended to be used for spam or abuse. Please use this project to elevate the PlayStation Network experience, not damage it.
 
 ## Contributors
 
