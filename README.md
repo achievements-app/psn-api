@@ -153,7 +153,7 @@ Click the function names to open their complete docs on the docs site.
 
 ## Examples
 
-- [Build a user's complete trophy list and write it to a JSON file](examples/buildUserTrophyList.ts)
+- [Build a user's complete trophy list and write it to a JSON file](https://psn-api.achievements.app/examples/user-trophy-list)
 
 ## Prior Art
 

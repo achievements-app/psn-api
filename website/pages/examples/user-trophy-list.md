@@ -1,26 +1,54 @@
+# Build a user's complete trophy list
+
+This is an example of how to build a user's complete trophy list and write it to a JSON file. Here is the high-level overview of how this example works:
+
+1. Authenticate and become authorized with PSN.
+2. Get the user's `accountId` from the username.
+3. Get the user's list of titles (games).
+4. Get the list of trophies for each of the user's titles.
+5. Get the list of _earned_ trophies for each of the user's titles.
+6. Merge the two trophy lists.
+7. Write to a JSON file.
+
+## Code sample
+
+```ts
 import fs from "fs";
 
-import type { Trophy } from "../src";
+import type { Trophy } from "psn-api";
 import {
   exchangeCodeForAccessToken,
   exchangeNpssoForCode,
   getTitleTrophies,
   getUserTitles,
   getUserTrophiesEarnedForTitle,
+  makeUniversalSearch,
   TrophyRarity
-} from "../src";
+} from "psn-api";
 
-// To build your own trophy list, use "me" as the `userId`.
-export const buildUserTrophyList = async (userId: string, npsso: string) => {
+async function main() {
+  // 1. Authenticate and become authorized with PSN.
+  // See the Authenticating Manually docs for how to get your NPSSO.
   const accessCode = await exchangeNpssoForCode(npsso);
   const authorization = await exchangeCodeForAccessToken(accessCode);
 
-  const { trophyTitles } = await getUserTitles(authorization, userId);
+  // 2. Get the user's `accountId` from the username.
+  const allAccountsSearchResults = await makeUniversalSearch(
+    authorization,
+    "xelnia",
+    "SocialAllAccounts"
+  );
+
+  const targetAccountId =
+    allAccountsSearchResults.domainResponses[0].results[0].socialMetadata
+      .accountId;
+
+  // 3. Get the user's list of titles (games).
+  const { trophyTitles } = await getUserTitles(authorization, targetAccountId);
 
   const games: any[] = [];
-
-  let count = 1;
   for (const title of trophyTitles) {
+    // 4. Get the list of trophies for each of the user's titles.
     const { trophies: titleTrophies } = await getTitleTrophies(
       authorization,
       title.npCommunicationId,
@@ -31,9 +59,10 @@ export const buildUserTrophyList = async (userId: string, npsso: string) => {
       }
     );
 
+    // 5. Get the list of _earned_ trophies for each of the user's titles.
     const { trophies: earnedTrophies } = await getUserTrophiesEarnedForTitle(
       authorization,
-      userId,
+      targetAccountId,
       title.npCommunicationId,
       "all",
       {
@@ -42,24 +71,21 @@ export const buildUserTrophyList = async (userId: string, npsso: string) => {
       }
     );
 
+    // 6. Merge the two trophy lists.
     const mergedTrophies = mergeTrophyLists(titleTrophies, earnedTrophies);
 
-    const game = {
+    games.push({
       gameName: title.trophyTitleName,
       platform: title.trophyTitlePlatform,
       trophyTypeCounts: title.definedTrophies,
       earnedCounts: title.earnedTrophies,
       trophyList: mergedTrophies
-    };
-
-    games.push(game);
-    console.log("writing game", count);
-
-    count += 1;
+    });
   }
 
+  // 7. Write to a JSON file.
   fs.writeFileSync("./games.json", JSON.stringify(games));
-};
+}
 
 const mergeTrophyLists = (
   titleTrophies: Trophy[],
@@ -98,3 +124,4 @@ const rarityMap: Record<TrophyRarity, string> = {
   [TrophyRarity.Rare]: "Rare",
   [TrophyRarity.Common]: "Common"
 };
+```
