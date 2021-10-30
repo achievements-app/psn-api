@@ -20,7 +20,7 @@ export const buildRequestUrl = (
   })) {
     if (withArgs.includes(`:${argKey}`)) {
       withArgs = withArgs.replace(`:${argKey}`, String(argValue));
-    } else {
+    } else if (queryParamValues[argKey]) {
       queryParamValues[argKey] = String(argValue);
     }
   }

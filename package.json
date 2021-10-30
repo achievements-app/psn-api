@@ -13,7 +13,7 @@
   ],
   "scripts": {
     "dev": "dts watch",
-    "playground": "ts-node-dev src/playground.ts",
+    "playground": "ts-node-dev --respawn -r tsconfig-paths/register src/__playground.ts",
     "build": "dts build",
     "prepare": "dts build",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
@@ -59,6 +59,7 @@
     "semantic-release": "^18.0.0",
     "size-limit": "^6.0.4",
     "ts-node-dev": "^1.1.8",
+    "tsconfig-paths": "^3.11.0",
     "tslib": "^2.3.1",
     "typescript": "^4.4.4"
   },
