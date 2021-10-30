@@ -5,9 +5,9 @@ slug: /
 
 # Get Started
 
-psn-api functions work in isolation. **They are tree-shakeable**, and will only pull in the code they need to execute.
-
 You can use any of the functions as demonstrated in this documentation. Please refer to each function's docs page to see how they should be used.
+
+psn-api functions work in isolation. **They are tree-shakeable**, and will only pull in the code they need to execute.
 
 ## Quick Start
 

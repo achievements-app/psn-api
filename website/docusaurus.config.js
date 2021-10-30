@@ -16,6 +16,14 @@ const config = {
   organizationName: "achievements.app", // Usually your GitHub org/user name.
   projectName: "psn-api", // Usually your repo name.
 
+  scripts: [
+    {
+      src: "https://plausible.io/js/plausible.js",
+      defer: true,
+      "data-domain": "psn-api.achievements.app"
+    }
+  ],
+
   presets: [
     [
       "@docusaurus/preset-classic",
@@ -30,6 +38,11 @@ const config = {
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
+        },
+        sitemap: {
+          changefreq: "weekly",
+          priority: 0.5,
+          trailingSlash: false
         }
       })
     ]
