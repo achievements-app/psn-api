@@ -3,7 +3,7 @@ module.exports = {
     "src/**/*.{ts,tsx}",
     "!src/**/*.model.ts",
     "!src/**/index.ts",
-    "!src/__dev-playground.ts",
-    "!src/test/**/*.ts"
+    "!src/test/**/*.ts",
+    "!src/__playground.ts"
   ]
 };
