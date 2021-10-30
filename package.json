@@ -36,7 +36,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
-    "@size-limit/preset-small-lib": "^6.0.3",
+    "@size-limit/preset-small-lib": "^6.0.4",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",
