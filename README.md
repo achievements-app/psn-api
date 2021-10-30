@@ -153,7 +153,7 @@ Click the function names to open their complete docs on the docs site.
 
 ## Prior Art
 
-[Tustin/psn-php](https://github.com/Tustin/psn-php) - A PHP wrapper for the PSN API
+[Tustin/psn-php](https://github.com/Tustin/psn-php) - A PHP wrapper for the PSN API  
 [andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website
 
 ## Disclaimer
