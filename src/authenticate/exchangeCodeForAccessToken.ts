@@ -1,5 +1,4 @@
 import fetch from "isomorphic-unfetch";
-import urlcat, { query } from "urlcat";
 
 import type { AccessTokenResponse } from "@/models";
 
@@ -12,7 +11,7 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 export const exchangeCodeForAccessToken = async (
   accessCode: string
 ): Promise<AccessTokenResponse> => {
-  const requestUrl = urlcat(AUTH_BASE_URL, "/token");
+  const requestUrl = `${AUTH_BASE_URL}/token`;
 
   const res = await fetch(requestUrl, {
     method: "POST",
@@ -21,12 +20,12 @@ export const exchangeCodeForAccessToken = async (
       Authorization:
         "Basic YWM4ZDE2MWEtZDk2Ni00NzI4LWIwZWEtZmZlYzIyZjY5ZWRjOkRFaXhFcVhYQ2RYZHdqMHY="
     },
-    body: query({
+    body: new URLSearchParams({
       code: `${accessCode}`,
       redirect_uri: "com.playstation.PlayStationApp://redirect",
       grant_type: "authorization_code",
       token_format: "jwt"
-    })
+    }).toString()
   });
 
   const raw = await res.json();

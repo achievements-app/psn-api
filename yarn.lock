@@ -9774,11 +9774,6 @@ url-join@^4.0.0:
   resolved "https://registry.yarnpkg.com/url-join/-/url-join-4.0.1.tgz#b642e21a2646808ffa178c4c5fda39844e12cde7"
   integrity sha512-jk1+QP6ZJqyOiuEI9AEWQfju/nB2Pw466kbA0LEZljHwKeMgd9WrAEgEGxjPDD2+TNbbb37rTyhEfrCXfuKXnA==
 
-urlcat@^2.0.4:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/urlcat/-/urlcat-2.0.4.tgz#c119b4e3b31df4d140e77e177ea5d95dbe6b2fe2"
-  integrity sha512-12c4Vi40DHVdZ/8mOLjZjp0asCzM6hi8Gj116fpImRP1FN4gBMCtMi9XhLNOmre/FEQYNqHbZmX8iyYAtIcy8Q==
-
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"

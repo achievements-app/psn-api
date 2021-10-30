@@ -29,8 +29,7 @@
     "semantic-release": "semantic-release"
   },
   "dependencies": {
-    "isomorphic-unfetch": "^3.1.0",
-    "urlcat": "^2.0.4"
+    "isomorphic-unfetch": "^3.1.0"
   },
   "peerDependencies": {},
   "devDependencies": {
