@@ -40,7 +40,8 @@ module.exports = {
       testMatch: ["<rootDir>/e2e/**/*.e2e.spec.ts"],
       transform: {
         "^.+\\.(ts|tsx)$": "ts-jest"
-      }
+      },
+      maxWorkers: 1
     }
   ]
 };
