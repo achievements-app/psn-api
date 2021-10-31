@@ -1,6 +1,9 @@
-name: Get Title Trophies Health Check
+name: getTitleTrophies Nightly Health Check
 
-on: workflow_dispatch
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 4 * * *
 
 jobs:
   e2e:
