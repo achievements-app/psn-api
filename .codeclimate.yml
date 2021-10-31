@@ -1,6 +1,7 @@
 version: "2"
 
 exclude_patterns:
+  - "e2e/**"
   - "src/test/**"
   - "**/*.test.*"
   - "examples/**"
