@@ -19,3 +19,6 @@ jobs:
 
       - name: Run health check
         run: yarn test:e2e --testPathPattern=getTitleTrophies
+        env:
+          NPSSO: ${{ secrets.NPSSO }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
