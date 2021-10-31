@@ -1,4 +1,4 @@
-export interface AccessTokenResponse {
+export interface AuthTokensResponse {
   /** Used to retrieve data from the PSN API. */
   accessToken: string;
 
@@ -7,7 +7,7 @@ export interface AccessTokenResponse {
 
   idToken: string;
 
-  /** Used to retrieve a new access token. */
+  /** Used to retrieve a new access token when it expires. */
   refreshToken: string;
 
   /** When the refresh token will expire. */

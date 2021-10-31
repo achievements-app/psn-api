@@ -25,7 +25,7 @@ const authorization = await exchangeCodeForAccessToken(accessCode);
 
 ### Returns
 
-An `AccessTokenResponse` object, containing the following properties:
+An `AuthTokenResponse` object, containing the following properties:
 
 | Name                    | Type     | Description                                           |
 | :---------------------- | :------- | :---------------------------------------------------- |

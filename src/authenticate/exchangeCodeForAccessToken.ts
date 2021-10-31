@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 
-import type { AccessTokenResponse } from "@/models";
+import type { AuthTokensResponse } from "@/models";
 
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
@@ -10,7 +10,7 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
  */
 export const exchangeCodeForAccessToken = async (
   accessCode: string
-): Promise<AccessTokenResponse> => {
+): Promise<AuthTokensResponse> => {
   const requestUrl = `${AUTH_BASE_URL}/token`;
 
   const res = await fetch(requestUrl, {

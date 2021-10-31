@@ -1,7 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AccessTokenResponse } from "@/models";
+import type { AuthTokensResponse } from "@/models";
 
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 import { exchangeCodeForAccessToken } from "./exchangeCodeForAccessToken";
@@ -21,7 +21,7 @@ describe("Function: exchangeCodeForAccessToken", () => {
 
   it("makes a call to exchange an access code for a set of OAuth tokens", async () => {
     // ARRANGE
-    const mockAccessTokenResponse: AccessTokenResponse = {
+    const mockAuthTokensResponse: AuthTokensResponse = {
       accessToken: "mockAccessToken",
       expiresIn: 3000,
       idToken: "mockIdToken",
@@ -35,14 +35,14 @@ describe("Function: exchangeCodeForAccessToken", () => {
       rest.post(`${AUTH_BASE_URL}/token`, (_, res, ctx) => {
         return res(
           ctx.json({
-            access_token: mockAccessTokenResponse.accessToken,
-            expires_in: mockAccessTokenResponse.expiresIn,
-            id_token: mockAccessTokenResponse.idToken,
-            refresh_token: mockAccessTokenResponse.refreshToken,
+            access_token: mockAuthTokensResponse.accessToken,
+            expires_in: mockAuthTokensResponse.expiresIn,
+            id_token: mockAuthTokensResponse.idToken,
+            refresh_token: mockAuthTokensResponse.refreshToken,
             refresh_token_expires_in:
-              mockAccessTokenResponse.refreshTokenExpiresIn,
-            token_type: mockAccessTokenResponse.tokenType,
-            scope: mockAccessTokenResponse.scope
+              mockAuthTokensResponse.refreshTokenExpiresIn,
+            token_type: mockAuthTokensResponse.tokenType,
+            scope: mockAuthTokensResponse.scope
           })
         );
       })
@@ -52,6 +52,6 @@ describe("Function: exchangeCodeForAccessToken", () => {
     const tokenResponse = await exchangeCodeForAccessToken("mockAccessCode");
 
     // ASSERT
-    expect(tokenResponse).toEqual(mockAccessTokenResponse);
+    expect(tokenResponse).toEqual(mockAuthTokensResponse);
   });
 });

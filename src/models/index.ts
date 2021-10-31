@@ -1,5 +1,5 @@
-export * from "./access-token-response.model";
 export * from "./all-call-options.model";
+export * from "./auth-tokens-response.model";
 export * from "./authorization-payload.model";
 export * from "./call-valid-headers.model";
 export * from "./rarest-thin-trophy.model";

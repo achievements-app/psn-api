@@ -81,13 +81,13 @@ These methods can be used with the native Promise API or the more modern async/a
 
 ```ts
 // Native Promise API.
-exchangeCodeForAccessToken("myCode").then((accessTokenResponse) => {
-  console.log({ accessTokenResponse });
+exchangeCodeForAccessToken("myCode").then((authTokensResponse) => {
+  console.log({ authTokensResponse });
 });
 
 // async/await syntax.
-const accessTokenResponse = await exchangeCodeForAccessToken("myCode");
-console.log({ accessTokenResponse });
+const authTokensResponse = await exchangeCodeForAccessToken("myCode");
+console.log({ authTokensResponse });
 ```
 
 ## How to obtain an authentication token
