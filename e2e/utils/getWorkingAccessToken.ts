@@ -68,7 +68,7 @@ export const getWorkingAccessToken = async () => {
     accessToken = (await redisClient.get("accessToken")) as string;
   }
 
-  redisClient.disconnect();
+  await redisClient.disconnect();
 
   return { accessToken };
 };
