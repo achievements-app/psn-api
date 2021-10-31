@@ -4,8 +4,7 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   UserTrophiesEarnedForTitleResponse
-} from "@/models";
-
+} from "../../models";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserTrophiesEarnedForTitle } from "./getUserTrophiesEarnedForTitle";
 

@@ -4,9 +4,8 @@ import { setupServer } from "msw/node";
 import type {
   AuthorizationPayload,
   UserSummarizedTrophiesByTrophyGroupResponse
-} from "@/models";
-import { generateTrophyCounts } from "@/test/generators";
-
+} from "../../models";
+import { generateTrophyCounts } from "../../test/generators";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserSummarizedTrophiesByTrophyGroup } from "./getUserSummarizedTrophiesByTrophyGroup";
 

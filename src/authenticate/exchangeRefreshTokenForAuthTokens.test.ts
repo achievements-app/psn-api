@@ -1,8 +1,7 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthTokensResponse } from "@/models";
-
+import type { AuthTokensResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 import { exchangeRefreshTokenForAuthTokens } from "./exchangeRefreshTokenForAuthTokens";
 

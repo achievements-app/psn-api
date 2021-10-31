@@ -1,4 +1,4 @@
-import type { AllCallOptions } from "@/models";
+import type { AllCallOptions } from "../models";
 
 export const buildRequestUrl = (
   baseUrl: string,

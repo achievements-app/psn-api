@@ -5,8 +5,7 @@ import type {
   AuthorizationPayload,
   SocialAccountResult,
   UniversalSearchResponse
-} from "@/models";
-
+} from "../models";
 import { makeUniversalSearch } from "./makeUniversalSearch";
 import { SEARCH_BASE_URL } from "./SEARCH_BASE_URL";
 

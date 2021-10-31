@@ -30,14 +30,7 @@
     // error out if import and file system have a casing mismatch. Recommended by TS
     "forceConsistentCasingInFileNames": true,
     // `dts build` ignores this option, but it is commonly used when type-checking separately with `tsc`
-    "noEmit": true,
-
-    // https://github.com/vkondamu/tsdx-absolute-paths
-    "baseUrl": "./",
-    "paths": {
-      "@/*": ["src/*"],
-      "*": ["node_modules/*"]
-    }
+    "noEmit": true
   },
   "ts-node": {
     "compilerOptions": {

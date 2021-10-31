@@ -1,6 +1,6 @@
 import fetch from "isomorphic-unfetch";
 
-import type { AuthorizationPayload, CallValidHeaders } from "@/models";
+import type { AuthorizationPayload, CallValidHeaders } from "../models";
 
 export const call = async <T>(
   config: {
