@@ -14,13 +14,14 @@ export const buildRequestUrl = (
 
   let withArgs = withoutDoubleSlashes;
   const queryParamValues: Record<string, string> = {};
+
   for (const [argKey, argValue] of Object.entries({
     ...args,
     ...pickedOptions
   })) {
     if (withArgs.includes(`:${argKey}`)) {
       withArgs = withArgs.replace(`:${argKey}`, String(argValue));
-    } else if (queryParamValues[argKey]) {
+    } else if (argValue !== undefined) {
       queryParamValues[argKey] = String(argValue);
     }
   }

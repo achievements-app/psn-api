@@ -18,10 +18,20 @@ describe("Util: buildRequestUrl", () => {
       mockOption: "mockValue"
     };
 
-    const args = { baz: "myBazValue", limit: 10, offset: 2 };
+    const args = {
+      baz: "myBazValue",
+      limit: 10,
+      offset: 2,
+      notDefined: undefined
+    };
 
     // ACT
-    const requestUrl = buildRequestUrl(baseUrl, endpointUrl, options, args);
+    const requestUrl = buildRequestUrl(
+      baseUrl,
+      endpointUrl,
+      options,
+      args as any
+    );
 
     // ASSERT
     expect(requestUrl).toEqual(
