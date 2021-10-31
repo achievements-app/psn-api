@@ -4,12 +4,8 @@ import type { AuthTokensResponse } from "@/models";
 
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
-/**
- * @param accessCode Your access code, typically retrieved by using `exchangeNpssoForCode()`.
- * @returns An object containing an access token, refresh token, and expiry times for both.
- */
-export const exchangeCodeForAccessToken = async (
-  accessCode: string
+export const exchangeRefreshTokenForAuthTokens = async (
+  refreshToken: string
 ): Promise<AuthTokensResponse> => {
   const requestUrl = `${AUTH_BASE_URL}/token`;
 
@@ -21,10 +17,10 @@ export const exchangeCodeForAccessToken = async (
         "Basic YWM4ZDE2MWEtZDk2Ni00NzI4LWIwZWEtZmZlYzIyZjY5ZWRjOkRFaXhFcVhYQ2RYZHdqMHY="
     },
     body: new URLSearchParams({
-      code: accessCode,
-      redirect_uri: "com.playstation.PlayStationApp://redirect",
-      grant_type: "authorization_code",
-      token_format: "jwt"
+      refresh_token: refreshToken,
+      grant_type: "refresh_token",
+      token_format: "jwt",
+      scope: "psn:mobile.v1 psn:clientapp"
     }).toString()
   });
 

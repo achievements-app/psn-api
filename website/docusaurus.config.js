@@ -32,9 +32,8 @@ const config = {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
-          // Please change this to your repo.
           editUrl:
-            "https://github.com/achievements-app/website/edit/main/website/"
+            "https://github.com/achievements-app/psn-api/edit/main/website/"
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")

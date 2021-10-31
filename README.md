@@ -137,6 +137,7 @@ Click the function names to open their complete docs on the docs site.
 
 - [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
 - [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange your NPSSO for an access code.
+- [`exchangeRefreshTokenForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangerefreshtokenforauthtokens) - Get a new access token using your refresh token (bypassing the need to constantly auth with your NPSSO).
 
 ### Search
 
