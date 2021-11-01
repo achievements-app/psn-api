@@ -23,7 +23,7 @@
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
     "test": "jest --selectProjects UNIT",
     "test:coverage": "jest --selectProjects UNIT --coverage",
-    "test:e2e": "dotenv-flow jest -- --selectProjects E2E",
+    "test:e2e": "dotenv-flow jest ci -- --selectProjects E2E --forceExit",
     "verify": "npm run format:check && npm run lint && npm run test:coverage && npm run build && npm run size",
     "size": "size-limit",
     "analyze": "size-limit --why",
