@@ -24,9 +24,11 @@ export const makeUniversalSearch = async <R extends UniversalSearchDomains>(
     authorization,
     {
       searchTerm,
-      domainRequests: {
-        domain
-      }
+      domainRequests: [
+        {
+          domain
+        }
+      ]
     }
   );
 };
