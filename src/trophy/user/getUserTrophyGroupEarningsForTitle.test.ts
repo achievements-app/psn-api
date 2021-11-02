@@ -3,15 +3,15 @@ import { setupServer } from "msw/node";
 
 import type {
   AuthorizationPayload,
-  UserSummarizedTrophiesByTrophyGroupResponse
+  UserTrophyGroupEarningsForTitleResponse
 } from "../../models";
 import { generateTrophyCounts } from "../../test/generators";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
-import { getUserSummarizedTrophiesByTrophyGroup } from "./getUserSummarizedTrophiesByTrophyGroup";
+import { getUserTrophyGroupEarningsForTitle } from "./getUserTrophyGroupEarningsForTitle";
 
 const server = setupServer();
 
-describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
+describe("Function: getUserTrophyGroupEarningsForTitle", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -19,7 +19,7 @@ describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getUserSummarizedTrophiesByTrophyGroup).toBeDefined();
+    expect(getUserTrophyGroupEarningsForTitle).toBeDefined();
   });
 
   it("retrieves a summarized count of trophy earnings for a given user", async () => {
@@ -31,7 +31,7 @@ describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
     const mockAccountId = "mockAccountId";
     const mockNpCommunicationId = "mockNpCommunicationId";
 
-    const mockResponse: UserSummarizedTrophiesByTrophyGroupResponse = {
+    const mockResponse: UserTrophyGroupEarningsForTitleResponse = {
       trophySetVersion: "1.00",
       hiddenFlag: false,
       progress: 80,
@@ -50,7 +50,7 @@ describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
     );
 
     // ACT
-    const response = await getUserSummarizedTrophiesByTrophyGroup(
+    const response = await getUserTrophyGroupEarningsForTitle(
       mockAuthorization,
       mockAccountId,
       mockNpCommunicationId
@@ -88,7 +88,7 @@ describe("Function: getUserSummarizedTrophiesByTrophyGroup", () => {
 
     // ASSERT
     await expect(
-      getUserSummarizedTrophiesByTrophyGroup(
+      getUserTrophyGroupEarningsForTitle(
         mockAuthorization,
         mockAccountId,
         mockNpCommunicationId

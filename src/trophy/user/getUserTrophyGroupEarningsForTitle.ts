@@ -1,13 +1,13 @@
 import type {
   AuthorizationPayload,
   CallValidHeaders,
-  UserSummarizedTrophiesByTrophyGroupResponse
+  UserTrophyGroupEarningsForTitleResponse
 } from "../../models";
 import { buildRequestUrl } from "../../utils/buildRequestUrl";
 import { call } from "../../utils/call";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 
-interface GetUserSummarizedTrophiesByTrophyGroupOptions {
+interface GetUserTrophyGroupEarningsForTitleOptions {
   /**
    * Not required unless the platform is PS3, PS4, or PS Vita.
    * If one of these platforms, the value __must__ be `"trophy"`.
@@ -55,12 +55,12 @@ interface GetUserSummarizedTrophiesByTrophyGroupOptions {
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.
  */
-export const getUserSummarizedTrophiesByTrophyGroup = async (
+export const getUserTrophyGroupEarningsForTitle = async (
   authorization: AuthorizationPayload,
   accountId: string,
   npCommunicationId: string,
-  options?: Partial<GetUserSummarizedTrophiesByTrophyGroupOptions>
-): Promise<UserSummarizedTrophiesByTrophyGroupResponse> => {
+  options?: Partial<GetUserTrophyGroupEarningsForTitleOptions>
+): Promise<UserTrophyGroupEarningsForTitleResponse> => {
   const url = buildRequestUrl(
     TROPHY_BASE_URL,
     "/v1/users/:accountId/npCommunicationIds/:npCommunicationId/trophyGroups",
@@ -68,7 +68,7 @@ export const getUserSummarizedTrophiesByTrophyGroup = async (
     { accountId, npCommunicationId }
   );
 
-  const response = await call<UserSummarizedTrophiesByTrophyGroupResponse>(
+  const response = await call<UserTrophyGroupEarningsForTitleResponse>(
     { url, headers: options?.headerOverrides },
     authorization
   );

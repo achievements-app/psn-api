@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # User Trophies API
 
-## getUserSummarizedTrophiesByTrophyGroup
+## getUserTrophyGroupEarningsForTitle
 
 A call to this function will retrieve a summary of the trophies earned for a user broken down by trophy group within a title. A title can have multiple groups of trophies (a `"default"` group which all titles have, and additional groups beginning with the name `"001"` and incrementing for each additional group).
 
@@ -21,12 +21,12 @@ If you attempt to query a title which the user does not have associated with the
 
 ### Examples
 
-#### Get your summarized trophies for a PS3 game
+#### Get your trophy group earnings for a PS3 game
 
 ```ts
-import { getUserSummarizedTophiesByTrophyGroup } from "psn-api";
+import { getUserTrophyGroupEarningsForTitle } from "psn-api";
 
-const response = await getUserSummarizedTrophiesByTrophyGroup(
+const response = await getUserTrophyGroupEarningsForTitle(
   authorization,
   "me",
   "NPWR00867_00", // Red Dead Redemption
@@ -34,12 +34,12 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 );
 ```
 
-#### Get your summarized trophies for a PS5 game
+#### Get your trophy group earnings for a PS5 game
 
 ```ts
-import { getUserSummarizedTrophiesByTrophyGroup } from "psn-api";
+import { getUserTrophyGroupEarningsForTitle } from "psn-api";
 
-const response = await getUserSummarizedTrophiesByTrophyGroup(
+const response = await getUserTrophyGroupEarningsForTitle(
   authorization,
   "me",
   "NPWR20188_00" // Astro's Playroom
@@ -63,8 +63,8 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 | :------------------ | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization`     | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                     |
 | `accountId`         | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
-| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                                            |
-| `options`           | `GetUserSummarizedTrophiesByTrophyGroupOptions`                       | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below).                             |
+| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the user trophy group earnings for.                                                                                                                                       |
+| `options`           | `GetUserTrophyGroupEarningsForTitleOptions`                           | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below).                             |
 
 ### Options
 
@@ -75,7 +75,7 @@ const response = await getUserSummarizedTrophiesByTrophyGroup(
 
 ### Source
 
-[trophy/title/getUserSummarizedTrophiesByTrophyGroup.ts](https://github.com/achievements-app/psn-api/blob/main/src/trophy/user/getUserSummarizedTrophiesByTrophyGroup.ts)
+[trophy/title/getUserTrophyGroupEarningsForTitle.ts](https://github.com/achievements-app/psn-api/blob/main/src/trophy/user/getUserTrophyGroupEarningsForTitle.ts)
 
 ---
 
@@ -188,7 +188,7 @@ const response = getUserTrophiesEarnedForTitle(
 | :------------------ | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization`     | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                         |
 | `accountId`         | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account.                                                                                                        |
-| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the summarized user trophy group earnings for.                                                                                                |
+| `npCommunicationId` | `string`                                                              | The unique ID of the game title you wish to retrieve the user trophy group earnings for.                                                                                                           |
 | `options`           | `GetUserTrophiesEarnedForTitleOptions`                                | Most often used to specify an `npServiceName` if you're retrieving entities belonging to a non-PS5 title. Can also be used for pagination and/or localization options (see Options section below). |
 
 ### Options

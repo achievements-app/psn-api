@@ -147,9 +147,9 @@ Click the function names to open their complete docs on the docs site.
 
 - [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the individual trophy details of a single or all trophy groups for a title.
 - [`getTitleTrophyGroups()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophygroups) - Get a list of trophy groups (typically the base set and DLCs) for a title.
-- [`getUserSummarizedTrophiesByTrophyGroup()`](https://psn-api.achievements.app/api-docs/user-trophies#getusersummarizedtrophiesbytrophygroup) - Get a summary of trophies earned for a user broken down by trophy group within a title.
 - [`getUserTitles()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertitles) - Retrieve a list of the titles associated with an account and a summary of trophies earned from them.
 - [`getUserTrophiesEarnedForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophiesearnedfortitle) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
+- [`getUserTrophyGroupEarningsForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophygroupearningsfortitle) - Get a summary of trophies earned for a user broken down by trophy group within a title.
 - [`getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
 
 ## Examples

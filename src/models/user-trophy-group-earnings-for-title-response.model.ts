@@ -1,7 +1,7 @@
 import type { TrophyCounts } from "./trophy-counts.model";
 import type { TrophyGroupEarnings } from "./trophy-group-earnings.model";
 
-export interface UserSummarizedTrophiesByTrophyGroupResponse {
+export interface UserTrophyGroupEarningsForTitleResponse {
   /** The current version of the trophy set. Some trophy sets receive updates from the developer. */
   trophySetVersion: string;
 
