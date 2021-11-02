@@ -2,15 +2,15 @@
 
 The most common auth flow that users interacting with PSN's APIs use is the manual authentication flow. This flow is also described in the [Quick Start guide](/#quick-start).
 
-The disadvantage to this flow is that after a few months you will need to remember to manually retrieve another NPSSO token to ultimately exchange for access and refresh tokens.
+The disadvantage to this flow is that after two months you will need to remember to manually retrieve another NPSSO token to ultimately exchange for access and refresh tokens.
 
 ## The authorization flow
 
-From a high-level, to become authorized to use PSN's APIs, you must go through the following flow:
+From a high-level, to become authorized to use PSN's APIs, you must take the following steps:
 
-1. Obtain several authentication cookies by signing in with your email/password credentials.
+1. Manually sign in on the PlayStation website with your email/password credentials (to retrieve some auth cookies).
 
-2. Exchange these authentication cookies for an NPSSO token.
+2. Exchange these auth cookies for an NPSSO token.
 
 3. Exchange your NPSSO token for an access code.
 
@@ -18,7 +18,7 @@ From a high-level, to become authorized to use PSN's APIs, you must go through t
 
 Once you have an access token, you can retrieve data from the PSN API.
 
-Eventually your access token will expire. You can get a new access token by using the refresh token (_TODO: how?_).
+Access tokens are short-lived and yours will expire after only a few hours. When this happens, it's best practice to get a new access token [by using your refresh token](/authentication/using-your-refresh-token).
 
 ## Get started
 
@@ -36,7 +36,7 @@ In the same browser that you used to log in (due to a persisted cookie), visit [
 
 ### Exchange your NPSSO token
 
-You can now obtain an authentication token using your NPSSO with the following function calls from this package.
+You can now obtain an access token and a refresh token using your NPSSO with the following function calls from this package.
 
 ```ts
 // This is the value you copied from the previous step.
