@@ -1,4 +1,4 @@
-name: getTitleTrophyGroups Nightly Health Check
+name: Health Check
 
 on:
   workflow_dispatch:
