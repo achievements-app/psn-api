@@ -1,0 +1,27 @@
+name: getUserTitles Nightly Health Check
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 4 * * *
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Use Node 14
+        uses: actions/setup-node@v1
+        with:
+          node-version: "14"
+
+      - name: Install deps and build (with cache)
+        uses: bahmutov/npm-install@v1
+
+      - name: Run health check
+        run: yarn test:e2e --testPathPattern=getUserTitles
+        env:
+          NPSSO: ${{ secrets.NPSSO }}
+          REDIS_URL: ${{ secrets.REDIS_URL }}
