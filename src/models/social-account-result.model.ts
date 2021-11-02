@@ -2,7 +2,7 @@ export interface SocialAccountResult {
   id: string;
   type: string;
   score: number;
-  scoreMetadata: {
+  socialMetadata: {
     accountId: number;
     country: string;
     language: string;
