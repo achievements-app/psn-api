@@ -9,6 +9,10 @@ sidebar_position: 2
 
 A call to this function will make a universal search across the PlayStation Network for your search query. Each search query requires a domain, such as `"SocialAllAccounts"`.
 
+:::note
+If you search for your own username, it will not be in the list of results. This is a quirk of the universal search API. In cases where you want to use the `accountId` of the account that's currently logged in, use `"me"` instead of the standard account ID value.
+:::
+
 ### Examples
 
 #### Find a user's `accountId` by their username
