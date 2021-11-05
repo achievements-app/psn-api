@@ -16,7 +16,6 @@ describe("E2E Health Check: getUserTrophyProfileSummary", () => {
     );
 
     // ASSERT
-    console.log(response);
     expect(response.accountId).toEqual("2545901274862028456");
     expect(response.trophyLevel).toBeGreaterThan(200);
     expect(response.tier).toBeGreaterThanOrEqual(3);
