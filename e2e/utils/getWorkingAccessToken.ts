@@ -1,16 +1,6 @@
-import { createClient } from "redis";
-
 import type { AuthTokensResponse } from "../../src";
 import { exchangeRefreshTokenForAuthTokens } from "../../src";
-
-const createRedisClient = async () => {
-  const client = createClient({ url: process.env.REDIS_URL ?? "" });
-
-  client.on("error", (err) => console.log("Redis Client Error", err));
-
-  await client.connect();
-  return client;
-};
+import { createRedisClient } from "./createRedisClient";
 
 const sendAuthTokensToRedis = async ({
   accessToken,
