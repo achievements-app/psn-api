@@ -1,6 +1,6 @@
 {
   "name": "psn-api",
-  "description": "A low-level API for getting data from the PlayStation Network.",
+  "description": "A well-tested library that lets you get trophy, user, and game data from the PlayStation Network.",
   "keywords": [
     "psn",
     "playstation",
@@ -53,6 +53,7 @@
     "@commitlint/config-conventional": "^13.2.0",
     "@rollup/plugin-alias": "^3.1.8",
     "@size-limit/preset-small-lib": "^6.0.4",
+    "@skypack/package-check": "^0.2.2",
     "@types/faker": "^5.5.9",
     "@types/jest": "^27.0.2",
     "@types/node": "^16.11.6",

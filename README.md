@@ -1,10 +1,16 @@
+<h1 align="center">psn-api</h1>
+
 <p align="center">
   <img width="40%" height="40%" src="psx.png" />
+  <br />
+  A well-tested JavaScript library that lets you get trophy, user, and game data from the PlayStation Network.
+  <br />
 </p>
 
-# psn-api
-
-> A low-level API for getting trophy data from the PlayStation Network.
+<p align="center">
+  <a href="https://psn-api.achievements.app"><strong>Documentation: Get Started</strong></a>
+  <br />
+</p>
 
 <p align="center">
   <a href="https://github.com/prettier/prettier">
@@ -39,56 +45,14 @@ psn-api is a reference implementation of a [community effort](https://andshrew.g
 
 <hr />
 
-## Docs site
+## Documentation
 
-The docs site for the library can be found at [https://psn-api.achievements.app](https://psn-api.achievements.app).
+Get started with psn-api, learn how the authenticate and start pulling data from the PlayStation Network on our documentation website.
 
-## Getting started
-
-### Install
-
-```
-npm install --save psn-api
-```
-
-OR
-
-```
-yarn add psn-api
-```
-
-### Usage with Node
-
-Node 14 and above are officially supported. The package can be imported via:
-
-```js
-const psn = require("psn-api");
-```
-
-### Usage with TypeScript
-
-You can use `import` syntax to utilize the package in your app. This library provides its own type definitions. "It just works", no need to install anything from `@types`.
-
-```ts
-import { getUserTrophiesEarnedForTitle } from "psn-api";
-```
-
-### Understanding the Promise-based API
-
-All methods in the API are async and return a [native Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).
-
-These methods can be used with the native Promise API or the more modern async/await syntax.
-
-```ts
-// Native Promise API.
-exchangeCodeForAccessToken("myCode").then((authTokensResponse) => {
-  console.log({ authTokensResponse });
-});
-
-// async/await syntax.
-const authTokensResponse = await exchangeCodeForAccessToken("myCode");
-console.log({ authTokensResponse });
-```
+- [Get started](https://psn-api.achievements.app/get-started)
+- [How to authenticate](https://psn-api.achievements.app/authentication/authenticating-manually)
+- [Get all trophies for a game](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies)
+- [Search for a user](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch)
 
 ## How to obtain an authentication token
 
