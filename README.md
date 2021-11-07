@@ -2,14 +2,14 @@
 
 <p align="center">
   <img width="40%" height="40%" src="psx.png" />
-  <br />
-  A well-tested JavaScript library that lets you get trophy, user, and game data from the PlayStation Network.
-  <br />
+  <br /><br />
+  <i>A JavaScript library that lets you get trophy, user, and game data from the PlayStation Network.</i>
+  <br /><br />
 </p>
 
 <p align="center">
   <a href="https://psn-api.achievements.app"><strong>Documentation: Get Started</strong></a>
-  <br />
+  <br /><br />
 </p>
 
 <p align="center">
@@ -30,8 +30,6 @@
   </a>
 </p>
 
-psn-api is a reference implementation of a [community effort](https://andshrew.github.io/PlayStation-Trophies/#/) to document Sony's APIs for PlayStation authorization and trophy metadata. It saves you the hassle of implementing this community reference yourself by offering a strongly-typed, well-tested, and lightweight package.
-
 <hr />
 
 ## Features
@@ -47,12 +45,18 @@ psn-api is a reference implementation of a [community effort](https://andshrew.g
 
 ## Documentation
 
-Get started with psn-api, learn how the authenticate and start pulling data from the PlayStation Network on our documentation website.
+Learn how to authenticate and start pulling data from the PlayStation Network on our documentation website.
 
 - [Get started](https://psn-api.achievements.app/get-started)
 - [How to authenticate](https://psn-api.achievements.app/authentication/authenticating-manually)
 - [Get all trophies for a game](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies)
 - [Search for a user](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch)
+
+## Installation
+
+```bash
+npm install psn-api
+```
 
 ## How to obtain an authentication token
 
