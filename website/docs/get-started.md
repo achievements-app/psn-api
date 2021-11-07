@@ -1,24 +1,17 @@
 ---
 sidebar_position: 1
-slug: /
 ---
 
 # Get Started
 
-You can use any of the functions as demonstrated in this documentation. Please refer to each function's docs page to see how they should be used.
-
-psn-api functions work in isolation. **They are tree-shakeable**, and will only pull in the code they need to execute.
+First, we'll install the package. Then, we'll make our first authentication to the PlayStation Network. After these steps are completed, you are able to use any function provided by the library.
 
 ## Quick Start
 
 Install the package:
 
-```bash
-# with npm
-npm install --save psn-api
-
-# with yarn
-yarn add psn-api
+```bash npm2yarn
+npm install psn-api
 ```
 
 You will need to be authorized to use the PSN API. To authenticate manually, follow these steps:

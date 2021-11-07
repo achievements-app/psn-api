@@ -33,7 +33,11 @@ const config = {
           sidebarPath: require.resolve("./sidebars.js"),
           routeBasePath: "/",
           editUrl:
-            "https://github.com/achievements-app/psn-api/edit/main/website/"
+            "https://github.com/achievements-app/psn-api/edit/main/website/",
+
+          remarkPlugins: [
+            [require("@docusaurus/remark-plugin-npm2yarn"), { sync: true }]
+          ]
         },
         theme: {
           customCss: require.resolve("./src/css/custom.css")
@@ -56,7 +60,7 @@ const config = {
         items: [
           {
             type: "doc",
-            docId: "intro",
+            docId: "about",
             position: "left",
             label: "Quick start"
           },
