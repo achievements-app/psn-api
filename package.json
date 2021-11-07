@@ -1,10 +1,25 @@
 {
   "name": "psn-api",
   "description": "A low-level API for getting data from the PlayStation Network.",
+  "keywords": [
+    "psn",
+    "playstation",
+    "trophies",
+    "npsso",
+    "achievements",
+    "ps4",
+    "ps5"
+  ],
   "version": "0.0.0-development",
   "main": "dist/index.js",
   "module": "dist/psn-api.esm.js",
   "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/psn-api.esm.js"
+    }
+  },
   "author": "Wes Copeland",
   "license": "MIT",
   "files": [
