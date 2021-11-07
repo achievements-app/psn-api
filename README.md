@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://psn-api.achievements.app"><strong>Documentation: Get Started</strong></a>
-  <br /><br />
+  <br />
 </p>
 
 <p align="center">
@@ -54,6 +54,8 @@ Learn how to authenticate and start pulling data from the PlayStation Network on
 
 ## Installation
 
+Run the following command:
+
 ```bash
 npm install psn-api
 ```
@@ -67,7 +69,7 @@ To use any endpoint function in the API, you must first be authorized by PSN. Fo
 2. In the same browser (due to a persisted cookie), visit [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie). You will see a JSON response that looks something like:
 
 ```js
-{"npsso":"<64 character token>"}
+{ "npsso": "<64 character token>" }
 ```
 
 Copy your NPSSO. **Do not expose it anywhere publicly, it is equivalent to your password.**
@@ -126,8 +128,8 @@ Click the function names to open their complete docs on the docs site.
 
 ## Prior Art
 
-[Tustin/psn-php](https://github.com/Tustin/psn-php) - A PHP wrapper for the PSN API  
-[andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website
+- [Tustin/psn-php](https://github.com/Tustin/psn-php) - A high-level PHP wrapper for the PSN API.
+- [andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website.
 
 ## Disclaimer
 
