@@ -71,6 +71,7 @@ const config = {
           }
         ]
       },
+
       footer: {
         style: "dark",
         links: [
@@ -95,9 +96,16 @@ const config = {
         ],
         copyright: `Copyright © ${new Date().getFullYear()} achievements.app.`
       },
+
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme
+      },
+
+      algolia: {
+        appId: "BH4D9OD16A",
+        apiKey: "2ce8bc4c877d89ada212a38523a0d4d0",
+        indexName: "psn-api"
       }
     })
 };
