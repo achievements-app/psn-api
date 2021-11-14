@@ -113,6 +113,10 @@ Click the function names to open their complete docs on the docs site.
 
 - [`makeUniversalSearch()`](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch) - Search the PSN API. This is a good way to find a user's `accountId` from their username.
 
+### Users
+
+- [`getProfileFromUserName()`](https://psn-api.achievements.app/api-docs/users#getprofilefromusername) - Get a user's legacy profile from the username. Often used to check for legacy presence.
+
 ### Trophies
 
 - [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the individual trophy details of a single or all trophy groups for a title.
@@ -129,6 +133,7 @@ Click the function names to open their complete docs on the docs site.
 ## Prior Art
 
 - [Tustin/psn-php](https://github.com/Tustin/psn-php) - A high-level PHP wrapper for the PSN API.
+- [isFakeAccount/psnawp](https://github.com/isFakeAccount/psnawp) - A high-level PHP wrapper for the PSN API.
 - [andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website.
 
 ## Disclaimer

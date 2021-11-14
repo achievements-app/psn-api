@@ -1,6 +1,6 @@
 ---
 sidebar_label: User Trophies
-sidebar_position: 4
+sidebar_position: 5
 ---
 
 # User Trophies API
