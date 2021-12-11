@@ -15,6 +15,7 @@ export * from "./trophy-group-earnings.model";
 export * from "./trophy-rarity.model";
 export * from "./trophy-title.model";
 export * from "./trophy-title.model";
+export * from "./trophy-type.model";
 export * from "./universal-search-domains.model";
 export * from "./universal-search-response.model";
 export * from "./user-thin-trophy.model";
