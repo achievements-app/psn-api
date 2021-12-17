@@ -39,7 +39,7 @@
 ✅ &nbsp;Supports Node environments (14 and above).  
 ✅ &nbsp;Supports browsers.  
 ✅ &nbsp;Ships with TypeScript support and types.  
-✅ &nbsp;Tiny, <2Kb.
+✅ &nbsp;Tiny, <3Kb.
 
 <hr />
 
@@ -116,6 +116,7 @@ Click the function names to open their complete docs on the docs site.
 ### Users
 
 - [`getProfileFromUserName()`](https://psn-api.achievements.app/api-docs/users#getprofilefromusername) - Get a user's legacy profile from the username. Often used to check for legacy presence.
+- [`getUserFriendsAccountIds()`](https://psn-api.achievements.app/api-docs/users#getuserfriendsaccountids) - Get a list of `accountId` values present on a target account's friends list.
 
 ### Trophies
 

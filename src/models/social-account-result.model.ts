@@ -3,7 +3,7 @@ export interface SocialAccountResult {
   type: string;
   score: number;
   socialMetadata: {
-    accountId: number;
+    accountId: string;
     country: string;
     language: string;
     onlineId: string;

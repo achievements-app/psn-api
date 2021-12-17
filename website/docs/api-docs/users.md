@@ -55,3 +55,75 @@ The following properties are contained within a `profile` object that is returne
 | :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 | `userName`      | `string`                                                              | The username for the user you wish to retrieve a profile for.                                                              |
+
+### Source
+
+[user/getProfileFromUserName.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getProfileFromUserName.ts)
+
+---
+
+## getUserFriendsAccountIds
+
+A call to this function will retrieve the list of friended `accountId` values associated with the given `accountId` parameter. If the friends list cannot be retrieved (either due to the given `accountId` not existing or due to the user's privacy settings), an error will be thrown.
+
+To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
+
+### Examples
+
+#### Look up the accounts on your friends list
+
+```ts
+import { getUserFriendsAccountIds } from "psn-api";
+
+const response = await getUserFriendsAccountIds(authorization, "me");
+```
+
+#### Look up the accounts on another user's friends list
+
+```ts
+import { getUserFriendsAccountIds, makeUniversalSearch } from "psn-api";
+
+const searchResponse = await makeUniversalSearch(
+  authorization,
+  "NeutraLiTe",
+  "SocialAllAccounts"
+);
+
+const foundAccountId =
+  searchResponse.domainResponses[0].results[0].socialMetadata.accountId;
+
+// If this user's friends list is private, this call will throw an error.
+const userFriendsAccountIds = await getUserFriendsAccountIds(
+  authorization,
+  foundAccountId
+);
+```
+
+### Returns
+
+| Name             | Type       | Description                                                            |
+| :--------------- | :--------- | :--------------------------------------------------------------------- |
+| `friends`        | `string[]` | The `accountId` values of the users on the target user's friends list. |
+| `totalItemCount` | `number`   | The total number of friends on the target user's friends list.         |
+| `nextOffset`     | `number`   |                                                                        |
+| `previousOffset` | `number`   |                                                                        |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                    |
+| :-------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                     |
+| `accountId`     | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the third parameter of the function).
+
+| Name     | Type     | Description                                  |
+| :------- | :------- | :------------------------------------------- |
+| `limit`  | `number` | Limit the number of trophies returned.       |
+| `offset` | `number` | Return trophy data from this result onwards. |
+
+### Source
+
+[user/getUserFriendsAccountIds.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserFriendsAccountIds.ts)

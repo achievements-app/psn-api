@@ -17,6 +17,6 @@ describe("E2E Health Check: getProfileFromUserName", () => {
 
     expect(profile).toBeDefined();
     expect(profile.onlineId).toEqual("xelnia");
-    expect(profile.presences).toBeDefined();
+    expect(profile.accountId).toEqual("962157895908076652");
   });
 });
