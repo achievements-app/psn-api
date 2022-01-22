@@ -74,6 +74,8 @@ To use any endpoint function in the API, you must first be authorized by PSN. Fo
 
 Copy your NPSSO. **Do not expose it anywhere publicly, it is equivalent to your password.**
 
+If you see an error response, try using different browser.
+
 3. You can now obtain an authentication token using your NPSSO with the following function calls from this package.
 
 ```ts

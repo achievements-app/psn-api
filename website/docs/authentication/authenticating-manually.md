@@ -34,6 +34,8 @@ In the same browser that you used to log in (due to a persisted cookie), visit [
 { "npsso": "<64 character token>" }
 ```
 
+If you see an error response, try using a different browser.
+
 ### Exchange your NPSSO token
 
 You can now obtain an access token and a refresh token using your NPSSO with the following function calls from this package.

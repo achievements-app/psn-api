@@ -24,6 +24,8 @@ You will need to be authorized to use the PSN API. To authenticate manually, fol
 { "npsso": "<64 character token>" }
 ```
 
+If you see an error response, try using a different browser.
+
 3. You can now obtain an authentication token using your NPSSO with the following function calls from this package.
 
 ```ts
