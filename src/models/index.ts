@@ -3,6 +3,7 @@ export * from "./auth-tokens-response.model";
 export * from "./authorization-payload.model";
 export * from "./call-valid-headers.model";
 export * from "./get-user-friends-account-ids-response.model";
+export * from "./profile-from-account-id-response.model";
 export * from "./profile-from-user-name-response.model";
 export * from "./rarest-thin-trophy.model";
 export * from "./social-account-result.model";
