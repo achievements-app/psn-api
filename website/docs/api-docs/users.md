@@ -99,7 +99,6 @@ The following properties are contained within a `profile` object that is returne
 | :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 | `accountId`     | `string`                                                              | The `accountId` for the user you wish to retrieve a profile for.                                                           |
-| `options`       | `GetProfileFromAccountIdOptions`                                      | Can be used to specify `headerOverrides`.                                                                                  |
 
 ### Source
 
