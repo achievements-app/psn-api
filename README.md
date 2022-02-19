@@ -118,6 +118,7 @@ Click the function names to open their complete docs on the docs site.
 ### Users
 
 - [`getProfileFromUserName()`](https://psn-api.achievements.app/api-docs/users#getprofilefromusername) - Get a user's legacy profile from the username. Often used to check for legacy presence.
+- [`getProfileFromAccountId()`](https://psn-api.achievements.app/api-docs/users#getprofilefromAccountId) - Get a user's profile from the `accountId`.
 - [`getUserFriendsAccountIds()`](https://psn-api.achievements.app/api-docs/users#getuserfriendsaccountids) - Get a list of `accountId` values present on a target account's friends list.
 
 ### Trophies

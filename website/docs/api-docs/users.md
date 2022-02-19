@@ -62,6 +62,51 @@ The following properties are contained within a `profile` object that is returne
 
 ---
 
+## getProfileFromAccountId
+
+A call to this function will retrieve some of the profile information of the account ID being requested. If the account's profile cannot be found (either due to non-existence or privacy settings), an error will be thrown.
+
+### Examples
+
+#### Look up a user
+
+```ts
+import { getProfileFromAccountId } from "psn-api";
+
+const response = await getProfileFromAccountId(
+  authorization,
+  "962157895908076652"
+);
+```
+
+### Returns
+
+The following properties are contained within a `profile` object that is returned.
+
+| Name                   | Type                                    | Description                                                        |
+| :--------------------- | :-------------------------------------- | :----------------------------------------------------------------- |
+| `onlineId`             | `string`                                | The account's online username.                                     |
+| `aboutMe`              | `string`                                |                                                                    |
+| `avatars`              | `Array<{ size: string; url: string; }>` |                                                                    |
+| `languages`            | `string[]`                              |                                                                    |
+| `isPlus`               | `boolean`                               | Whether or not the account is a PlayStation Plus subscriber.       |
+| `isOfficiallyVerified` | `boolean`                               |                                                                    |
+| `isMe`                 | `boolean`                               | Whether or not the profile is the one linked to the current Npsso. |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `accountId`     | `string`                                                              | The `accountId` for the user you wish to retrieve a profile for.                                                           |
+| `options`       | `GetProfileFromAccountIdOptions`                                      | Can be used to specify `headerOverrides`.                                                                                  |
+
+### Source
+
+[user/getProfileFromAccountId.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getProfileFromAccountId.ts)
+
+---
+
 ## getUserFriendsAccountIds
 
 A call to this function will retrieve the list of friended `accountId` values associated with the given `accountId` parameter. If the friends list cannot be retrieved (either due to the given `accountId` not existing or due to the user's privacy settings), an error will be thrown.
