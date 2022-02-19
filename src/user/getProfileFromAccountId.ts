@@ -10,8 +10,8 @@ import { USER_BASE_URL } from "./USER_BASE_URL";
 type GetProfileFromAccountIdOptions = Pick<AllCallOptions, "headerOverrides">;
 
 /**
- * A call to this function will retrieve the profile of the accountId being requested.
- * If the account profile cannot be found (either due to non-existence or privacy settings),
+ * A call to this function will retrieve some profile information of the accountId being requested.
+ * If the account's profile cannot be found (either due to non-existence or privacy settings),
  * an error will be thrown.
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
