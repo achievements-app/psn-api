@@ -43,6 +43,17 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "travisrroy",
+      "name": "Travis Roy",
+      "avatar_url": "https://avatars.githubusercontent.com/u/24424190?v=4",
+      "profile": "https://github.com/travisrroy",
+      "contributions": [
+        "code",
+        "example",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
