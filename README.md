@@ -154,6 +154,7 @@ This project is not intended to be used for spam or abuse. Please use this proje
     <td align="center"><a href="https://github.com/xelnia"><img src="https://avatars.githubusercontent.com/u/14896738?v=4?s=100" width="100px;" alt=""/><br /><sub><b>xelnia</b></sub></a><br /><a href="#ideas-xelnia" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-xelnia" title="User Testing">📓</a></td>
     <td align="center"><a href="https://github.com/andshrew"><img src="https://avatars.githubusercontent.com/u/7409326?v=4?s=100" width="100px;" alt=""/><br /><sub><b>andshrew</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=andshrew" title="Documentation">📖</a></td>
     <td align="center"><a href="https://github.com/purplem1lk"><img src="https://avatars.githubusercontent.com/u/49956513?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Susan Ma</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=purplem1lk" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/travisrroy"><img src="https://avatars.githubusercontent.com/u/24424190?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Travis Roy</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=travisrroy" title="Code">💻</a> <a href="#example-travisrroy" title="Examples">💡</a> <a href="https://github.com/achievements-app/psn-api/commits?author=travisrroy" title="Documentation">📖</a></td>
   </tr>
 </table>
 
