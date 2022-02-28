@@ -6,4 +6,6 @@ export interface UserTitlesResponse {
 
   /** The number of `TrophyTitle` entities returned from the PSN API. */
   totalItemCount: number;
+  nextOffset?: number;
+  previousOffset?: number;
 }
