@@ -63,6 +63,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "isFakeAccount",
+      "name": "Yoshikage Kira",
+      "avatar_url": "https://avatars.githubusercontent.com/u/65515165?v=4",
+      "profile": "https://jojo.fandom.com/wiki/Yoshikage_Kira",
+      "contributions": [
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
