@@ -6,6 +6,7 @@ import type {
   GetUserFriendsAccountIdsResponse
 } from "../models";
 import { getUserFriendsAccountIds } from "./getUserFriendsAccountIds";
+import { USER_BASE_URL } from "./USER_BASE_URL";
 
 const server = setupServer();
 
@@ -32,12 +33,9 @@ describe("Function: getUserFriendsAccountIds", () => {
     };
 
     server.use(
-      rest.get(
-        "https://m.np.playstation.com/api/userProfile/v1/internal/users/me/friends",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
+      rest.get(`${USER_BASE_URL}/me/friends`, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
     );
 
     // ACT

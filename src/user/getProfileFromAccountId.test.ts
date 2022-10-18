@@ -6,6 +6,7 @@ import type {
   ProfileFromAccountIdResponse
 } from "../models";
 import { getProfileFromAccountId } from "./getProfileFromAccountId";
+import { USER_BASE_URL } from "./USER_BASE_URL";
 
 const server = setupServer();
 
@@ -71,12 +72,9 @@ describe("Function: getProfileFromUserName", () => {
     };
 
     server.use(
-      rest.get(
-        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/profiles",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
+      rest.get(`${USER_BASE_URL}/111222333444/profiles`, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
     );
 
     // ASSERT
