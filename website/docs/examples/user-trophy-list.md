@@ -29,7 +29,7 @@ import {
 async function main() {
   // 1. Authenticate and become authorized with PSN.
   // See the Authenticating Manually docs for how to get your NPSSO.
-  const accessCode = await exchangeNpssoForCode(npsso);
+  const accessCode = await exchangeNpssoForCode(process.env["NPSSO"]);
   const authorization = await exchangeCodeForAccessToken(accessCode);
 
   // 2. Get the user's `accountId` from the username.
@@ -124,4 +124,6 @@ const rarityMap: Record<TrophyRarity, string> = {
   [TrophyRarity.Rare]: "Rare",
   [TrophyRarity.Common]: "Common"
 };
+
+main();
 ```
