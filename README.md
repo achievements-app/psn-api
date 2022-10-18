@@ -136,7 +136,7 @@ Click the function names to open their complete docs on the docs site.
 
 ## Projects Using psn-api
 
-- [PS5 MQTT](https://github.com/FunkeyFlo/ps5-mqtt) - Integrate your PlayStation 5 with Home Assistant
+- [PS5 MQTT](https://github.com/FunkeyFlo/ps5-mqtt) - Integrate your PlayStation 5 with Home Assistant.
 
 ## Prior Art
 
