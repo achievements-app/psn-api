@@ -33,7 +33,7 @@ describe("Function: getUserFriendsAccountIds", () => {
 
     server.use(
       rest.get(
-        "https://m.np.playstation.net/api/userProfile/v1/internal/users/me/friends",
+        "https://m.np.playstation.com/api/userProfile/v1/internal/users/me/friends",
         (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
@@ -63,7 +63,7 @@ describe("Function: getUserFriendsAccountIds", () => {
 
     server.use(
       rest.get(
-        "https://m.np.playstation.net/api/userProfile/v1/internal/users/111222333444/friends",
+        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/friends",
         (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
