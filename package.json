@@ -28,7 +28,7 @@
   ],
   "scripts": {
     "dev": "dts watch",
-    "playground": "dotenv-flow ts-node-dev --respawn -r tsconfig-paths/register src/__playground.ts",
+    "playground": "esrun --watch src/__playground.ts",
     "build": "dts build",
     "prepare": "dts build",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
@@ -51,6 +51,7 @@
   "devDependencies": {
     "@commitlint/cli": "^13.2.1",
     "@commitlint/config-conventional": "^13.2.0",
+    "@digitak/esrun": "^3.2.13",
     "@rollup/plugin-alias": "^3.1.9",
     "@size-limit/preset-small-lib": "^6.0.4",
     "@skypack/package-check": "^0.2.2",
@@ -79,7 +80,6 @@
     "semantic-release": "^19.0.3",
     "size-limit": "^6.0.4",
     "ts-jest": "^27.1.5",
-    "ts-node-dev": "^1.1.8",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4"
   },
