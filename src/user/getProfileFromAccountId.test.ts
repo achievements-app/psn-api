@@ -43,7 +43,7 @@ describe("Function: getProfileFromUserName", () => {
 
     server.use(
       rest.get(
-        "https://m.np.playstation.net/api/userProfile/v1/internal/users/111222333444/profiles",
+        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/profiles",
         (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
@@ -72,7 +72,7 @@ describe("Function: getProfileFromUserName", () => {
 
     server.use(
       rest.get(
-        "https://m.np.playstation.net/api/userProfile/v1/internal/users/111222333444/profiles",
+        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/profiles",
         (_, res, ctx) => {
           return res(ctx.json(mockResponse));
         }
