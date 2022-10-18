@@ -134,6 +134,10 @@ Click the function names to open their complete docs on the docs site.
 
 - [Build a user's complete trophy list and write it to a JSON file](https://psn-api.achievements.app/examples/user-trophy-list)
 
+## Projects Using psn-api
+
+- [PS5 MQTT](https://github.com/FunkeyFlo/ps5-mqtt) - Integrate your PlayStation 5 with Home Assistant
+
 ## Prior Art
 
 - [Tustin/psn-php](https://github.com/Tustin/psn-php) - A high-level PHP wrapper for the PSN API.
