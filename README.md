@@ -39,7 +39,7 @@
 ✅ &nbsp;Supports Node environments (14 and above).  
 ✅ &nbsp;Supports browsers.  
 ✅ &nbsp;Ships with TypeScript support and types.  
-✅ &nbsp;Tiny, <3Kb.
+✅ &nbsp;Small, <5Kb.
 
 <hr />
 

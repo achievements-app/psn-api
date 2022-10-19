@@ -83,11 +83,13 @@
   "size-limit": [
     {
       "path": "dist/psn-api.cjs.production.min.js",
-      "limit": "10 KB"
+      "limit": "10 KB",
+      "brotli": true
     },
     {
       "path": "dist/psn-api.esm.js",
-      "limit": "10 KB"
+      "limit": "10 KB",
+      "brotli": true
     }
   ],
   "husky": {
