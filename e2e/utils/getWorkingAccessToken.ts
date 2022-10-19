@@ -1,5 +1,9 @@
-import type { AuthTokensResponse } from "../../src";
-import { exchangeRefreshTokenForAuthTokens } from "../../src";
+import {
+  AuthTokensResponse,
+  exchangeCodeForAccessToken,
+  exchangeNpssoForCode,
+  exchangeRefreshTokenForAuthTokens
+} from "../../src";
 import { createRedisClient } from "./createRedisClient";
 
 const sendAuthTokensToRedis = async ({
@@ -46,13 +50,32 @@ export const getWorkingAccessToken = async () => {
     // access token. Afterwards, we'll push all our new auth values back up to redis.
 
     const refreshToken = (await redisClient.get("refreshToken")) as string;
-    // TODO: is refresh token expired?
+    const refreshTokenExpiresIn = (await redisClient.get(
+      "refreshTokenExpiresIn"
+    )) as string;
 
-    const newAuthTokens = await exchangeRefreshTokenForAuthTokens(refreshToken);
-    accessToken = newAuthTokens.accessToken;
+    const isRefreshTokenExpired =
+      new Date(refreshTokenExpiresIn).getTime() < now.getTime();
 
-    // Store the new auth tokens/expiries so it's all available during the next run.
-    await sendAuthTokensToRedis(newAuthTokens);
+    if (isRefreshTokenExpired) {
+      const accessCode = await exchangeNpssoForCode(
+        process.env["NPSSO"] as string
+      );
+
+      const newAuthTokens = await exchangeCodeForAccessToken(accessCode);
+      accessToken = newAuthTokens.accessToken;
+
+      // Store the new auth tokens/expiries so it's all available during the next run.
+      await sendAuthTokensToRedis(newAuthTokens);
+    } else {
+      const newAuthTokens = await exchangeRefreshTokenForAuthTokens(
+        refreshToken
+      );
+      accessToken = newAuthTokens.accessToken;
+
+      // Store the new auth tokens/expiries so it's all available during the next run.
+      await sendAuthTokensToRedis(newAuthTokens);
+    }
   } else {
     // If we've entered this block, our current access token is still valid.
     accessToken = (await redisClient.get("accessToken")) as string;
