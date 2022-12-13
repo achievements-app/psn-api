@@ -17,11 +17,11 @@ export const exchangeCodeForAccessToken = async (
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization:
-        "Basic YWM4ZDE2MWEtZDk2Ni00NzI4LWIwZWEtZmZlYzIyZjY5ZWRjOkRFaXhFcVhYQ2RYZHdqMHY="
+        "Basic MDk1MTUxNTktNzIzNy00MzcwLTliNDAtMzgwNmU2N2MwODkxOnVjUGprYTV0bnRCMktxc1A="
     },
     body: new URLSearchParams({
       code: accessCode,
-      redirect_uri: "com.playstation.PlayStationApp://redirect",
+      redirect_uri: "com.scee.psxandroid.scecompcall://redirect",
       grant_type: "authorization_code",
       token_format: "jwt"
     }).toString()
