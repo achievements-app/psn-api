@@ -18,10 +18,10 @@ export const exchangeNpssoForCode = async (
 ): Promise<string> => {
   const queryString = new URLSearchParams({
     access_type: "offline",
-    client_id: "ac8d161a-d966-4728-b0ea-ffec22f69edc",
-    redirect_uri: "com.playstation.PlayStationApp://redirect",
+    client_id: "09515159-7237-4370-9b40-3806e67c0891",
+    redirect_uri: "com.scee.psxandroid.scecompcall://redirect",
     response_type: "code",
-    scope: "psn:mobile.v1 psn:clientapp"
+    scope: "psn:mobile.v2.core psn:clientapp"
   }).toString();
 
   const requestUrl = `${AUTH_BASE_URL}/authorize?${queryString}`;
