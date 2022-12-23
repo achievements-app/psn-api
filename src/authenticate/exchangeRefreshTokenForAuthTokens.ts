@@ -13,13 +13,13 @@ export const exchangeRefreshTokenForAuthTokens = async (
     headers: {
       "Content-Type": "application/x-www-form-urlencoded",
       Authorization:
-        "Basic YWM4ZDE2MWEtZDk2Ni00NzI4LWIwZWEtZmZlYzIyZjY5ZWRjOkRFaXhFcVhYQ2RYZHdqMHY="
+        "Basic MDk1MTUxNTktNzIzNy00MzcwLTliNDAtMzgwNmU2N2MwODkxOnVjUGprYTV0bnRCMktxc1A="
     },
     body: new URLSearchParams({
       refresh_token: refreshToken,
       grant_type: "refresh_token",
       token_format: "jwt",
-      scope: "psn:mobile.v1 psn:clientapp"
+      scope: "psn:mobile.v2.core psn:clientapp"
     }).toString()
   });
 
