@@ -81,9 +81,11 @@ const response = await getUserTrophyGroupEarningsForTitle(
 
 ## getUserTitles
 
-A call to this function will retrieve the earned status of trophies for a user from either a single - or all - trophy groups in a title. A title can have multiple groups of trophies (a `"default"` group which all titles have, and additional groups starting with a name of `"001"` and incrementing for each additional group). To retrieve trophies from all groups within a title (ie. the full trophy set), `trophyGroupId` should be set to `"all"`.
+A call to this function will retrieve a summarized list of titles played by a user. The maximum amount that can be returned by a single call is 800 (assuming a `limit` option of 800 is set). If the user has more titles than the given `limit` option, subsequent calls of this function must be made to fetch the complete list by paging via the `offset` option.
 
 The numeric `accountId` can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account, the numeric `accountId` can be substituted with `"me"`. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
+
+To fetch more detailed account progress for a title, the [`getUserTrophiesEarnedForTitle()`](/api-docs/user-trophies#getusertrophiesearnedfortitle) function can be used.
 
 Included in the information returned is the titles' unique `npCommunicationId`. This is required to make use of subsequent functions for requesting more specific detail about a title's trophies.
 
