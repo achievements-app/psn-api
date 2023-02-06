@@ -55,9 +55,9 @@
     "@faker-js/faker": "^7.6.0",
     "@size-limit/preset-small-lib": "^8.1.2",
     "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.11",
-    "@typescript-eslint/eslint-plugin": "^5.49.0",
-    "@typescript-eslint/parser": "^5.49.0",
+    "@types/node": "^16.18.12",
+    "@typescript-eslint/eslint-plugin": "^5.50.0",
+    "@typescript-eslint/parser": "^5.50.0",
     "cz-conventional-changelog": "^3.3.0",
     "dotenv-flow-cli": "^1.0.0",
     "dts-cli": "^1.6.3",
@@ -73,12 +73,12 @@
     "msw": "^0.47.4",
     "prettier": "2.7.1",
     "pretty-quick": "^3.1.3",
-    "redis": "^4.6.3",
+    "redis": "^4.6.4",
     "semantic-release": "^19.0.5",
     "size-limit": "^8.1.2",
     "ts-jest": "^29.0.5",
     "tslib": "^2.5.0",
-    "typescript": "^4.9.4"
+    "typescript": "^4.9.5"
   },
   "size-limit": [
     {
