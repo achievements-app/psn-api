@@ -3,6 +3,9 @@ on: [push]
 jobs:
   coverage:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: ["18.x"]
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
