@@ -31,17 +31,6 @@ module.exports = {
         "!src/test/**/*.ts",
         "!src/__playground.ts"
       ]
-    },
-    {
-      displayName: {
-        name: "E2E",
-        color: "magenta"
-      },
-      testMatch: ["<rootDir>/e2e/**/*.e2e.spec.ts"],
-      transform: {
-        "^.+\\.(ts|tsx)$": "ts-jest"
-      },
-      maxWorkers: 1
     }
   ]
 };

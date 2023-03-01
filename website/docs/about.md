@@ -15,7 +15,6 @@ psn-api is a well-tested JavaScript library that lets you get trophy, user, and 
 - TypeScript support that "just works".
 - Functions are small and UNIX-like. They do one thing and do it very well.
 - Extremely well-tested: 100% coverage.
-- Nightly health checks of all functions.
 
 Many API wrappers for PSN provide high-level abstractions. For example, there may be a single call to authenticate, or a single call to a user's trophy list, or a single call to get game data, when in actuality there are multiple endpoints being hit on the PlayStation Network to handle all of these operations.
 
