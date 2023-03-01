@@ -110,5 +110,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/achievements-app/psn-api.git"
+  },
+  "resolutions": {
+    "rxjs": "^6.6.0"
   }
 }
