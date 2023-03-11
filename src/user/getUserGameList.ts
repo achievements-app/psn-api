@@ -1,5 +1,3 @@
-import { createHash } from "crypto";
-
 import type {
   AllCallOptions,
   AuthorizationPayload,
@@ -17,9 +15,13 @@ import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
  * contain a SHA256 hash of the GraphQL query being executed. Searching for PersistedQueryLink
  * and createPersistedQueryLink_hashes, and an AST function in the JS source and debugging
  * will surface the query that's passed to the hash function on the page.
+ *
+ * Thankfully it's easier to figure out future endpoints and hashes by:
+ *
+ * 1. Visiting a page, e.g https://library.playstation.com/recently-played
+ * 2. Using DevTools to find requests to https://web.np.playstation.com/api/graphql/v1/op
+ * 3. Decoding the URL parameters to find the correct SHA256 hash and some of the supported parameters
  */
-const gqlQuery =
-  "query getUserGameList($categories: String, $limit: Int, $orderBy: String, $subscriptionService: SubscriptionService) {\n  gameLibraryTitlesRetrieve(categories: $categories, limit: $limit, orderBy: $orderBy, subscriptionService: $subscriptionService) {\n    __typename\n    games {\n      __typename\n      conceptId\n      entitlementId\n      image {\n        __typename\n        url\n      }\n      isActive\n      lastPlayedDateTime\n      name\n      platform\n      productId\n      subscriptionService\n      titleId\n    }\n  }\n}\n";
 
 type GetUserGameListOptionsCategories = "ps4_game" | "ps5_native_game";
 type GetUserGameListOptions = Pick<AllCallOptions, "limit"> & {
@@ -55,7 +57,10 @@ export const getUserGameList = async (
     JSON.stringify({
       persistedQuery: {
         version: 1,
-        sha256Hash: createHash("sha256").update(gqlQuery).digest("hex")
+        // Hash is computed from the following query (without surrounding quotes):
+        // "query getUserGameList($categories: String, $limit: Int, $orderBy: String, $subscriptionService: SubscriptionService) {\n  gameLibraryTitlesRetrieve(categories: $categories, limit: $limit, orderBy: $orderBy, subscriptionService: $subscriptionService) {\n    __typename\n    games {\n      __typename\n      conceptId\n      entitlementId\n      image {\n        __typename\n        url\n      }\n      isActive\n      lastPlayedDateTime\n      name\n      platform\n      productId\n      subscriptionService\n      titleId\n    }\n  }\n}\n"
+        sha256Hash:
+          "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
       }
     })
   );
