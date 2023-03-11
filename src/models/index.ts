@@ -20,9 +20,9 @@ export * from "./trophy-title.model";
 export * from "./trophy-type.model";
 export * from "./universal-search-domains.model";
 export * from "./universal-search-response.model";
+export * from "./user-game-list-response.model";
 export * from "./user-thin-trophy.model";
 export * from "./user-titles-response.model";
 export * from "./user-trophies-earned-for-title-response.model";
 export * from "./user-trophy-group-earnings-for-title-response.model";
 export * from "./user-trophy-profile-summary-response.model";
-export * from './user-game-list-response.model'
