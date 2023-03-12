@@ -1,21 +1,20 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type {
-  AuthorizationPayload,
-  UserGameListResponse
-} from "../models";
+import type { AuthorizationPayload, UserGameListResponse } from "../models";
 import { getUserGameList } from "./getUserGameList";
-import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
+import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
 const server = setupServer();
-const accessToken = 'mockAccessToken'
+const accessToken = "mockAccessToken";
 
 describe("Function: getUserGameList", () => {
   // MSW Setup
-  beforeAll(() => server.listen({
-    onUnhandledRequest: 'error'
-  }));
+  beforeAll(() =>
+    server.listen({
+      onUnhandledRequest: "error"
+    })
+  );
   afterEach(() => server.resetHandlers());
   afterAll(() => server.close());
 
@@ -74,23 +73,32 @@ describe("Function: getUserGameList", () => {
 
     server.use(
       rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
-        expect(_.headers.raw()['authorization']).toEqual(`Bearer ${accessToken}`)
-        expect(_.url.searchParams.get('operationName')).toEqual('getUserGameList')
-        expect(_.url.searchParams.get('variables')).toEqual(JSON.stringify({limit: 2, categories: "ps4_game,ps5_native_game"}))
-        expect(_.url.searchParams.get('extensions')).toEqual(JSON.stringify({
-          persistedQuery:{ 
-            version: 1,
-            sha256Hash: "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
-          }
-        }))
-        
+        expect(_.headers.raw()["authorization"]).toEqual(
+          `Bearer ${accessToken}`
+        );
+        expect(_.url.searchParams.get("operationName")).toEqual(
+          "getUserGameList"
+        );
+        expect(_.url.searchParams.get("variables")).toEqual(
+          JSON.stringify({ limit: 2, categories: "ps4_game,ps5_native_game" })
+        );
+        expect(_.url.searchParams.get("extensions")).toEqual(
+          JSON.stringify({
+            persistedQuery: {
+              version: 1,
+              sha256Hash:
+                "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
+            }
+          })
+        );
+
         return res(ctx.json(mockResponse));
       })
     );
 
     // ACT
     const response = await getUserGameList(mockAuthorization, {
-      categories: ['ps4_game', 'ps5_native_game'],
+      categories: ["ps4_game", "ps5_native_game"],
       limit: 2
     });
 
@@ -106,21 +114,19 @@ describe("Function: getUserGameList", () => {
 
     const mockResponse = {
       // This response occurs if the query/hash is not what the server expected
-      message: "Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted"
-    }
+      message:
+        "Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted"
+    };
 
     server.use(
-      rest.get(
-        GRAPHQL_BASE_URL,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
+      rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
     );
 
     // ASSERT
-    await expect(
-      getUserGameList(mockAuthorization)
-    ).rejects.toThrow('Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted');
+    await expect(getUserGameList(mockAuthorization)).rejects.toThrow(
+      "Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted"
+    );
   });
 });

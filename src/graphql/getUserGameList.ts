@@ -4,7 +4,7 @@ import type {
   UserGameListResponse
 } from "../models";
 import { call } from "../utils/call";
-import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
+import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
 /**
  * This endpoint is different to others in the codebase; it hits a graphql API endpoint.
