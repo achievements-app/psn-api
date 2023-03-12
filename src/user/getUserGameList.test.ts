@@ -10,6 +10,7 @@ import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
 
 const server = setupServer();
 const accessToken = 'mockAccessToken'
+
 describe("Function: getUserGameList", () => {
   // MSW Setup
   beforeAll(() => server.listen({
