@@ -1,1 +1,1 @@
-export * from "./getUserGameList";
+export * from "./getRecentlyPlayedGames";

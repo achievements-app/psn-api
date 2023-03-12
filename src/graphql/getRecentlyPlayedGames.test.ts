@@ -2,13 +2,13 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import type { AuthorizationPayload, UserGameListResponse } from "../models";
-import { getUserGameList } from "./getUserGameList";
+import { getUserGameList } from "./getRecentlyPlayedGames";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
 const server = setupServer();
 const accessToken = "mockAccessToken";
 
-describe("Function: getUserGameList", () => {
+describe("Function: getRecentlyPlayedGames", () => {
   // MSW Setup
   beforeAll(() =>
     server.listen({
