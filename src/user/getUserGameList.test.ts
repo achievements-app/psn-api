@@ -7,7 +7,6 @@ import type {
 } from "../models";
 import { getUserGameList } from "./getUserGameList";
 import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
-// import { GRAPHQL_BASE_URL } from "./USER_BASE_URL";
 
 const server = setupServer();
 const accessToken = 'mockAccessToken'
