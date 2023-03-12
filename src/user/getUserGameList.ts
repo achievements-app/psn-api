@@ -70,7 +70,7 @@ export const getUserGameList = async (
     authorization
   );
 
-  // The graphql endpoints can return non
+  // The GraphQL queries can return non-truthy values.
   if (!response.data || !response.data.gameLibraryTitlesRetrieve) {
     throw new Error(JSON.stringify(response));
   }
