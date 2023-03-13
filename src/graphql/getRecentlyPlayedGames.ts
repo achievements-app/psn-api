@@ -1,7 +1,7 @@
 import type {
   AllCallOptions,
   AuthorizationPayload,
-  UserGameListResponse
+  RecentlyPlayedGamesResponse
 } from "../models";
 import { call } from "../utils/call";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
@@ -24,9 +24,9 @@ import { getUserGameListHash } from "./operationHashes";
  * 3. Decoding the URL parameters to find the correct SHA256 hash and some of the supported parameters
  */
 
-type GetUserGameListOptionsCategories = "ps4_game" | "ps5_native_game";
-type GetUserGameListOptions = Pick<AllCallOptions, "limit"> & {
-  categories: GetUserGameListOptionsCategories[];
+type GetRecentlyPlayedGamesOptionsCategories = "ps4_game" | "ps5_native_game";
+type GetRecentlyPlayedGamesOptions = Pick<AllCallOptions, "limit"> & {
+  categories: GetRecentlyPlayedGamesOptionsCategories[];
 };
 
 /**
@@ -37,10 +37,10 @@ type GetUserGameListOptions = Pick<AllCallOptions, "limit"> & {
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  */
-export const getUserGameList = async (
+export const getRecentlyPlayedGames = async (
   authorization: AuthorizationPayload,
-  options: Partial<GetUserGameListOptions> = {}
-): Promise<UserGameListResponse> => {
+  options: Partial<GetRecentlyPlayedGamesOptions> = {}
+): Promise<RecentlyPlayedGamesResponse> => {
   const { limit = 50, categories = ["ps4_game", "ps5_native_game"] } = options;
 
   const url = new URL(GRAPHQL_BASE_URL);
@@ -63,7 +63,7 @@ export const getUserGameList = async (
     })
   );
 
-  const response = await call<UserGameListResponse>(
+  const response = await call<RecentlyPlayedGamesResponse>(
     { url: url.toString() },
     authorization
   );

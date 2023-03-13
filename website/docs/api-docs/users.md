@@ -171,3 +171,51 @@ These are the possible values that can be in the `options` object (the third par
 ### Source
 
 [user/getUserFriendsAccountIds.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserFriendsAccountIds.ts)
+
+---
+
+## getRecentlyPlayedGames
+
+A call to this function will retrieve a list of recently played games for the user associated with the `accessToken` in the provided [AuthorizationPayload](/api-docs/data-models/authorization-payload).
+
+### Examples
+
+```ts
+import { getRecentlyPlayedGames } from "psn-api";
+
+const recentlyPlayedGames = await getRecentlyPlayedGames(
+  authorization,
+  {
+    limit: 10,
+    categories: ['ps4_game', 'ps5_native_game']
+  }
+);
+```
+
+
+### Returns
+
+| Name              | Type     | Description                                           |
+| :---------------- | :------- | :---------------------------------------------------- |
+| `data.gameLibraryTitlesRetrieve.games` | [RecentlyPlayedGame](/api-docs/data-models/recently-played-game)[] | List of recently played games.
+
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+
+
+### Options
+
+These are the possible values that can be in the `options` object (the second parameter of the function).
+
+| Name     | Type     | Description                                  |
+| :------- | :------- | :------------------------------------------- |
+| `limit`  | `number` | Limit the number of games returned. Defaults to 50.       |
+| `categories` | `string[]` | Limit the categories of games returned. Valid entries are `ps4_game` and `ps5_native_game`. |
+
+### Source
+
+[graphql/getRecentlyPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/graphql/getRecentlyPlayedGames.ts)

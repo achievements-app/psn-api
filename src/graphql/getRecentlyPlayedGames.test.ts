@@ -1,8 +1,8 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, UserGameListResponse } from "../models";
-import { getUserGameList } from "./getRecentlyPlayedGames";
+import type { AuthorizationPayload, RecentlyPlayedGamesResponse } from "../models";
+import { getRecentlyPlayedGames } from "./getRecentlyPlayedGames";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
 const server = setupServer();
@@ -20,7 +20,7 @@ describe("Function: getRecentlyPlayedGames", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getUserGameList).toBeDefined();
+    expect(getRecentlyPlayedGames).toBeDefined();
   });
 
   it("retrieves games the user has played recently", async () => {
@@ -29,7 +29,7 @@ describe("Function: getRecentlyPlayedGames", () => {
       accessToken
     };
 
-    const mockResponse: UserGameListResponse = {
+    const mockResponse: RecentlyPlayedGamesResponse = {
       data: {
         gameLibraryTitlesRetrieve: {
           __typename: "GameList",
@@ -97,7 +97,7 @@ describe("Function: getRecentlyPlayedGames", () => {
     );
 
     // ACT
-    const response = await getUserGameList(mockAuthorization, {
+    const response = await getRecentlyPlayedGames(mockAuthorization, {
       categories: ["ps4_game", "ps5_native_game"],
       limit: 2
     });
@@ -125,7 +125,7 @@ describe("Function: getRecentlyPlayedGames", () => {
     );
 
     // ASSERT
-    await expect(getUserGameList(mockAuthorization)).rejects.toThrow(
+    await expect(getRecentlyPlayedGames(mockAuthorization)).rejects.toThrow(
       "Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted"
     );
   });

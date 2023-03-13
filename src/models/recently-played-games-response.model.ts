@@ -1,10 +1,10 @@
 import { TitlePlatform } from "./title-platform.model";
 
-export interface GameListResponseGame {
+export interface RecentlyPlayedGame {
   /** GrahpQL object type/schema */
   __typename: "GameLibraryTitle";
 
-  /** Contains a url to a square game icon file */
+  /** Contains a url to a game icon file. */
   image: {
     __typename: "Media";
     url: string;
@@ -27,7 +27,7 @@ export interface GameListResponseGame {
 
   /**
    * The platform this game was last played on. This can be reported as
-   * "UNKNOWN". It appears that "UNKNOWN" is shown in certain scenariosw
+   * "UNKNOWN". It appears that "UNKNOWN" is shown in certain scenarios
    * when a user that isn't associated with the access token is sharing
    * the same console as the user that is identified by the access token.
    */
@@ -46,7 +46,10 @@ export interface GameListResponseGame {
    */
   entitlementId: string | null;
 
-  /** ID of the product. Used in the PlayStation Store URL */
+  /**
+   * ID of the product. Forms part of a PlayStation Store URL, e.g
+   * https://store.playstation.com/en-us/product/UP9000-$titleId-RATCHETCLANKRIFT
+   */
   titleId: string;
 
   /**
@@ -59,11 +62,11 @@ export interface GameListResponseGame {
   subscriptionService: "NONE" | string;
 }
 
-export interface UserGameListResponse {
+export interface RecentlyPlayedGamesResponse {
   data: {
     gameLibraryTitlesRetrieve: {
       __typename: "GameList";
-      games: GameListResponseGame[];
+      games: RecentlyPlayedGame[];
     };
   };
 }
