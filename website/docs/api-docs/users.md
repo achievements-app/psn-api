@@ -183,22 +183,17 @@ A call to this function will retrieve a list of recently played games for the us
 ```ts
 import { getRecentlyPlayedGames } from "psn-api";
 
-const recentlyPlayedGames = await getRecentlyPlayedGames(
-  authorization,
-  {
-    limit: 10,
-    categories: ['ps4_game', 'ps5_native_game']
-  }
-);
+const recentlyPlayedGames = await getRecentlyPlayedGames(authorization, {
+  limit: 10,
+  categories: ["ps4_game", "ps5_native_game"]
+});
 ```
-
 
 ### Returns
 
-| Name              | Type     | Description                                           |
-| :---------------- | :------- | :---------------------------------------------------- |
-| `data.gameLibraryTitlesRetrieve.games` | [RecentlyPlayedGame](/api-docs/data-models/recently-played-game)[] | List of recently played games.
-
+| Name                                   | Type                                                               | Description                    |
+| :------------------------------------- | :----------------------------------------------------------------- | :----------------------------- |
+| `data.gameLibraryTitlesRetrieve.games` | [RecentlyPlayedGame](/api-docs/data-models/recently-played-game)[] | List of recently played games. |
 
 ### Parameters
 
@@ -206,14 +201,13 @@ const recentlyPlayedGames = await getRecentlyPlayedGames(
 | :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 
-
 ### Options
 
 These are the possible values that can be in the `options` object (the second parameter of the function).
 
-| Name     | Type     | Description                                  |
-| :------- | :------- | :------------------------------------------- |
-| `limit`  | `number` | Limit the number of games returned. Defaults to 50.       |
+| Name         | Type       | Description                                                                                 |
+| :----------- | :--------- | :------------------------------------------------------------------------------------------ |
+| `limit`      | `number`   | Limit the number of games returned. Defaults to 50.                                         |
 | `categories` | `string[]` | Limit the categories of games returned. Valid entries are `ps4_game` and `ps5_native_game`. |
 
 ### Source

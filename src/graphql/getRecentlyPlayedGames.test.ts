@@ -1,7 +1,10 @@
 import { rest } from "msw";
 import { setupServer } from "msw/node";
 
-import type { AuthorizationPayload, RecentlyPlayedGamesResponse } from "../models";
+import type {
+  AuthorizationPayload,
+  RecentlyPlayedGamesResponse
+} from "../models";
 import { getRecentlyPlayedGames } from "./getRecentlyPlayedGames";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
