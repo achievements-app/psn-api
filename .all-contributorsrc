@@ -72,6 +72,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "evanshortiss",
+      "name": "Evan Shortiss",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1303687?v=4",
+      "profile": "https://evanshortiss.com",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -79,5 +89,6 @@
   "projectOwner": "achievements-app",
   "repoType": "github",
   "repoHost": "https://github.com",
-  "skipCi": true
+  "skipCi": true,
+  "commitConvention": "angular"
 }
