@@ -74,13 +74,13 @@ describe("Function: getRecentlyPlayedGames", () => {
       }
     };
 
-    let headers!: Record<string, string>
-    let searchParams!: URLSearchParams
+    let headers!: Record<string, string>;
+    let searchParams!: URLSearchParams;
 
     server.use(
       rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
-        headers = _.headers.raw()
-        searchParams = _.url.searchParams
+        headers = _.headers.raw();
+        searchParams = _.url.searchParams;
 
         return res(ctx.json(mockResponse));
       })
@@ -94,12 +94,8 @@ describe("Function: getRecentlyPlayedGames", () => {
 
     // ASSERT
     expect(response).toEqual(mockResponse);
-    expect(headers["authorization"]).toEqual(
-      `Bearer ${accessToken}`
-    );
-    expect(searchParams.get("operationName")).toEqual(
-      "getUserGameList"
-    );
+    expect(headers["authorization"]).toEqual(`Bearer ${accessToken}`);
+    expect(searchParams.get("operationName")).toEqual("getUserGameList");
     expect(searchParams.get("variables")).toEqual(
       JSON.stringify({ limit: 2, categories: "ps4_game,ps5_native_game" })
     );

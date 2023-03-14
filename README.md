@@ -131,7 +131,6 @@ Click the function names to open their complete docs on the docs site.
 - [`getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
 - [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames) - Retrieve a list of recently played games for the user associated with the access token provided to this function.
 
-
 ## Examples
 
 - [Build a user's complete trophy list and write it to a JSON file](https://psn-api.achievements.app/examples/user-trophy-list)
