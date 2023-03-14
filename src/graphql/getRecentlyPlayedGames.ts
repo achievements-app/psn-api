@@ -7,23 +7,6 @@ import { call } from "../utils/call";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 import { getUserGameListHash } from "./operationHashes";
 
-/**
- * This endpoint is different to others in the codebase; it hits a graphql API endpoint.
- *
- * The code in this file is reverse engineered from app-<hash>.js file loaded by the page
- * at https://library.playstation.com/recently-played. Following the code in this file leads
- * to some Apollo GraphQL code related to persisted queries. This means the request needs to
- * contain a SHA256 hash of the GraphQL query being executed. Searching for PersistedQueryLink
- * and createPersistedQueryLink_hashes, and an AST function in the JS source and debugging
- * will surface the query that's passed to the hash function on the page.
- *
- * Thankfully it's easier to figure out future endpoints and hashes by:
- *
- * 1. Visiting a page, e.g https://library.playstation.com/recently-played
- * 2. Using DevTools to find requests to https://web.np.playstation.com/api/graphql/v1/op
- * 3. Decoding the URL parameters to find the correct SHA256 hash and some of the supported parameters
- */
-
 type GetRecentlyPlayedGamesOptionsCategories = "ps4_game" | "ps5_native_game";
 type GetRecentlyPlayedGamesOptions = Pick<AllCallOptions, "limit"> & {
   categories: GetRecentlyPlayedGamesOptionsCategories[];

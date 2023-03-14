@@ -74,26 +74,13 @@ describe("Function: getRecentlyPlayedGames", () => {
       }
     };
 
+    let headers!: Record<string, string>
+    let searchParams!: URLSearchParams
+
     server.use(
       rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
-        expect(_.headers.raw()["authorization"]).toEqual(
-          `Bearer ${accessToken}`
-        );
-        expect(_.url.searchParams.get("operationName")).toEqual(
-          "getUserGameList"
-        );
-        expect(_.url.searchParams.get("variables")).toEqual(
-          JSON.stringify({ limit: 2, categories: "ps4_game,ps5_native_game" })
-        );
-        expect(_.url.searchParams.get("extensions")).toEqual(
-          JSON.stringify({
-            persistedQuery: {
-              version: 1,
-              sha256Hash:
-                "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
-            }
-          })
-        );
+        headers = _.headers.raw()
+        searchParams = _.url.searchParams
 
         return res(ctx.json(mockResponse));
       })
@@ -107,6 +94,24 @@ describe("Function: getRecentlyPlayedGames", () => {
 
     // ASSERT
     expect(response).toEqual(mockResponse);
+    expect(headers["authorization"]).toEqual(
+      `Bearer ${accessToken}`
+    );
+    expect(searchParams.get("operationName")).toEqual(
+      "getUserGameList"
+    );
+    expect(searchParams.get("variables")).toEqual(
+      JSON.stringify({ limit: 2, categories: "ps4_game,ps5_native_game" })
+    );
+    expect(searchParams.get("extensions")).toEqual(
+      JSON.stringify({
+        persistedQuery: {
+          version: 1,
+          sha256Hash:
+            "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
+        }
+      })
+    );
   });
 
   it("throws an error if we receive a malformed response", async () => {
