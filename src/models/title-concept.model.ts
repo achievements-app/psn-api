@@ -1,6 +1,6 @@
 import type { Media } from "./game-media.model";
 
-export interface GameConcept {
+export interface TitleConcept {
   id: number;
   titleIds: string[];
   name: string;

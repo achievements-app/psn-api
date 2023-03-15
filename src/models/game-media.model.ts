@@ -1,4 +1,4 @@
-export interface Media {
+export interface GameMedia {
   audios: any[];
   videos: any[];
   images: [

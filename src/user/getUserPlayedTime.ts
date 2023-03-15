@@ -14,7 +14,7 @@ type GetUserFriendsAccountIdsOptions = Pick<AllCallOptions, "limit" | "offset">;
  * PS4 and PS5 titles. If the user cannot be found (either due to
  * non-existence or privacy settings), an error will be thrown.
  *
- *  To find a user's `accountId`, the `makeUniversalSearch()` function can be used.
+ * To find a user's `accountId`, the `makeUniversalSearch()` function can be used.
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
@@ -28,9 +28,7 @@ export const getUserPlayedTime = async (
     USER_TIME_PLAYED_URL,
     "/:accountId/titles",
     options,
-    {
-      accountId
-    }
+    { accountId }
   );
 
   const response = await call<GetUserPlayedTimeResponse>(

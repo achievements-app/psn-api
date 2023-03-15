@@ -2,9 +2,10 @@ import type { GameConcept } from "./title-concept.model";
 import type { Media } from "./game-media.model";
 
 export interface GetUserPlayedTimeResponse {
-  /** The title ID of this game 
-      @example CUSA26431_00
-      */
+  /** 
+   * The title ID of this game 
+   * @example CUSA26431_00
+   */
   titleId: string;
 
   /** Default name for the title */
@@ -25,7 +26,7 @@ export interface GetUserPlayedTimeResponse {
   /** Service where this game was acquired from: EA Access, none(purchased/none_purchased, ps_plus, other, */
   service: string;
 
-  /** Metadata about this game, including titleIds and localization for other regions, genres, name and id */
+  /** Metadata about this game */
   concept: GameConcept;
 
   /** An object with audio, video, images properties that will contain arrays of objects with URL, format and type properties */
