@@ -4,6 +4,7 @@ import { setupServer } from "msw/node";
 import { AuthorizationPayload } from "../models";
 import { GamesLibraryForUserResponse } from "../models/games-library-for-user.model";
 import { getUserGamesLibrary } from "./getUserGamesLibrary";
+import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
 
 const server = setupServer();
 
@@ -69,18 +70,38 @@ describe("Function: getUserGamesLibrary", () => {
     };
 
     server.use(
-      rest.get(
-        // TODO: Fix this URL to be more dynamic
-        "`https://web.np.playstation.com/api/graphql/v1/op?operationName=getPurchasedGameList&variables=%7B%22isActive%22%3Atrue%2C%22platform%22%3A%5B%22ps4%22%2C%22ps5%22%5D%2C%22size%22%3A500%2C%22start%22%3A0%2C%22sortBy%22%3A%22ACTIVE_DATE%22%2C%22sortDirection%22%3A%22desc%22%2C%22subscriptionService%22%3A%22NONE%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%222c045408b0a4d0264bb5a3edfed4efd49fb4749cf8d216be9043768adff905e2%22%7D%7D`",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
+      rest.get(USER_GAMES_BASE_URL, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
     );
 
     // ACT
     const response = await getUserGamesLibrary(mockAuthorization);
     // ASSERT
     expect(response).toEqual(mockResponse);
+  });
+
+  it("throws an error if we receive a response containing an `error` object", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: {
+        referenceId: "d71bd8ff-5f63-11ec-87da-d5dfd3bc6e67",
+        code: 2_281_604,
+        message: "Not Found"
+      }
+    };
+
+    server.use(
+      rest.get(USER_GAMES_BASE_URL, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
+    );
+
+    // ASSERT
+    await expect(getUserGamesLibrary(mockAuthorization)).rejects.toThrow();
   });
 });

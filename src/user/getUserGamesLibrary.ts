@@ -3,6 +3,27 @@
 import { AuthorizationPayload } from "../models";
 import { GamesLibraryForUserResponse } from "../models/games-library-for-user.model";
 import { call } from "../utils/call";
+import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
+
+export type GetUserGamesLibraryOptions = {
+  platform?: Array<"ps4" | "ps5">;
+  size?: number;
+  start?: number;
+  sortBy?: string;
+  sortDirection?: "asc" | "desc";
+  isActive?: boolean;
+  subscriptionService?: string;
+};
+
+const defaultOptions: GetUserGamesLibraryOptions = {
+  platform: ["ps4", "ps5"],
+  size: 500,
+  start: 0,
+  sortBy: "ACTIVE_DATE",
+  sortDirection: "desc",
+  isActive: true,
+  subscriptionService: "NONE"
+};
 
 /**
  * A call to this function will retrieve the list of games for the logged in user.
@@ -10,16 +31,24 @@ import { call } from "../utils/call";
  * an error will be thrown.
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
- * TODO: Add filter options as parameters
- * TODO: You can filter by PS+ games only or all purchases, sort direction asc (first to last purchase) or desc
- * TODO: (last to first purchase), offset and limit the request just as with basically any other endpoint.
+ * @param options.platform An array containing the platforms to filter by. Defaults to `["ps4", "ps5"]`.
+ * @param options.size The number of results to return. Defaults to `500`.
+ * @param options.start The offset to start from. Defaults to `0`.
+ * @param options.sortBy The field to sort by. Defaults to `"ACTIVE_DATE"`.
+ * @param options.sortDirection The direction to sort by. Defaults to `"desc"`.
+ * @param options.isActive Whether to return active games only. Defaults to `true`.
+ * @param options.subscriptionService The subscription service to filter by. Defaults to `"NONE"`.
  */
 export const getUserGamesLibrary = async (
-  authorization: AuthorizationPayload
+  authorization: AuthorizationPayload,
+  options: Partial<GetUserGamesLibraryOptions> = defaultOptions
 ): Promise<any> => {
-  // TODO: pass the filter options to the URL
-  // TODO: Fix this URL to be more dynamic
-  const url = `https://web.np.playstation.com/api/graphql/v1/op?operationName=getPurchasedGameList&variables=%7B%22isActive%22%3Atrue%2C%22platform%22%3A%5B%22ps4%22%2C%22ps5%22%5D%2C%22size%22%3A500%2C%22start%22%3A0%2C%22sortBy%22%3A%22ACTIVE_DATE%22%2C%22sortDirection%22%3A%22desc%22%2C%22subscriptionService%22%3A%22NONE%22%7D&extensions=%7B%22persistedQuery%22%3A%7B%22version%22%3A1%2C%22sha256Hash%22%3A%222c045408b0a4d0264bb5a3edfed4efd49fb4749cf8d216be9043768adff905e2%22%7D%7D`;
+  const operationName = "getPurchasedGameList";
+  const variables = encodeURIComponent(JSON.stringify(options));
+  const extensions = encodeURIComponent(
+    '{"persistedQuery":{"version":1,"sha256Hash":"2c045408b0a4d0264bb5a3edfed4efd49fb4749cf8d216be9043768adff905e2"}}'
+  );
+  const url = `${USER_GAMES_BASE_URL}?operationName=${operationName}&variables=${variables}&extensions=${extensions}`;
 
   const response = await call<GamesLibraryForUserResponse>(
     { url },
