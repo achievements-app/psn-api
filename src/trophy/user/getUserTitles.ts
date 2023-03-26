@@ -14,10 +14,11 @@ type GetUserTitlesOptions = Pick<
 
 /**
  * A call to this function will retrieve a summarized list of titles played
- * by a user. The maximum amount that can be returned by a single call is
- * 800 (assuming a `limit` option of 800 is set). If the user has more titles than the
- * given `limit` option, subsequent calls of this funciton must be made to
- * fetch the complete list by paging via the `offset` option.
+ * by a user, ordered by recent trophy unlocks. The maximum amount that can
+ * be returned by a single call is 800 (assuming a `limit` option of 800 is set).
+ * If the user has more titles than the given `limit` option, subsequent calls
+ * of this funciton must be made to fetch the complete list by paging via the
+ * `offset` option.
  *
  * The numeric `accountId` can be that of any PSN account for which the authenticating
  * account has permissions to view the trophy list. When querying the titles
