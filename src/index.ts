@@ -1,4 +1,5 @@
 export * from "./authenticate";
+export * from "./graphql";
 export * from "./models";
 export * from "./search";
 export * from "./trophy";
