@@ -1,4 +1,4 @@
-<h1 align="center">psn-api</h1>
+<h1 align="center">psn-api1</h1>
 
 <p align="center">
   <img width="40%" height="40%" src="psx.png" />
