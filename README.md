@@ -83,7 +83,7 @@ If you see an error response, try using different browser.
 const myNpsso = "<64 character token>";
 
 // We'll exchange your NPSSO for a special access code.
-const accessCode = await exchangeNpssoForCode(npsso);
+const accessCode = await exchangeNpssoForCode(myNpsso);
 
 // We can use the access code to get your access token and refresh token.
 const authorization = await exchangeCodeForAccessToken(accessCode);
@@ -95,7 +95,7 @@ const authorization = await exchangeCodeForAccessToken(accessCode);
 const authorization = await exchangeCodeForAccessToken(accessCode);
 
 // This returns a list of all the games you've earned trophies for.
-const trophyTitlesResponse = await getUserTitles(
+const userTitlesResponse = await getUserTitles(
   { accessToken: authorization.accessToken },
   "me"
 );

@@ -118,8 +118,6 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-__playground.ts
-
 # Docusaurus
 website/node_modules
 website/.docusaurus
