@@ -22,7 +22,7 @@ import {
   getUserTitles
 } from "./index";
 
-// MODIFY THESE VALUES.
+// MODIFY THIS VALUE.
 const myNpsso = "myNpsso";
 
 async function main() {
