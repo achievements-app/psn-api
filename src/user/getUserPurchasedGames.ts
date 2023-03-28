@@ -1,11 +1,11 @@
 // import { AuthorizationPayload, ProfileFromUserNameResponse } from "../models";
 
 import { AuthorizationPayload } from "../models";
-import { GamesLibraryForUserResponse } from "../models/games-library-for-user.model";
+import { GetUserPurchasedGamesResponse } from "../models/user-purchased-games-response.model";
 import { call } from "../utils/call";
 import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
 
-export type GetUserGamesLibraryOptions = {
+export type GetUserPurchasedGamesOptions = {
   platform?: Array<"ps4" | "ps5">;
   size?: number;
   start?: number;
@@ -15,7 +15,7 @@ export type GetUserGamesLibraryOptions = {
   subscriptionService?: string;
 };
 
-const defaultOptions: GetUserGamesLibraryOptions = {
+const defaultOptions: GetUserPurchasedGamesOptions = {
   platform: ["ps4", "ps5"],
   size: 500,
   start: 0,
@@ -39,9 +39,9 @@ const defaultOptions: GetUserGamesLibraryOptions = {
  * @param options.isActive Whether to return active games only. Defaults to `true`.
  * @param options.subscriptionService The subscription service to filter by. Defaults to `"NONE"`.
  */
-export const getUserGamesLibrary = async (
+export const getUserPurchasedGames = async (
   authorization: AuthorizationPayload,
-  options: Partial<GetUserGamesLibraryOptions> = defaultOptions
+  options: Partial<GetUserPurchasedGamesOptions> = defaultOptions
 ): Promise<any> => {
   const operationName = "getPurchasedGameList";
   const variables = encodeURIComponent(JSON.stringify(options));
@@ -50,7 +50,7 @@ export const getUserGamesLibrary = async (
   );
   const url = `${USER_GAMES_BASE_URL}?operationName=${operationName}&variables=${variables}&extensions=${extensions}`;
 
-  const response = await call<GamesLibraryForUserResponse>(
+  const response = await call<GetUserPurchasedGamesResponse>(
     { url },
     authorization
   );

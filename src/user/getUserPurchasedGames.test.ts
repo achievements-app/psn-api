@@ -2,13 +2,13 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import { AuthorizationPayload } from "../models";
-import { GamesLibraryForUserResponse } from "../models/games-library-for-user.model";
-import { getUserGamesLibrary } from "./getUserGamesLibrary";
+import { GetUserPurchasedGamesResponse } from "../models/user-purchased-games-response.model";
+import { getUserPurchasedGames } from "./getUserPurchasedGames";
 import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
 
 const server = setupServer();
 
-describe("Function: getUserGamesLibrary", () => {
+describe("Function: getUserPurchasedGames", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -16,7 +16,7 @@ describe("Function: getUserGamesLibrary", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getUserGamesLibrary).toBeDefined();
+    expect(getUserPurchasedGames).toBeDefined();
   });
 
   it("retrieve the games library for a given user", async () => {
@@ -25,13 +25,13 @@ describe("Function: getUserGamesLibrary", () => {
       accessToken: "mockAccessToken"
     };
 
-    const mockResponse: GamesLibraryForUserResponse = {
+    const mockResponse: GetUserPurchasedGamesResponse = {
       data: {
         purchasedTitlesRetrieve: {
           __typename: "GameList",
           games: [
             {
-              __typename: "GameLibraryTitle",
+              __typename: "PurchasedGame",
               conceptId: null,
               entitlementId: "UP4433-CUSA18779_00-DUNGEONSPS400000",
               image: {
@@ -48,7 +48,7 @@ describe("Function: getUserGamesLibrary", () => {
               titleId: "CUSA18779_00"
             },
             {
-              __typename: "GameLibraryTitle",
+              __typename: "PurchasedGame",
               conceptId: null,
               entitlementId: "UP0006-CUSA23249_00-KINGSTONGAME0000",
               image: {
@@ -76,7 +76,7 @@ describe("Function: getUserGamesLibrary", () => {
     );
 
     // ACT
-    const response = await getUserGamesLibrary(mockAuthorization);
+    const response = await getUserPurchasedGames(mockAuthorization);
     // ASSERT
     expect(response).toEqual(mockResponse);
   });
@@ -102,6 +102,6 @@ describe("Function: getUserGamesLibrary", () => {
     );
 
     // ASSERT
-    await expect(getUserGamesLibrary(mockAuthorization)).rejects.toThrow();
+    await expect(getUserPurchasedGames(mockAuthorization)).rejects.toThrow();
   });
 });

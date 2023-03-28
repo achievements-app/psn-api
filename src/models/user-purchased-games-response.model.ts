@@ -1,4 +1,6 @@
-export interface GamesLibraryForUserResponse {
+import { TitlePlatform } from "./title-platform.model";
+
+export interface GetUserPurchasedGamesResponse {
   data: {
     purchasedTitlesRetrieve: {
       /**
@@ -13,12 +15,12 @@ export interface GamesLibraryForUserResponse {
       /**
        * The list of games in the library.
        */
-      games: Array<GameLibraryTitle>;
+      games: Array<PurchasedGame>;
     };
   };
 }
 
-export interface GameLibraryTitle {
+export interface PurchasedGame {
   /**
    * The type of resource retrieved.
    *
@@ -43,7 +45,7 @@ export interface GameLibraryTitle {
    * "entitlementId": "UP4433-CUSA18779_00-DUNGEONSPS400000"
    * ```
    */
-  entitlementId: string;
+  entitlementId: string | null;
 
   /**
    * The image of the game.
@@ -56,12 +58,12 @@ export interface GameLibraryTitle {
    * }
    * ```
    */
-  image: GameLibraryImage;
+  image: GameImage;
 
   /**
    * Whether the game is active or not.
    */
-  isActive: boolean;
+  isActive: boolean | null;
 
   /**
    * Whether the game is downloadable or not.
@@ -91,7 +93,7 @@ export interface GameLibraryTitle {
    * platform: "PS4"
    * ```
    */
-  platform: string;
+  platform: TitlePlatform | "UNKNOWN";
 
   /**
    * The ID of the product.
@@ -101,7 +103,7 @@ export interface GameLibraryTitle {
    * productId: "UP4433-CUSA18779_00"
    * ```
    */
-  productId: string;
+  productId: string | null;
 
   /**
    * The subscription service associated with the game.
@@ -111,7 +113,7 @@ export interface GameLibraryTitle {
    * subscriptionService: "PS_PLUS"
    * ```
    */
-  subscriptionService: string;
+  subscriptionService: "NONE" | string;
 
   /**
    * The ID of the title.
@@ -124,7 +126,7 @@ export interface GameLibraryTitle {
   titleId: string;
 }
 
-export interface GameLibraryImage {
+export interface GameImage {
   __typename: string;
   url: string;
 }
