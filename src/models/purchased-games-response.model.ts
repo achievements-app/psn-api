@@ -1,6 +1,6 @@
 import { TitlePlatform } from "./title-platform.model";
 
-export interface GetUserPurchasedGamesResponse {
+export interface GetPurchasedGamesResponse {
   data: {
     purchasedTitlesRetrieve: {
       /**

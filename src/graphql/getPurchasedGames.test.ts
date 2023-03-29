@@ -2,9 +2,9 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import { AuthorizationPayload } from "../models";
-import { GetUserPurchasedGamesResponse } from "../models/user-purchased-games-response.model";
-import { getUserPurchasedGames } from "./getUserPurchasedGames";
-import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
+import { GetPurchasedGamesResponse } from "../models/purchased-games-response.model";
+import { getPurchasedGames } from "./getPurchasedGames";
+import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
 const server = setupServer();
 
@@ -16,7 +16,7 @@ describe("Function: getUserPurchasedGames", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getUserPurchasedGames).toBeDefined();
+    expect(getPurchasedGames).toBeDefined();
   });
 
   it("retrieve the games library for a given user", async () => {
@@ -25,7 +25,7 @@ describe("Function: getUserPurchasedGames", () => {
       accessToken: "mockAccessToken"
     };
 
-    const mockResponse: GetUserPurchasedGamesResponse = {
+    const mockResponse: GetPurchasedGamesResponse = {
       data: {
         purchasedTitlesRetrieve: {
           __typename: "GameList",
@@ -70,13 +70,13 @@ describe("Function: getUserPurchasedGames", () => {
     };
 
     server.use(
-      rest.get(USER_GAMES_BASE_URL, (_, res, ctx) => {
+      rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
         return res(ctx.json(mockResponse));
       })
     );
 
     // ACT
-    const response = await getUserPurchasedGames(mockAuthorization);
+    const response = await getPurchasedGames(mockAuthorization);
     // ASSERT
     expect(response).toEqual(mockResponse);
   });
@@ -96,12 +96,12 @@ describe("Function: getUserPurchasedGames", () => {
     };
 
     server.use(
-      rest.get(USER_GAMES_BASE_URL, (_, res, ctx) => {
+      rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
         return res(ctx.json(mockResponse));
       })
     );
 
     // ASSERT
-    await expect(getUserPurchasedGames(mockAuthorization)).rejects.toThrow();
+    await expect(getPurchasedGames(mockAuthorization)).rejects.toThrow();
   });
 });

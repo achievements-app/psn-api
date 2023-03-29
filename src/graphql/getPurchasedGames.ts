@@ -1,11 +1,9 @@
-// import { AuthorizationPayload, ProfileFromUserNameResponse } from "../models";
-
 import { AuthorizationPayload } from "../models";
-import { GetUserPurchasedGamesResponse } from "../models/user-purchased-games-response.model";
+import { GetPurchasedGamesResponse } from "../models/purchased-games-response.model";
 import { call } from "../utils/call";
-import { USER_GAMES_BASE_URL } from "./USER_GAMES_BASE_URL";
+import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
-export type GetUserPurchasedGamesOptions = {
+export type GetPurchasedGamesOptions = {
   platform?: Array<"ps4" | "ps5">;
   size?: number;
   start?: number;
@@ -15,7 +13,7 @@ export type GetUserPurchasedGamesOptions = {
   subscriptionService?: string;
 };
 
-const defaultOptions: GetUserPurchasedGamesOptions = {
+const defaultOptions: GetPurchasedGamesOptions = {
   platform: ["ps4", "ps5"],
   size: 500,
   start: 0,
@@ -39,18 +37,18 @@ const defaultOptions: GetUserPurchasedGamesOptions = {
  * @param options.isActive Whether to return active games only. Defaults to `true`.
  * @param options.subscriptionService The subscription service to filter by. Defaults to `"NONE"`.
  */
-export const getUserPurchasedGames = async (
+export const getPurchasedGames = async (
   authorization: AuthorizationPayload,
-  options: Partial<GetUserPurchasedGamesOptions> = defaultOptions
+  options: Partial<GetPurchasedGamesOptions> = defaultOptions
 ): Promise<any> => {
   const operationName = "getPurchasedGameList";
   const variables = encodeURIComponent(JSON.stringify(options));
   const extensions = encodeURIComponent(
     '{"persistedQuery":{"version":1,"sha256Hash":"2c045408b0a4d0264bb5a3edfed4efd49fb4749cf8d216be9043768adff905e2"}}'
   );
-  const url = `${USER_GAMES_BASE_URL}?operationName=${operationName}&variables=${variables}&extensions=${extensions}`;
+  const url = `${GRAPHQL_BASE_URL}?operationName=${operationName}&variables=${variables}&extensions=${extensions}`;
 
-  const response = await call<GetUserPurchasedGamesResponse>(
+  const response = await call<GetPurchasedGamesResponse>(
     { url },
     authorization
   );
@@ -58,6 +56,13 @@ export const getUserPurchasedGames = async (
   if ((response as any)?.error) {
     throw new Error((response as any)?.error?.message ?? "Unexpected Error");
   }
+
+  // The GraphQL queries can return non-truthy values.
+  if (!response.data || !response.data.purchasedTitlesRetrieve) {
+    throw new Error(JSON.stringify(response));
+  }
+
+  return response;
 
   return response;
 };
