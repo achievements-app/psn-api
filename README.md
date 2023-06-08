@@ -168,6 +168,7 @@ This project is not intended to be used for spam or abuse. Please use this proje
     </tr>
     <tr>
       <td align="center" valign="top" width="14.28%"><a href="https://evanshortiss.com"><img src="https://avatars.githubusercontent.com/u/1303687?v=4?s=100" width="100px;" alt="Evan Shortiss"/><br /><sub><b>Evan Shortiss</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=evanshortiss" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=evanshortiss" title="Documentation">📖</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/JenCrawford"><img src="https://avatars.githubusercontent.com/u/12951917?v=4?s=100" width="100px;" alt="crawfordj"/><br /><sub><b>crawfordj</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=JenCrawford" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=JenCrawford" title="Documentation">📖</a></td>
     </tr>
   </tbody>
 </table>
