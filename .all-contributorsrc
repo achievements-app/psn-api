@@ -82,6 +82,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "JenCrawford",
+      "name": "crawfordj",
+      "avatar_url": "https://avatars.githubusercontent.com/u/12951917?v=4",
+      "profile": "https://github.com/JenCrawford",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -90,5 +100,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "skipCi": true,
-  "commitConvention": "angular"
+  "commitConvention": "angular",
+  "commitType": "docs"
 }
