@@ -1,9 +1,9 @@
-import {rest} from "msw";
-import {setupServer} from "msw/node";
+import { rest } from "msw";
+import { setupServer } from "msw/node";
 
-import type {AuthorizationPayload, BasicPresenceResponse} from "../models";
-import {getBasicPresence} from "./getBasicPresence";
-import {USER_BASE_URL} from "./USER_BASE_URL";
+import type { AuthorizationPayload, BasicPresenceResponse } from "../models";
+import { getBasicPresence } from "./getBasicPresence";
+import { USER_BASE_URL } from "./USER_BASE_URL";
 
 const server = setupServer();
 
@@ -40,19 +40,19 @@ describe("Function: getBasicPresence", () => {
             format: "PS5",
             launchPlatform: "PS5",
             conceptIconUrl:
-                "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/kifM3lnke5lExwRd96mIDojQ.png"
+              "https://image.api.playstation.com/vulcan/ap/rnd/202010/2915/kifM3lnke5lExwRd96mIDojQ.png"
           }
         ]
       }
     };
 
     server.use(
-        rest.get(
-            "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/basicPresences?type=primary",
-            (_, res, ctx) => {
-              return res(ctx.json(mockResponse));
-            }
-        )
+      rest.get(
+        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/basicPresences?type=primary",
+        (_, res, ctx) => {
+          return res(ctx.json(mockResponse));
+        }
+      )
     );
 
     // ACT
@@ -69,18 +69,18 @@ describe("Function: getBasicPresence", () => {
     };
 
     const mockResponse = {
-      error: {code: 2_105_356, message: "User not found (user: 'xeln12ia')"}
+      error: { code: 2_105_356, message: "User not found (user: 'xeln12ia')" }
     };
 
     server.use(
-        rest.get(`${USER_BASE_URL}/111222333444/profiles`, (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        })
+      rest.get(`${USER_BASE_URL}/111222333444/profiles`, (_, res, ctx) => {
+        return res(ctx.json(mockResponse));
+      })
     );
 
     // ASSERT
     await expect(
-        getBasicPresence(mockAuthorization, "111222333444")
+      getBasicPresence(mockAuthorization, "111222333444")
     ).rejects.toThrow();
   });
 });

@@ -164,7 +164,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
 | Name     | Type     | Description                                  |
-| :------- | :------- | :------------------------------------------- |
+|:---------|:---------|:---------------------------------------------|
 | `limit`  | `number` | Limit the number of trophies returned.       |
 | `offset` | `number` | Return trophy data from this result onwards. |
 
@@ -174,9 +174,52 @@ These are the possible values that can be in the `options` object (the third par
 
 ---
 
+## getBasicPresence
+
+A call to this function will retrieve the presence of the accountId being requested. If the user cannot be found (either
+due to non-existence or privacy settings), an error will be thrown.
+
+### Examples
+
+#### Get a user's presence
+
+```ts
+import { getBasicPresence } from "psn-api";
+
+const response = await getBasicPresence(authorization, "xelnia");
+```
+
+### Returns
+
+The following properties are contained within a `basicPresence` object that is returned.
+
+| Name                  | Type                                                                                                                                                     | Description                                                                                                                                     |
+|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
+| `availability`        | `"unavailable" or "availableToPlay"`                                                                                                                     | The account's current availability.                                                                                                             |
+| `lastAvailableDate`   | `string`                                                                                                                                                 | The last date the account was available, if it's currently unavailable                                                                          |
+| `primaryPlatformInfo` | `{ onlineStatus: "online" or "offline"; platform: "ps4" or "PS5"; lastOnlineDate: string;}`                                                              | Details of the accpunt's primary platform, current status (online or offline), platform type (ps4 or PS5) and date the platform was last online |
+| `lastOnlineDate`      | `string`                                                                                                                                                 | Last online date if the account is currently offline                                                                                            |
+| `onlineStatus`        | `"offline" or "online"`                                                                                                                                  | Account's current online status                                                                                                                 |
+| `platform`            | `string`                                                                                                                                                 | If the account is online, it's current platform                                                                                                 |
+| `gameTitleInfoList`   | `{ npTitleId: string; titleName: string; format: "ps4" or "PS5"; launchPlatform: "ps4" or "PS5"; npTitleIconUrl?: string; conceptIconUrl?: string; }[];` | Details about the game the account is currently playing, if applicable                                                                          |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
+|:----------------|:----------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
+| `accountId`     | `string`                                                              | The account whose presence is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+
+### Source
+
+[user/getBasicPresence.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getBasicPresence.ts)
+
+---
+
 ## getRecentlyPlayedGames
 
-A call to this function will retrieve a list of recently played games for the user associated with the `accessToken` in the provided [AuthorizationPayload](/api-docs/data-models/authorization-payload).
+A call to this function will retrieve a list of recently played games for the user associated with the `accessToken` in
+the provided [AuthorizationPayload](/api-docs/data-models/authorization-payload).
 
 ### Examples
 

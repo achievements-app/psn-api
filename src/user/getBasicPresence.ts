@@ -1,7 +1,11 @@
-import type {AllCallOptions, AuthorizationPayload, BasicPresenceResponse} from "../models";
-import {buildRequestUrl} from "../utils/buildRequestUrl";
-import {call} from "../utils/call";
-import {USER_BASE_URL} from "./USER_BASE_URL";
+import type {
+  AllCallOptions,
+  AuthorizationPayload,
+  BasicPresenceResponse
+} from "../models";
+import { buildRequestUrl } from "../utils/buildRequestUrl";
+import { call } from "../utils/call";
+import { USER_BASE_URL } from "./USER_BASE_URL";
 
 type GetBasicPresenceOptions = Pick<AllCallOptions, "headerOverrides">;
 
@@ -15,20 +19,20 @@ type GetBasicPresenceOptions = Pick<AllCallOptions, "headerOverrides">;
  * @param options Optional - Additional headerOverride options to provide for the request
  */
 export const getBasicPresence = async (
-    authorization: AuthorizationPayload,
-    accountId: string,
-    options?: GetBasicPresenceOptions
+  authorization: AuthorizationPayload,
+  accountId: string,
+  options?: GetBasicPresenceOptions
 ): Promise<BasicPresenceResponse> => {
   const url = buildRequestUrl(
-      USER_BASE_URL,
-      "/:accountId/basicPresences?type=primary",
-      options,
-      {
-        accountId
-      }
+    USER_BASE_URL,
+    "/:accountId/basicPresences?type=primary",
+    options,
+    {
+      accountId
+    }
   );
-  console.log("url: " + url);
-  const response = await call<BasicPresenceResponse>({url}, authorization);
+
+  const response = await call<BasicPresenceResponse>({ url }, authorization);
 
   if ((response as any)?.error) {
     throw new Error((response as any)?.error?.message ?? "Unexpected Error");
