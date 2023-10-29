@@ -17,7 +17,8 @@
   "exports": {
     ".": {
       "require": "./dist/index.js",
-      "import": "./dist/psn-api.esm.js"
+      "import": "./dist/psn-api.esm.js",
+      "types": "./dist/index.d.ts"
     }
   },
   "author": "Wes Copeland",
