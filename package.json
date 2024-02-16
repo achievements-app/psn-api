@@ -1,6 +1,7 @@
 {
   "name": "psn-api",
   "description": "A well-tested library that lets you get trophy, user, and game data from the PlayStation Network.",
+  "type": "module",
   "keywords": [
     "psn",
     "playstation",
