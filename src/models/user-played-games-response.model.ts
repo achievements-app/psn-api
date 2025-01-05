@@ -54,20 +54,59 @@ export interface UserPlayedGamesResponse {
 
     /**
      * The concept is a single identifier for the various versions of a game.
-     * This object contains various metadata including the conceptId and the various Title Ids for this game.
+     * This object contains metadata including the conceptId and the various Title Ids for this game.
      */
     concept: {
       /**
        * Identifier for the concept.
-       * @example "12345"
+       *
+       * @example 10009763
        */
-      conceptId: string;
+      id: number;
 
       /**
        * Various Title Ids for this game.
-       * @example ["CUSA01433_00", "CUSA01433_01"]
+       *
+       * @example ["PPSA20599_00", "PPSA20549_00"]
        */
       titleIds: string[];
+
+      /**
+       * Name of the game concept.
+       *
+       * @example "Zenless Zone Zero"
+       */
+      name: string;
+
+      /**
+       * Media related to the game concept, including images, videos, and audios.
+       */
+      media: {
+        audios: unknown[];
+        videos: unknown[];
+        images: {
+          /**
+           * URL of the image.
+           *
+           * @example "https://image.api.playstation.com/vulcan/ap/rnd/202405/2210/4126b58375cb32a51dfdbfde8637daae8b971c3b10c3bc80.jpg"
+           */
+          url: string;
+
+          /**
+           * Format of the image.
+           *
+           * @example "UNKNOWN"
+           */
+          format: string;
+
+          /**
+           * Type of the image.
+           *
+           * @example "FOUR_BY_THREE_BANNER"
+           */
+          type: string;
+        }[];
+      };
     };
 
     /**
