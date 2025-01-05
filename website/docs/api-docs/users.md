@@ -298,13 +298,12 @@ const myPlayedGames = await getUserPlayedGames(authorization, "me");
 | `titles.concept.titleIds`    | `string[]`                                                        | Various Title Ids for this game. <br> **Example:** `["CUSA01433_00", "CUSA01433_01"]`                                                                                                                                                                                |
 | `titles.media`               | `{ screenshotUrl?: string; [key: string]: string \| undefined; }` | This object contains various URLs for screenshots and other media associated with the game. <br> **Example:** `{ screenshotUrl: "https://image..." }`                                                                                                                |
 | `titles.media.screenshotUrl` | `string`                                                          | Screenshot URL. <br> **Example:** `"https://image..."`                                                                                                                                                                                                               |
-| `titles.media.[key]`         | `string \| undefined`                                             | Additional media URLs can be included here as needed. <br> **Example:** `{ ... }`                                                                                                                                                                                    |
 | `titles.firstPlayedDateTime` | `string`                                                          | Date the game was first played. <br> **Example:** `"2015-07-10T19:40:19Z"`                                                                                                                                                                                           |
 | `titles.lastPlayedDateTime`  | `string`                                                          | Date the game was most recently played. <br> **Example:** `"2024-08-03T19:28:27.12Z"`                                                                                                                                                                                |
 | `titles.playDuration`        | `string`                                                          | Time played accurate to 1 second. <br> **Example:** `"PT228H56M33S"`                                                                                                                                                                                                 |
-| `totalItemCount`             | `number`                                                          | The total number of trophy titles for this account. <br> **Example:** `300`                                                                                                                                                                                          |
-| `nextOffset`                 | `number`                                                          | See Support for Pagination. <br> **Example:** `20`                                                                                                                                                                                                                   |
-| `previousOffset`             | `number`                                                          | See Support for Pagination. <br> **Example:** `299`                                                                                                                                                                                                                  |
+| `totalItemCount`             | `number`                                                          | The total number of game titles for this account. <br> **Example:** `300`                                                                                                                                                                                            |
+| `nextOffset`                 | `number`                                                          | Pagination info. <br> **Example:** `20`                                                                                                                                                                                                                              |
+| `previousOffset`             | `number`                                                          | Pagination info. <br> **Example:** `299`                                                                                                                                                                                                                             |
 
 ### Parameters
 
@@ -317,11 +316,11 @@ const myPlayedGames = await getUserPlayedGames(authorization, "me");
 
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
-| Name         | Type     | Description                                                                                         |
-| :----------- | :------- | :-------------------------------------------------------------------------------------------------- |
-| `categories` | `string` | Comma separed list of plataforms. <br> **Example:** "ps4_game, ps5_native_game, pspc_game, unknown" |
-| `limit`      | `number` | Limit the number of games returned.                                                                 |
-| `offset`     | `number` | Return game list data from this result onwards.                                                     |
+| Name         | Type     | Description                                                                                        |
+| :----------- | :------- | :------------------------------------------------------------------------------------------------- |
+| `categories` | `string` | Comma separed list of platforms. <br> **Example:** "ps4_game, ps5_native_game, pspc_game, unknown" |
+| `limit`      | `number` | Limit the number of games returned.                                                                |
+| `offset`     | `number` | Return game list data from this result onwards.                                                    |
 
 ### Source
 
