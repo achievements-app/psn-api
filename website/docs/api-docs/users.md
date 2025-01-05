@@ -164,7 +164,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
 | Name     | Type     | Description                                  |
-|:---------|:---------|:---------------------------------------------|
+| :------- | :------- | :------------------------------------------- |
 | `limit`  | `number` | Limit the number of trophies returned.       |
 | `offset` | `number` | Return trophy data from this result onwards. |
 
@@ -194,7 +194,7 @@ const response = await getBasicPresence(authorization, "xelnia");
 The following properties are contained within a `basicPresence` object that is returned.
 
 | Name                  | Type                                                                                                                                                     | Description                                                                                                                                     |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `availability`        | `"unavailable" or "availableToPlay"`                                                                                                                     | The account's current availability.                                                                                                             |
 | `lastAvailableDate`   | `string`                                                                                                                                                 | The last date the account was available, if it's currently unavailable                                                                          |
 | `primaryPlatformInfo` | `{ onlineStatus: "online" or "offline"; platform: "ps4" or "PS5"; lastOnlineDate: string;}`                                                              | Details of the accpunt's primary platform, current status (online or offline), platform type (ps4 or PS5) and date the platform was last online |
@@ -206,7 +206,7 @@ The following properties are contained within a `basicPresence` object that is r
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
-|:----------------|:----------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
 | `accountId`     | `string`                                                              | The account whose presence is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
@@ -256,3 +256,46 @@ These are the possible values that can be in the `options` object (the second pa
 ### Source
 
 [graphql/getRecentlyPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/graphql/getRecentlyPlayedGames.ts)
+
+---
+
+## getUserPlayedGames
+
+A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the `accountId` provided.  
+This is similar to [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames),
+but allows querying other user's games (if their privacy settings allow it) and returns detailed game user playtime info.
+
+### Examples
+
+```ts
+import { getUserPlayedGames } from "psn-api";
+
+// May fail if user privacy settings prohibit listing
+const userPlayedGames = await getUserPlayedGames(
+  authorization,
+  "2984038888603282554"
+);
+
+// Retrieves list of games from user associated with `authorization.accessToken`.
+const myPlayedGames = await getUserPlayedGames(authorization, "me");
+```
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                    |
+| :-------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                     |
+| `accountId`     | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the third parameter of the function).
+
+| Name     | Type     | Description                                  |
+| :------- | :------- | :------------------------------------------- |
+| `limit`  | `number` | Limit the number of trophies returned.       |
+| `offset` | `number` | Return trophy data from this result onwards. |
+
+### Source
+
+[user/getUserPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserPlayedGames.ts)
