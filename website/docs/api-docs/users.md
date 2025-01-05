@@ -263,7 +263,7 @@ These are the possible values that can be in the `options` object (the second pa
 
 A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the `accountId` provided.  
 This is similar to [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames),
-but allows querying other user's games (if their privacy settings allow it) and returns detailed game user playtime info.
+but allows querying other user's games (if their privacy settings allow it) and returns detailed user playtime info.
 
 ### Examples
 
