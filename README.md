@@ -62,14 +62,22 @@ npm install psn-api
 
 ## How to obtain an authentication token
 
-To use any endpoint function in the API, you must first be authorized by PSN. Fortunately, this is a fairly straightforward process.
+To use any endpoint function in the API, you must first be authorized by PSN. Fortunately, this is a fairly
+straightforward process.
 
-1. In your web browser, visit [https://www.playstation.com/](https://www.playstation.com/), click the "Sign In" button, and log in with a PSN account.
+1. In your web browser, visit [https://www.playstation.com/](https://www.playstation.com/), click the "Sign In" button,
+   and log in with a PSN account.
 
-2. In the same browser (due to a persisted cookie), visit [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie). You will see a JSON response that looks something like:
+2. In the same browser (due to a persisted cookie),
+   visit [https://ca.account.sony.com/api/v1/ssocookie](https://ca.account.sony.com/api/v1/ssocookie). You will see a
+   JSON response that looks something like:
 
 ```js
-{ "npsso": "<64 character token>" }
+{
+  "npsso"
+:
+  "<64 character token>"
+}
 ```
 
 Copy your NPSSO. **Do not expose it anywhere publicly, it is equivalent to your password.**
@@ -89,7 +97,8 @@ const accessCode = await exchangeNpssoForCode(myNpsso);
 const authorization = await exchangeCodeForAccessToken(accessCode);
 ```
 
-4. You should now be all set to use any endpoint provided by this package. Each function requires as its first argument an object containing your access token. ex:
+4. You should now be all set to use any endpoint provided by this package. Each function requires as its first argument
+   an object containing your access token. ex:
 
 ```ts
 const authorization = await exchangeCodeForAccessToken(accessCode);
@@ -107,18 +116,26 @@ Click the function names to open their complete docs on the docs site.
 
 ### Authentication
 
-- [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
-- [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange your NPSSO for an access code.
-- [`exchangeRefreshTokenForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangerefreshtokenforauthtokens) - Get a new access token using your refresh token (bypassing the need to constantly auth with your NPSSO).
+- [
+  `exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) -
+  Exchange your access code for access and refresh tokens.
+- [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange
+  your NPSSO for an access code.
+- [
+  `exchangeRefreshTokenForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangerefreshtokenforauthtokens) -
+  Get a new access token using your refresh token (bypassing the need to constantly auth with your NPSSO).
 
 ### Search
 
-- [`makeUniversalSearch()`](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch) - Search the PSN API. This is a good way to find a user's `accountId` from their username.
+- [`makeUniversalSearch()`](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch) - Search the
+  PSN API. This is a good way to find a user's `accountId` from their username.
 
 ### Users
 
-- [`getProfileFromUserName()`](https://psn-api.achievements.app/api-docs/users#getprofilefromusername) - Get a user's legacy profile from the username. Often used to check for legacy presence.
-- [`getProfileFromAccountId()`](https://psn-api.achievements.app/api-docs/users#getprofilefromaccountid) - Get a user's profile from the `accountId`.
+- [`getProfileFromUserName()`](https://psn-api.achievements.app/api-docs/users#getprofilefromusername) - Get a user's
+  legacy profile from the username. Often used to check for legacy presence.
+- [`getProfileFromAccountId()`](https://psn-api.achievements.app/api-docs/users#getprofilefromaccountid) - Get a user's
+  profile from the `accountId`.
 - [`getUserFriendsAccountIds()`](https://psn-api.achievements.app/api-docs/users#getuserfriendsaccountids) - Get a list
   of `accountId` values present on a target account's friends list.
 - [`getBasicPresence()`](https://psn-api.achievements.app/api-docs/users#getbasicpresence) - Get a user's basic presence
@@ -126,14 +143,26 @@ Click the function names to open their complete docs on the docs site.
 
 ### Trophies
 
-- [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the individual trophy details of a single or all trophy groups for a title.
-- [`getTitleTrophyGroups()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophygroups) - Get a list of trophy groups (typically the base set and DLCs) for a title.
-- [`getUserTitles()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertitles) - Retrieve a list of the titles associated with an account and a summary of trophies earned from them.
-- [`getUserTrophiesEarnedForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophiesearnedfortitle) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
-- [`getUserTrophyGroupEarningsForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophygroupearningsfortitle) - Get a summary of trophies earned for a user broken down by trophy group within a title.
-- [`getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
-- [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames) - Retrieve a list of recently played games for the user associated with the access token provided to this function.
-- [`getUserPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getuserplayedgames) - Retrieves a list of played games and playtime info (ordered by recency) associated with a user (either from token or external if privacy settings allow)
+- [`getTitleTrophies()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies) - Retrieve the
+  individual trophy details of a single or all trophy groups for a title.
+- [`getTitleTrophyGroups()`](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophygroups) - Get a list
+  of trophy groups (typically the base set and DLCs) for a title.
+- [`getUserTitles()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertitles) - Retrieve a list of the
+  titles associated with an account and a summary of trophies earned from them.
+- [
+  `getUserTrophiesEarnedForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophiesearnedfortitle) -
+  Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
+- [
+  `getUserTrophyGroupEarningsForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophygroupearningsfortitle) -
+  Get a summary of trophies earned for a user broken down by trophy group within a title.
+- [
+  `getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) -
+  Retrieve an overall summary of the number of trophies earned for a user broken down by type.
+- [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames) - Retrieve a list
+  of recently played games for the user associated with the access token provided to this function.
+- [`getUserPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getuserplayedgames) - Retrieves a list of
+  played games and playtime info (ordered by recency) associated with a user (either from token or external if privacy
+  settings allow).
 
 ## Examples
 
@@ -142,17 +171,20 @@ Click the function names to open their complete docs on the docs site.
 ## Projects Using psn-api
 
 - [PS5 MQTT](https://github.com/FunkeyFlo/ps5-mqtt) - Integrate your PlayStation 5 with Home Assistant.
-- [evanshortiss/README.md](https://github.com/evanshortiss/evanshortiss) - Auto-updating GitHub bio with recently played games list.
+- [evanshortiss/README.md](https://github.com/evanshortiss/evanshortiss) - Auto-updating GitHub bio with recently played
+  games list.
 
 ## Prior Art
 
 - [Tustin/psn-php](https://github.com/Tustin/psn-php) - A high-level PHP wrapper for the PSN API.
 - [isFakeAccount/psnawp](https://github.com/isFakeAccount/psnawp) - A high-level Python wrapper for the PSN API.
-- [andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN API by capturing the requests made by the PlayStation website.
+- [andshrew/PlayStation-Trophies](https://github.com/andshrew/PlayStation-Trophies/) - an attempt at documenting the PSN
+  API by capturing the requests made by the PlayStation website.
 
 ## Disclaimer
 
-This project is not intended to be used for spam or abuse. Please use this project to elevate the PlayStation Network experience, not damage it.
+This project is not intended to be used for spam or abuse. Please use this project to elevate the PlayStation Network
+experience, not damage it.
 
 ## Contributors
 

@@ -19,7 +19,6 @@ interface GetUserGamesOptions extends Pick<AllCallOptions, "limit" | "offset"> {
  *
  * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
  * @param accountId The account id to be queried. Use `"me"` for the authenticating account.
- * @param options
  */
 export async function getUserPlayedGames(
   authorization: AuthorizationPayload,

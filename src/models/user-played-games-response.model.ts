@@ -5,7 +5,7 @@ export interface UserPlayedGamesResponse {
    */
   titles: Array<{
     /**
-     * Id for the specific version of the game played by the user.
+     * ID for the specific version of the game played by the user.
      * @example "CUSA01433_00"
      */
     titleId: string;
@@ -54,7 +54,7 @@ export interface UserPlayedGamesResponse {
 
     /**
      * The concept is a single identifier for the various versions of a game.
-     * This object contains metadata including the conceptId and the various Title Ids for this game.
+     * This object contains metadata including the conceptId and the various Title IDs for this game.
      */
     concept: {
       /**
@@ -65,7 +65,7 @@ export interface UserPlayedGamesResponse {
       id: number;
 
       /**
-       * Various Title Ids for this game.
+       * Various Title IDs for this game.
        *
        * @example ["PPSA20599_00", "PPSA20549_00"]
        */
