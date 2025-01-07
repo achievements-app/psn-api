@@ -7,13 +7,10 @@ sidebar_position: 3
 
 ## getProfileFromUserName
 
-A call to this function will retrieve the profile of the username being requested. If the user cannot be found (either
-due to non-existence or privacy settings), an error will be thrown.
+A call to this function will retrieve the profile of the username being requested. If the user cannot be found (either due to non-existence or privacy settings), an error will be thrown.
 
 :::caution
-This is a legacy API endpoint function. If you are just trying to get a user's `accountId`, [
-`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) is recommended instead. This endpoint is here
-because it can return interesting presence information when the user is playing on a legacy console such as a PS3.
+This is a legacy API endpoint function. If you are just trying to get a user's `accountId`, [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) is recommended instead. This endpoint is here because it can return interesting presence information when the user is playing on a legacy console such as a PS3.
 :::
 
 ### Examples
@@ -31,7 +28,7 @@ const response = await getProfileFromUserName(authorization, "xelnia");
 The following properties are contained within a `profile` object that is returned.
 
 | Name                                      | Type                                                                                                                      | Description                                                                                                                                                                                                                                |
-|:------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :---------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `onlineId`                                | `string`                                                                                                                  | The account's online username.                                                                                                                                                                                                             |
 | `accountId`                               | `string`                                                                                                                  | The account's internal ID value, which can be used for numerous calls to the PSN API.                                                                                                                                                      |
 | `npId`                                    | `string`                                                                                                                  |                                                                                                                                                                                                                                            |
@@ -55,7 +52,7 @@ The following properties are contained within a `profile` object that is returne
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                |
-|:----------------|:----------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 | `userName`      | `string`                                                              | The username for the user you wish to retrieve a profile for.                                                              |
 
@@ -67,8 +64,7 @@ The following properties are contained within a `profile` object that is returne
 
 ## getProfileFromAccountId
 
-A call to this function will retrieve some of the profile information of the account ID being requested. If the
-account's profile cannot be found (either due to non-existence or privacy settings), an error will be thrown.
+A call to this function will retrieve some of the profile information of the account ID being requested. If the account's profile cannot be found (either due to non-existence or privacy settings), an error will be thrown.
 
 ### Examples
 
@@ -88,7 +84,7 @@ const response = await getProfileFromAccountId(
 The following properties are contained within a `profile` object that is returned.
 
 | Name                   | Type                                    | Description                                                        |
-|:-----------------------|:----------------------------------------|:-------------------------------------------------------------------|
+| :--------------------- | :-------------------------------------- | :----------------------------------------------------------------- |
 | `onlineId`             | `string`                                | The account's online username.                                     |
 | `aboutMe`              | `string`                                |                                                                    |
 | `avatars`              | `Array<{ size: string; url: string; }>` |                                                                    |
@@ -100,7 +96,7 @@ The following properties are contained within a `profile` object that is returne
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                |
-|:----------------|:----------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 | `accountId`     | `string`                                                              | The `accountId` for the user you wish to retrieve a profile for.                                                           |
 
@@ -112,12 +108,9 @@ The following properties are contained within a `profile` object that is returne
 
 ## getUserFriendsAccountIds
 
-A call to this function will retrieve the list of friended `accountId` values associated with the given `accountId`
-parameter. If the friends list cannot be retrieved (either due to the given `accountId` not existing or due to the
-user's privacy settings), an error will be thrown.
+A call to this function will retrieve the list of friended `accountId` values associated with the given `accountId` parameter. If the friends list cannot be retrieved (either due to the given `accountId` not existing or due to the user's privacy settings), an error will be thrown.
 
-To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can
-be used.
+To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used.
 
 ### Examples
 
@@ -153,7 +146,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 ### Returns
 
 | Name             | Type       | Description                                                            |
-|:-----------------|:-----------|:-----------------------------------------------------------------------|
+| :--------------- | :--------- | :--------------------------------------------------------------------- |
 | `friends`        | `string[]` | The `accountId` values of the users on the target user's friends list. |
 | `totalItemCount` | `number`   | The total number of friends on the target user's friends list.         |
 | `nextOffset`     | `number`   |                                                                        |
@@ -162,7 +155,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                                                                                                                    |
-|:----------------|:----------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                     |
 | `accountId`     | `string`                                                              | The account whose trophy list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
@@ -171,7 +164,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
 | Name     | Type     | Description                                  |
-|:---------|:---------|:---------------------------------------------|
+| :------- | :------- | :------------------------------------------- |
 | `limit`  | `number` | Limit the number of trophies returned.       |
 | `offset` | `number` | Return trophy data from this result onwards. |
 
@@ -201,7 +194,7 @@ const response = await getBasicPresence(authorization, "xelnia");
 The following properties are contained within a `basicPresence` object that is returned.
 
 | Name                  | Type                                                                                                                                                     | Description                                                                                                                                     |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `availability`        | `"unavailable" or "availableToPlay"`                                                                                                                     | The account's current availability.                                                                                                             |
 | `lastAvailableDate`   | `string`                                                                                                                                                 | The last date the account was available, if it's currently unavailable                                                                          |
 | `primaryPlatformInfo` | `{ onlineStatus: "online" or "offline"; platform: "ps4" or "PS5"; lastOnlineDate: string;}`                                                              | Details of the accpunt's primary platform, current status (online or offline), platform type (ps4 or PS5) and date the platform was last online |
@@ -213,7 +206,7 @@ The following properties are contained within a `basicPresence` object that is r
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
-|:----------------|:----------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
 | `accountId`     | `string`                                                              | The account whose presence is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
@@ -242,13 +235,13 @@ const recentlyPlayedGames = await getRecentlyPlayedGames(authorization, {
 ### Returns
 
 | Name                                   | Type                                                               | Description                    |
-|:---------------------------------------|:-------------------------------------------------------------------|:-------------------------------|
+| :------------------------------------- | :----------------------------------------------------------------- | :----------------------------- |
 | `data.gameLibraryTitlesRetrieve.games` | [RecentlyPlayedGame](/api-docs/data-models/recently-played-game)[] | List of recently played games. |
 
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                |
-|:----------------|:----------------------------------------------------------------------|:---------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
 
 ### Options
@@ -256,7 +249,7 @@ const recentlyPlayedGames = await getRecentlyPlayedGames(authorization, {
 These are the possible values that can be in the `options` object (the second parameter of the function).
 
 | Name         | Type       | Description                                                                                 |
-|:-------------|:-----------|:--------------------------------------------------------------------------------------------|
+| :----------- | :--------- | :------------------------------------------------------------------------------------------ |
 | `limit`      | `number`   | Limit the number of games returned. Defaults to 50.                                         |
 | `categories` | `string[]` | Limit the categories of games returned. Valid entries are `ps4_game` and `ps5_native_game`. |
 
@@ -268,8 +261,7 @@ These are the possible values that can be in the `options` object (the second pa
 
 ## getUserPlayedGames
 
-A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the
-`accountId` provided.  
+A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the `accountId` provided.  
 This is similar to [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames),
 but allows querying other user's games (if their privacy settings allow it) and returns detailed user playtime info.
 
@@ -291,7 +283,7 @@ const myPlayedGames = await getUserPlayedGames(authorization, "me");
 ### Returns
 
 | Name                                 | Type                                                              | Description                                                                                                                                                |
-|:-------------------------------------|:------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :----------------------------------- | :---------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `titles`                             | `object[]`                                                        | Individual object for each title returned.                                                                                                                 |
 | `titles.titleId`                     | `string`                                                          | Id for the specific version of the game played by the user. <br /> **Example:** `"CUSA01433_00"`                                                           |
 | `titles.name`                        | `string`                                                          | Name of the game. <br /> **Example:** `"Rocket League®"`                                                                                                   |
@@ -322,7 +314,7 @@ const myPlayedGames = await getUserPlayedGames(authorization, "me");
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                                                                                                                  |
-|:----------------|:----------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                   |
 | `accountId`     | `string`                                                              | The account whose game list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
@@ -331,7 +323,7 @@ const myPlayedGames = await getUserPlayedGames(authorization, "me");
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
 | Name         | Type     | Description                                                                                          |
-|:-------------|:---------|:-----------------------------------------------------------------------------------------------------|
+| :----------- | :------- | :--------------------------------------------------------------------------------------------------- |
 | `categories` | `string` | Comma separed list of platforms. <br /> **Example:** "ps4_game, ps5_native_game, pspc_game, unknown" |
 | `limit`      | `number` | Limit the number of games returned.                                                                  |
 | `offset`     | `number` | Return game list data from this result onwards.                                                      |
