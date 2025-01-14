@@ -164,7 +164,7 @@ const userFriendsAccountIds = await getUserFriendsAccountIds(
 These are the possible values that can be in the `options` object (the third parameter of the function).
 
 | Name     | Type     | Description                                  |
-|:---------|:---------|:---------------------------------------------|
+| :------- | :------- | :------------------------------------------- |
 | `limit`  | `number` | Limit the number of trophies returned.       |
 | `offset` | `number` | Return trophy data from this result onwards. |
 
@@ -194,7 +194,7 @@ const response = await getBasicPresence(authorization, "xelnia");
 The following properties are contained within a `basicPresence` object that is returned.
 
 | Name                  | Type                                                                                                                                                     | Description                                                                                                                                     |
-|:----------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `availability`        | `"unavailable" or "availableToPlay"`                                                                                                                     | The account's current availability.                                                                                                             |
 | `lastAvailableDate`   | `string`                                                                                                                                                 | The last date the account was available, if it's currently unavailable                                                                          |
 | `primaryPlatformInfo` | `{ onlineStatus: "online" or "offline"; platform: "ps4" or "PS5"; lastOnlineDate: string;}`                                                              | Details of the accpunt's primary platform, current status (online or offline), platform type (ps4 or PS5) and date the platform was last online |
@@ -206,7 +206,7 @@ The following properties are contained within a `basicPresence` object that is r
 ### Parameters
 
 | Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
-|:----------------|:----------------------------------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| :-------------- | :-------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
 | `accountId`     | `string`                                                              | The account whose presence is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
@@ -256,3 +256,78 @@ These are the possible values that can be in the `options` object (the second pa
 ### Source
 
 [graphql/getRecentlyPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/graphql/getRecentlyPlayedGames.ts)
+
+---
+
+## getUserPlayedGames
+
+A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the `accountId` provided.  
+This is similar to [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames),
+but allows querying other user's games (if their privacy settings allow it) and returns detailed user playtime info.
+
+### Examples
+
+```ts
+import { getUserPlayedGames } from "psn-api";
+
+// May fail if user privacy settings prohibit listing
+const userPlayedGames = await getUserPlayedGames(
+  authorization,
+  "2984038888603282554"
+);
+
+// Retrieves list of games from user associated with `authorization.accessToken`.
+const myPlayedGames = await getUserPlayedGames(authorization, "me");
+```
+
+### Returns
+
+| Name                                 | Type                                                              | Description                                                                                                                                                |
+| :----------------------------------- | :---------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `titles`                             | `object[]`                                                        | Individual object for each title returned.                                                                                                                 |
+| `titles.titleId`                     | `string`                                                          | Id for the specific version of the game played by the user. <br /> **Example:** `"CUSA01433_00"`                                                           |
+| `titles.name`                        | `string`                                                          | Name of the game. <br /> **Example:** `"Rocket League®"`                                                                                                   |
+| `titles.localizedName`               | `string`                                                          | Name of the game (localized). <br /> **Example:** `"Rocket League®"`                                                                                       |
+| `titles.imageUrl`                    | `string`                                                          | URL for the game icon. <br /> **Example:** `"https://image..."`                                                                                            |
+| `titles.localizedImageUrl`           | `string`                                                          | URL for the game icon (localized). <br /> **Example:** `"https://image..."`                                                                                |
+| `titles.category`                    | `"ps4_game" \| "ps5_native_game" \| "pspc_game" \| "unknown"`     | Type of game. <br /> **Example:** `"ps4_game"`                                                                                                             |
+| `titles.service`                     | `"none" \| "none_purchased" \| "ps_plus"`                         | Is the game owned outright, or via a service entitlement. <br /> **Example:** `"none"`                                                                     |
+| `titles.playCount`                   | `number`                                                          | Number of times the game has been played. <br /> **Example:** `100`                                                                                        |
+| `titles.concept`                     | `object`                                                          | The concept is a single identifier for the various versions of a game.                                                                                     |
+| `titles.concept.id`                  | `number`                                                          | Identifier for the concept. <br /> **Example:** `10009763`                                                                                                 |
+| `titles.concept.titleIds`            | `string[]`                                                        | Various Title Ids for this game. <br /> **Example:** `["PPSA20599_00", "PPSA20549_00"]`                                                                    |
+| `titles.concept.name`                | `string`                                                          | Name of the game concept. <br /> **Example:** `"Zenless Zone Zero"`                                                                                        |
+| `titles.concept.media`               | `{ audios: any[]; videos: any[]; images: Image[] }`               | Media related to the game concept, including images, videos, and audios.                                                                                   |
+| `titles.concept.media.images`        | `{ url: string; format: string; type: string }[]`                 | Array of images associated with the game concept.                                                                                                          |
+| `titles.concept.media.images.url`    | `string`                                                          | URL of the image. <br /> **Example:** `"https://image.api.playstation.com/vulcan/ap/rnd/202405/2210/4126b58375cb32a51dfdbfde8637daae8b971c3b10c3bc80.jpg"` |
+| `titles.concept.media.images.format` | `string`                                                          | Format of the image. <br /> **Example:** `"UNKNOWN"`                                                                                                       |
+| `titles.concept.media.images.type`   | `string`                                                          | Type of the image. <br /> **Example:** `"FOUR_BY_THREE_BANNER"`                                                                                            |
+| `titles.media`                       | `{ screenshotUrl?: string; [key: string]: string \| undefined; }` | This object contains various URLs for screenshots and other media associated with the game. <br /> **Example:** `{ screenshotUrl: "https://image..." }`    |
+| `titles.media.screenshotUrl`         | `string`                                                          | Screenshot URL. <br /> **Example:** `"https://image..."`                                                                                                   |
+| `titles.firstPlayedDateTime`         | `string`                                                          | Date the game was first played. <br /> **Example:** `"2015-07-10T19:40:19Z"`                                                                               |
+| `titles.lastPlayedDateTime`          | `string`                                                          | Date the game was most recently played. <br /> **Example:** `"2024-08-03T19:28:27.12Z"`                                                                    |
+| `titles.playDuration`                | `string`                                                          | Time played accurate to 1 second. <br /> **Example:** `"PT228H56M33S"`                                                                                     |
+| `totalItemCount`                     | `number`                                                          | The total number of game titles for this account. <br /> **Example:** `300`                                                                                |
+| `nextOffset`                         | `number`                                                          | Pagination info. <br /> **Example:** `20`                                                                                                                  |
+| `previousOffset`                     | `number`                                                          | Pagination info. <br /> **Example:** `299`                                                                                                                 |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                  |
+| :-------------- | :-------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                   |
+| `accountId`     | `string`                                                              | The account whose game list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the third parameter of the function).
+
+| Name         | Type     | Description                                                                                          |
+| :----------- | :------- | :--------------------------------------------------------------------------------------------------- |
+| `categories` | `string` | Comma separed list of platforms. <br /> **Example:** "ps4_game, ps5_native_game, pspc_game, unknown" |
+| `limit`      | `number` | Limit the number of games returned.                                                                  |
+| `offset`     | `number` | Return game list data from this result onwards.                                                      |
+
+### Source
+
+[user/getUserPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserPlayedGames.ts)
