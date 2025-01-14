@@ -101,6 +101,16 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Lamarcke",
+      "name": "Cássio Lamarck",
+      "avatar_url": "https://avatars.githubusercontent.com/u/23425058?v=4",
+      "profile": "https://lamarcke.github.io",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
