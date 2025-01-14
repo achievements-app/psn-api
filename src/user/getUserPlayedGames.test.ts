@@ -43,8 +43,10 @@ describe("Function: getUserPlayedGames", () => {
       })
     );
 
+    // ACT
     const response = await getUserPlayedGames(mockAuthorization, "me");
 
+    // ASSERT
     expect(response).toEqual(mockResponse);
   });
 });
