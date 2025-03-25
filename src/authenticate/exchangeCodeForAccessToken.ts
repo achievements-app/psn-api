@@ -4,7 +4,7 @@ import type { AuthTokensResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
 /**
- * @param accessCode Your access code, typically retrieved by using `exchangeNpssoForCode()`.
+ * @param accessCode Your access code, typically retrieved by using `exchangeNpssoForAccessCode()`.
  * @returns An object containing an access token, refresh token, and expiry times for both.
  */
 export const exchangeCodeForAccessToken = async (

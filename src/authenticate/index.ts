@@ -1,3 +1,3 @@
 export * from "./exchangeCodeForAccessToken";
-export * from "./exchangeNpssoForCode";
+export * from "./exchangeNpssoForAccessCode";
 export * from "./exchangeRefreshTokenForAuthTokens";

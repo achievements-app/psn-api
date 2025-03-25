@@ -2,11 +2,11 @@ import { rest } from "msw";
 import { setupServer } from "msw/node";
 
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
-import { exchangeNpssoForCode } from "./exchangeNpssoForCode";
+import { exchangeNpssoForAccessCode } from "./exchangeNpssoForAccessCode";
 
 const server = setupServer();
 
-describe("Function: exchangeNpssoForCode", () => {
+describe("Function: exchangeNpssoForAccessCode", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -14,7 +14,7 @@ describe("Function: exchangeNpssoForCode", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(exchangeNpssoForCode).toBeDefined();
+    expect(exchangeNpssoForAccessCode).toBeDefined();
   });
 
   it("can make a call to exchange an NPSSO token for an access code", async () => {
@@ -32,7 +32,7 @@ describe("Function: exchangeNpssoForCode", () => {
     );
 
     // ACT
-    const code = await exchangeNpssoForCode("mockNpsso");
+    const code = await exchangeNpssoForAccessCode("mockNpsso");
 
     // ASSERT
     expect(code).toEqual(mockCode);
@@ -47,6 +47,6 @@ describe("Function: exchangeNpssoForCode", () => {
     );
 
     // ASSERT
-    await expect(exchangeNpssoForCode("mockNpsso")).rejects.toThrow();
+    await expect(exchangeNpssoForAccessCode("mockNpsso")).rejects.toThrow();
   });
 });

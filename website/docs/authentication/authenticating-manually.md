@@ -45,7 +45,7 @@ You can now obtain an access token and a refresh token using your NPSSO with the
 const myNpsso = "<64 character token>";
 
 // We'll exchange your NPSSO for a special access code.
-const accessCode = await exchangeNpssoForCode(npsso);
+const accessCode = await exchangeNpssoForAccessCode(npsso);
 
 // 🚀 We can use the access code to get your access token and refresh token.
 const authorization = await exchangeCodeForAccessToken(accessCode);
@@ -53,5 +53,5 @@ const authorization = await exchangeCodeForAccessToken(accessCode);
 
 ## API
 
-- [exchangeNpssoForCode](/api-docs/authentication#exchangenpssoforcode)
+- [exchangeNpssoForAccessCode](/api-docs/authentication#exchangenpssoforaccesscode)
 - [exchangeCodeForAccessToken](/api-docs/authentication#exchangecodeforaccesstoken)

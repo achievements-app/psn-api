@@ -83,7 +83,7 @@ If you see an error response, try using different browser.
 const myNpsso = "<64 character token>";
 
 // We'll exchange your NPSSO for a special access code.
-const accessCode = await exchangeNpssoForCode(myNpsso);
+const accessCode = await exchangeNpssoForAccessCode(myNpsso);
 
 // We can use the access code to get your access token and refresh token.
 const authorization = await exchangeCodeForAccessToken(accessCode);
@@ -108,7 +108,7 @@ Click the function names to open their complete docs on the docs site.
 ### Authentication
 
 - [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
-- [`exchangeNpssoForCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforcode) - Exchange your NPSSO for an access code.
+- [`exchangeNpssoForAccessCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforaccesscode) - Exchange your NPSSO for an access code.
 - [`exchangeRefreshTokenForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangerefreshtokenforauthtokens) - Get a new access token using your refresh token (bypassing the need to constantly auth with your NPSSO).
 
 ### Search

@@ -43,16 +43,16 @@ An `AuthTokenResponse` object, containing the following properties:
 
 ---
 
-## exchangeNpssoForCode
+## exchangeNpssoForAccessCode
 
 This function lets you exchange your NPSSO token for an access code. If you do not have an NPSSO, see the guide on [authenticating manually](/authentication/authenticating-manually).
 
 ### Example
 
 ```ts
-import { exchangeNpssoForCode } from "psn-api";
+import { exchangeNpssoForAccessCode } from "psn-api";
 
-const accessCode = await exchangeNpssoForCode("<my 64-digit NPSSO>");
+const accessCode = await exchangeNpssoForAccessCode("<my 64-digit NPSSO>");
 
 console.log(accessCode); // --> "v3.ABCDEF"
 ```
@@ -71,7 +71,7 @@ An access code, which can be exchanged for access and refresh tokens with [excha
 
 ### Source
 
-[authenticate/exchangeNpssoForCode.ts](https://github.com/wescopeland/psn-api/blob/main/src/authenticate/exchangeNpssoForCode.ts)
+[authenticate/exchangeNpssoForAccessCode.ts](https://github.com/wescopeland/psn-api/blob/main/src/authenticate/exchangeNpssoForAccessCode.ts)
 
 ## exchangeRefreshTokenForAuthTokens
 
@@ -84,7 +84,7 @@ import { exchangeRefreshTokenForAuthTokens } from "psn-api";
 
 // Let's assume at some point in history
 // we've done the below initial log in.
-const accessCode = await exchangeNpssoForCode(npsso);
+const accessCode = await exchangeNpssoForAccessCode(npsso);
 const authorization = await exchangeCodeForAccessToken(accessCode);
 
 // Now, let's pretend `authorization.accessToken` has expired.
