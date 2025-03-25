@@ -38,7 +38,7 @@ type GetUserTitlesOptions = Pick<
  * so the first result will be the title for which a trophy was most recently earned
  * (or synced for the first time in the case of a game with 0% progress).
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param options.limit Limit the number of titles returned.
  * @param options.offset Return title data from this result onwards.

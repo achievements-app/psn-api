@@ -23,7 +23,7 @@ type GetTitleTrophiesOptions = Pick<
  * When the title platform is PS3, PS4 or PS Vita you __must__ specify the
  * `npServiceName` parameter as `"trophy"`.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param npCommunicationId Unique ID of the title.
  * @param trophyGroupId `"all"` to return all trophies for the title, otherwise restrict results to a specific trophy group (such as a DLC).
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.

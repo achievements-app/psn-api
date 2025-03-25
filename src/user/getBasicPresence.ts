@@ -14,7 +14,7 @@ type GetBasicPresenceOptions = Pick<AllCallOptions, "headerOverrides">;
  * If the account's profile cannot be found (either due to non-existence or privacy settings),
  * an error will be thrown.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param accountId The accountId for the user you wish to retrieve a profile for.
  * @param options Optional - Additional headerOverride options to provide for the request
  */

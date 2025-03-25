@@ -14,7 +14,7 @@ import { call } from "../utils/call";
  * is recommended instead. This endpoint is here because it can return interesting
  * presence information when the user is playing on a legacy console such as a PS3.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param userName The username for the user you wish to retrieve a profile for.
  */
 export const getProfileFromUserName = async (

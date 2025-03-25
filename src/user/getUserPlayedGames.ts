@@ -17,7 +17,7 @@ interface GetUserGamesOptions extends Pick<AllCallOptions, "limit" | "offset"> {
  * The list is sorted by recently played by default.
  * If the list cannot be found (either due to non-existence or privacy settings), an error will be thrown.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param accountId The account id to be queried. Use `"me"` for the authenticating account.
  */
 export async function getUserPlayedGames(

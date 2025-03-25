@@ -18,7 +18,7 @@ type GetRecentlyPlayedGamesOptions = Pick<AllCallOptions, "limit"> & {
  *
  * This is useful if you want recent activity that isn't tied to trophy progress.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  */
 export const getRecentlyPlayedGames = async (
   authorization: AuthorizationPayload,

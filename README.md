@@ -86,13 +86,13 @@ const myNpsso = "<64 character token>";
 const accessCode = await exchangeNpssoForAccessCode(myNpsso);
 
 // We can use the access code to get your access token and refresh token.
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 ```
 
 4. You should now be all set to use any endpoint provided by this package. Each function requires as its first argument an object containing your access token. ex:
 
 ```ts
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
 // This returns a list of all the games you've earned trophies for.
 const userTitlesResponse = await getUserTitles(
@@ -107,7 +107,7 @@ Click the function names to open their complete docs on the docs site.
 
 ### Authentication
 
-- [`exchangeCodeForAccessToken()`](https://psn-api.achievements.app/api-docs/authentication#exchangecodeforaccesstoken) - Exchange your access code for access and refresh tokens.
+- [`exchangeAccessCodeForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangeaccesscodeforauthtokens) - Exchange your access code for access and refresh tokens.
 - [`exchangeNpssoForAccessCode()`](https://psn-api.achievements.app/api-docs/authentication#exchangenpssoforaccesscode) - Exchange your NPSSO for an access code.
 - [`exchangeRefreshTokenForAuthTokens()`](https://psn-api.achievements.app/api-docs/authentication#exchangerefreshtokenforauthtokens) - Get a new access token using your refresh token (bypassing the need to constantly auth with your NPSSO).
 

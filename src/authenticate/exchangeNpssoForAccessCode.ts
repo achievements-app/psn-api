@@ -5,7 +5,7 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 /**
  *
  * @param npssoToken Your NPSSO token, retrieved from https://ca.account.sony.com/api/v1/ssocookie
- * @returns An access code, which can be exchanged for an access token using `exchangeCodeForAccessToken`.
+ * @returns An access code, which can be exchanged for an access token using `exchangeAccessCodeForAuthTokens`.
  * @example
  * ```ts
  * const code = await exchangeNpssoForAccessCode("myNpssoToken");

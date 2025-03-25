@@ -36,7 +36,7 @@ const myNpsso = "<64 character token>";
 const accessCode = await exchangeNpssoForAccessCode(npsso);
 
 // 🚀 We can use the access code to get your access token and refresh token.
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 ```
 
 4. You now have all you need to use any function in the API. Each function takes this authorization object as its first argument. **To be more precise, the functions are looking for your `accessToken` value.** Here's an example:
