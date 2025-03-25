@@ -111,6 +111,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Dev-R",
+      "name": "R",
+      "avatar_url": "https://avatars.githubusercontent.com/u/83784102?v=4",
+      "profile": "https://github.com/Dev-R",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
