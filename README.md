@@ -45,7 +45,7 @@
 
 ## Documentation
 
-Learn how to authenticate and start pulling data from the PlayStation Network on our documentation website.
+Learn how to authenticate and start fetching data from the PlayStation Network on our documentation website.
 
 - [Get started](https://psn-api.achievements.app/get-started)
 - [How to authenticate](https://psn-api.achievements.app/authentication/authenticating-manually)
