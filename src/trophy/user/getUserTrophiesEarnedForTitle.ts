@@ -38,7 +38,7 @@ type GetUserTrophiesEarnedForTitleOptions = Pick<
  * with their account (ie. the title has not been launched and allowed to
  * sync at least once) then a Resource Not Found error will be thrown.
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param accountId The account whose trophy list is being accessed. Use `"me"` for the authenticating account.
  * @param npCommunicationId Unique ID of the title.
  * @param trophyGroupId `"all"` to return all trophies for the title, otherwise restrict results to a specific trophy group (such as a DLC).

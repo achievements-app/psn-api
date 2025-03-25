@@ -17,7 +17,7 @@
  * able to either.
  */
 import {
-  exchangeCodeForAccessToken,
+  exchangeAccessCodeForAuthTokens,
   exchangeNpssoForAccessCode,
   getUserTitles
 } from "./index";
@@ -37,7 +37,7 @@ async function main() {
   }
 
   const accessCode = await exchangeNpssoForAccessCode(myNpsso);
-  const authorization = await exchangeCodeForAccessToken(accessCode);
+  const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
   const userTitlesResponse = await getUserTitles(
     { accessToken: authorization.accessToken },

@@ -6,7 +6,7 @@ For security reasons, access tokens are short-lived and expire relatively quickl
 
 ## The refresh token usage flow
 
-1. Before using a psn-api function, you check `expiresIn` (returned from [`exchangeCodeForAccessToken()`](/api-docs/authentication#exchangecodeforaccesstoken)) to see if your current `accessToken` is expired.
+1. Before using a psn-api function, you check `expiresIn` (returned from [`exchangeAccessCodeForAuthTokens()`](/api-docs/authentication#exchangeaccesscodeforauthtokens)) to see if your current `accessToken` is expired.
 
 2. If it's expired, you use [`exchangeRefreshTokenForAuthTokens()`](/api-docs/authentication#exchangerefreshtokenforauthtokens) to get a new access token.
 
@@ -21,7 +21,7 @@ psn-api is unopinionated about how you store access and refresh tokens &mdash; _
 ```ts
 // We're going to be working with the authorization object
 // returned from this function we used when we first authenticated.
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
 // We'll take the `expiresIn` value and convert it to an
 // ISO date string (eg- "2021-11-02T01:02:03.246Z").
@@ -41,7 +41,7 @@ const isAccessTokenExpired = new Date(expirationDate).getTime() < now.getTime();
 if (isAccessTokenExpired) {
   // We'll use our refresh token to get a new access token.
   // Assuming success, this function returns an auth object
-  // with the same shape as the response from `exchangeCodeForAccessToken()`.
+  // with the same shape as the response from `exchangeAccessCodeForAuthTokens()`.
   const updatedAuthorization = await exchangeRefreshTokenForAuthTokens(
     authorization.refreshToken
   );

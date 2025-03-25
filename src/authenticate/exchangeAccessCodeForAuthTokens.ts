@@ -7,7 +7,7 @@ import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
  * @param accessCode Your access code, typically retrieved by using `exchangeNpssoForAccessCode()`.
  * @returns An object containing an access token, refresh token, and expiry times for both.
  */
-export const exchangeCodeForAccessToken = async (
+export const exchangeAccessCodeForAuthTokens = async (
   accessCode: string
 ): Promise<AuthTokensResponse> => {
   const requestUrl = `${AUTH_BASE_URL}/token`;
@@ -39,3 +39,8 @@ export const exchangeCodeForAccessToken = async (
     tokenType: raw.token_type
   };
 };
+
+/**
+ * @deprecated Use `exchangeAccessCodeForAuthTokens` instead. This alias will be removed in a future version.
+ */
+export const exchangeCodeForAccessToken = exchangeAccessCodeForAuthTokens;

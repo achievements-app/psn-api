@@ -5,16 +5,16 @@ sidebar_position: 1
 
 # Authentication API
 
-## exchangeCodeForAccessToken
+## exchangeAccessCodeForAuthTokens
 
 This function lets you exchange your access code for access and refresh tokens. If you do not have an access code, see the guide on [authenticating manually](/authentication/authenticating-manually).
 
 ### Example
 
 ```ts
-import { exchangeCodeForAccessToken } from "psn-api";
+import { exchangeAccessCodeForAuthTokens } from "psn-api";
 
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 ```
 
 ### Parameters
@@ -39,7 +39,7 @@ An `AuthTokenResponse` object, containing the following properties:
 
 ### Source
 
-[authenticate/exchangeCodeForAccessToken.ts](https://github.com/achievements-app/psn-api/blob/main/src/authenticate/exchangeCodeForAccessToken.ts)
+[authenticate/exchangeAccessCodeForAuthTokens.ts](https://github.com/achievements-app/psn-api/blob/main/src/authenticate/exchangeAccessCodeForAuthTokens.ts)
 
 ---
 
@@ -67,7 +67,7 @@ console.log(accessCode); // --> "v3.ABCDEF"
 
 `Promise<string>`
 
-An access code, which can be exchanged for access and refresh tokens with [exchangeCodeForAccessToken()](/api-docs/authentication#exchangecodeforaccesstoken).
+An access code, which can be exchanged for access and refresh tokens with [exchangeAccessCodeForAuthTokens()](/api-docs/authentication#exchangeaccesscodeforauthtokens).
 
 ### Source
 
@@ -85,7 +85,7 @@ import { exchangeRefreshTokenForAuthTokens } from "psn-api";
 // Let's assume at some point in history
 // we've done the below initial log in.
 const accessCode = await exchangeNpssoForAccessCode(npsso);
-const authorization = await exchangeCodeForAccessToken(accessCode);
+const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
 // Now, let's pretend `authorization.accessToken` has expired.
 // Rather than using the above process (via NPSSO) to get a new one,

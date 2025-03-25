@@ -17,7 +17,7 @@ import fs from "fs";
 
 import type { Trophy } from "psn-api";
 import {
-  exchangeCodeForAccessToken,
+  exchangeAccessCodeForAuthTokens,
   exchangeNpssoForAccessCode,
   getTitleTrophies,
   getUserTitles,
@@ -30,7 +30,7 @@ async function main() {
   // 1. Authenticate and become authorized with PSN.
   // See the Authenticating Manually docs for how to get your NPSSO.
   const accessCode = await exchangeNpssoForAccessCode(process.env["NPSSO"]);
-  const authorization = await exchangeCodeForAccessToken(accessCode);
+  const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
   // 2. Get the user's `accountId` from the username.
   const allAccountsSearchResults = await makeUniversalSearch(

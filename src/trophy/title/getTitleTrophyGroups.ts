@@ -22,7 +22,7 @@ type GetTitleTrophyGroupsOptions = Pick<
  * This also includes a summary of the number of trophies for the
  * title, broken down by group and grade (gold, silver, etc.).
  *
- * @param authorization An object containing your access token, typically retrieved with `exchangeCodeForAccessToken()`.
+ * @param authorization An object containing your access token, typically retrieved with `exchangeAccessCodeForAuthTokens()`.
  * @param npCommunicationId The unique ID of the game title you wish to retrieve the trophy groups list for.
  * @param options.npServiceName `"trophy"` for PS3, PS4, or PS Vita platforms. `"trophy2"` for the PS5 platform.
  * @param options.headerOverrides Override the headers in the request to the PSN API, such as to change the language.

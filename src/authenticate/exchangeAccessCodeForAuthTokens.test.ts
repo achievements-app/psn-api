@@ -3,11 +3,11 @@ import { setupServer } from "msw/node";
 
 import type { AuthTokensResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
-import { exchangeCodeForAccessToken } from "./exchangeCodeForAccessToken";
+import { exchangeAccessCodeForAuthTokens } from "./exchangeAccessCodeForAuthTokens";
 
 const server = setupServer();
 
-describe("Function: exchangeCodeForAccessToken", () => {
+describe("Function: exchangeAccessCodeForAuthTokens", () => {
   // MSW Setup
   beforeAll(() => server.listen());
   afterEach(() => server.resetHandlers());
@@ -15,7 +15,7 @@ describe("Function: exchangeCodeForAccessToken", () => {
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(exchangeCodeForAccessToken).toBeDefined();
+    expect(exchangeAccessCodeForAuthTokens).toBeDefined();
   });
 
   it("makes a call to exchange an access code for a set of OAuth tokens", async () => {
@@ -48,7 +48,7 @@ describe("Function: exchangeCodeForAccessToken", () => {
     );
 
     // ACT
-    const tokenResponse = await exchangeCodeForAccessToken("mockAccessCode");
+    const tokenResponse = await exchangeAccessCodeForAuthTokens("mockAccessCode");
 
     // ASSERT
     expect(tokenResponse).toEqual(mockAuthTokensResponse);
