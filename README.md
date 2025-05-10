@@ -20,14 +20,6 @@
   <a href="https://github.com/semantic-release/semantic-release">
     <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release" />
   </a>
-
-  <a href="https://codeclimate.com/github/achievements-app/psn-api/maintainability">
-    <img src="https://api.codeclimate.com/v1/badges/0722cac09757ab9dc67b/maintainability" />
-  </a>
-
-  <a href="https://codeclimate.com/github/achievements-app/psn-api/test_coverage">
-    <img src="https://api.codeclimate.com/v1/badges/0722cac09757ab9dc67b/test_coverage" />
-  </a>
 </p>
 
 <hr />
