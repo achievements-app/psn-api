@@ -122,3 +122,6 @@ dist
 website/node_modules
 website/.docusaurus
 website/build
+
+# Claude Code
+**/.claude/settings.local.json
