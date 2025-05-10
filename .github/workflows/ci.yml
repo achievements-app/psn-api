@@ -31,11 +31,11 @@ jobs:
         check: ["lint", "test", "build"]
         include:
           - check: lint
-            command: yarn lint
+            command: pnpm lint
           - check: test
-            command: yarn test --ci --coverage --maxWorkers=2
+            command: pnpm test --ci --coverage --maxWorkers=2
           - check: build
-            command: yarn build
+            command: pnpm build
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
           node-version: "20"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install --frozen-lockfile --prefer-offline
 
       - name: Run ${{ matrix.check }}
         run: ${{ matrix.command }}
