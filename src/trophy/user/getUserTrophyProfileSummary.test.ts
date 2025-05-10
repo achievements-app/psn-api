@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -9,13 +8,10 @@ import { generateTrophyCounts } from "../../test/generators";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserTrophyProfileSummary } from "./getUserTrophyProfileSummary";
 
-const server = setupServer();
-
 describe("Function: getUserTrophyProfileSummary", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -38,14 +34,14 @@ describe("Function: getUserTrophyProfileSummary", () => {
       earnedTrophies: generateTrophyCounts()
     };
 
-    server.use(
-      rest.get(
-        `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/trophySummary`,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    const baseUrlObj = new URL(TROPHY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/v1/users/${mockAccountId}/trophySummary`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getUserTrophyProfileSummary(

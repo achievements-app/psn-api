@@ -1,18 +1,14 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type { AuthorizationPayload } from "../models";
 import { UserPlayedGamesResponse } from "../models/user-played-games-response.model";
 import { getUserPlayedGames } from "./getUserPlayedGames";
 import { USER_GAMES_BASE_URL } from "./USER_BASE_URL";
 
-const server = setupServer();
-
 describe("Function: getUserPlayedGames", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     expect(getUserPlayedGames).toBeDefined();
@@ -37,11 +33,15 @@ describe("Function: getUserPlayedGames", () => {
       previousOffset: 0
     };
 
-    server.use(
-      rest.get(`${USER_GAMES_BASE_URL}/me/titles`, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    // ... extract the base URL and path from USER_GAMES_BASE_URL ...
+    const baseUrlObj = new URL(USER_GAMES_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/me/titles`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getUserPlayedGames(mockAuthorization, "me");

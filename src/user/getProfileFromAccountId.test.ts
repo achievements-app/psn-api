@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -8,20 +7,17 @@ import type {
 import { getProfileFromAccountId } from "./getProfileFromAccountId";
 import { USER_BASE_URL } from "./USER_BASE_URL";
 
-const server = setupServer();
-
-describe("Function: getProfileFromUserName", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+describe("Function: getProfileFromAccountId", () => {
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
     expect(getProfileFromAccountId).toBeDefined();
   });
 
-  it("retrieves the profile for a given username", async () => {
+  it("retrieves the profile for a given account id", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
@@ -42,14 +38,14 @@ describe("Function: getProfileFromUserName", () => {
       ]
     };
 
-    server.use(
-      rest.get(
-        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/profiles",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/111222333444/profiles`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getProfileFromAccountId(
@@ -71,11 +67,14 @@ describe("Function: getProfileFromUserName", () => {
       error: { code: 2_105_356, message: "User not found (user: 'xeln12ia')" }
     };
 
-    server.use(
-      rest.get(`${USER_BASE_URL}/111222333444/profiles`, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/111222333444/profiles`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ASSERT
     await expect(

@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -7,13 +6,10 @@ import type {
 } from "../models";
 import { getProfileFromUserName } from "./getProfileFromUserName";
 
-const server = setupServer();
-
 describe("Function: getProfileFromUserName", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -58,14 +54,10 @@ describe("Function: getProfileFromUserName", () => {
       }
     };
 
-    server.use(
-      rest.get(
-        "https://us-prof.np.community.playstation.net/userProfile/v1/users/xelnia/profile2",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    nock("https://us-prof.np.community.playstation.net")
+      .get("/userProfile/v1/users/xelnia/profile2")
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getProfileFromUserName(mockAuthorization, "xelnia");
@@ -84,14 +76,10 @@ describe("Function: getProfileFromUserName", () => {
       error: { code: 2_105_356, message: "User not found (user: 'xeln12ia')" }
     };
 
-    server.use(
-      rest.get(
-        "https://us-prof.np.community.playstation.net/userProfile/v1/users/xeln12ia/profile2",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    nock("https://us-prof.np.community.playstation.net")
+      .get("/userProfile/v1/users/xeln12ia/profile2")
+      .query(true)
+      .reply(200, mockResponse);
 
     // ASSERT
     await expect(
