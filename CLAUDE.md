@@ -2,118 +2,92 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
-## Project Description
+## Project Overview
 
-psn-api is a JavaScript library that allows developers to interact with the PlayStation Network API. It provides functionality to retrieve trophy data, user information, and game data from PSN.
+psn-api is a JavaScript library that provides access to PlayStation Network data including trophies, user profiles, and game information. It's designed to be modular, supports tree-shaking, and works in both Node.js and browser environments.
 
-## Commands
-
-### Setup and Installation
+## Development Commands
 
 ```bash
-# Clone the repository and install dependencies
-git clone https://github.com/achievements-app/psn-api.git
-cd psn-api
-yarn
-```
+# Install dependencies
+pnpm i
 
-### Development
+# Run development mode with watch
+pnpm dev
 
-```bash
-# Start development mode with watch
-yarn dev
+# Run the playground file (for testing)
+pnpm playground
 
-# Run the playground file with auto-reload
-yarn playground
-```
+# Run tests
+pnpm test
 
-### Testing
+# Run tests with coverage
+pnpm test:coverage
 
-```bash
-# Run all unit tests
-yarn test
-
-# Run tests with coverage report
-yarn test:coverage
-
-# Run a specific test file
-jest path/to/testfile.test.ts
-```
-
-### Code Quality and Building
-
-```bash
 # Format code
-yarn format
+pnpm format
+pnpm format:write
+pnpm format:check
 
-# Check formatting
-yarn format:check
-
-# Run linter
-yarn lint
-
-# Fix linting issues
-yarn lint:fix
+# Lint code
+pnpm lint
+pnpm lint:fix
 
 # Build the project
-yarn build
+pnpm build
+
+# Verify everything (format, lint, test, build, size)
+pnpm verify
 
 # Check bundle size
-yarn size
-
-# Analyze bundle size
-yarn analyze
-
-# Verify project (format check, lint, test, build, and size)
-yarn verify
+pnpm size
+pnpm analyze
 ```
 
-## Architecture
+## Project Structure
 
-psn-api is organized into several modules, each handling a specific part of the PlayStation Network API:
+- `src/` - Source code
+  - `authenticate/` - Authentication-related functions
+  - `graphql/` - GraphQL API interactions
+  - `models/` - TypeScript interfaces and types
+  - `search/` - Search-related functions
+  - `trophy/` - Trophy-related functions
+    - `title/` - Game/title trophy functions
+    - `user/` - User trophy functions
+  - `user/` - User-related functions
+  - `utils/` - Utility functions for API calls
 
-1. **Authentication (`src/authenticate/`)** - Handles PSN authentication flow:
+## Testing
 
-   - Exchange NPSSO token for access code
-   - Exchange access code for auth tokens
-   - Refresh authentication tokens
+Tests are written using Jest. Each API function has a corresponding `.test.ts` file. The project maintains 100% test coverage for branches, functions, lines, and statements.
 
-2. **User (`src/user/`)** - Access user profile information:
+To run a single test file:
 
-   - Get user profiles by username or account ID
-   - Get user friends
-   - Get user presence information
-   - Get user played games
+```bash
+pnpm test -- -t "name of test or test file"
+```
 
-3. **Trophy (`src/trophy/`)** - Interact with PlayStation trophies:
+## Code Conventions
 
-   - Get title trophies and trophy groups
-   - Get user's earned trophies
-   - Get user's trophy profile summary
+1. All API functions follow a similar pattern:
 
-4. **Search (`src/search/`)** - Universal search functionality for PSN
+   - They accept an authorization object as their first parameter
+   - Additional parameters follow
+   - Each function is well-typed with appropriate request/response interfaces
 
-5. **GraphQL (`src/graphql/`)** - GraphQL operations for PSN API
+2. Testing:
 
-6. **Models (`src/models/`)** - TypeScript type definitions for all responses
+   - Mock responses are used to test API endpoints
+   - Each function has tests for successful responses and error handling
 
-7. **Utils (`src/utils/`)** - Utility functions for making API calls
+3. Documentation:
+   - Each function is documented in both the code and on the documentation website
 
-The library follows a modular design that supports tree-shaking and provides both CommonJS and ESM output formats.
+## Environment Requirements
 
-## Testing Approach
+- Node.js >= 20.x
+- pnpm >= 10.x
 
-- Tests are located next to the implementation files with `.test.ts` extension
-- The library uses Jest for testing
-- Mock server responses are used for testing API calls
-- Coverage thresholds are enforced (100% for functions, lines, and statements; 75% for branches)
+## Release Process
 
-## PSN Authentication Flow
-
-1. Obtain NPSSO token from PSN website
-2. Exchange NPSSO for access code
-3. Exchange access code for auth tokens (access token + refresh token)
-4. Use access token for API calls
-5. When expired, use refresh token to get new auth tokens
-
-When implementing new features, ensure they follow the same pattern as existing code - each function should accept auth tokens and other necessary parameters, make the API call, and return the typed response.
+The project uses semantic-release for versioning and releases. Commit messages should follow the conventional commits specification.
