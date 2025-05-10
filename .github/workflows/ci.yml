@@ -1,0 +1,60 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  node-setup:
+    runs-on: ubuntu-latest
+    name: Node.js Setup
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+  node-checks:
+    needs: [node-setup]
+    runs-on: ubuntu-latest
+    name: Node.js Checks
+    strategy:
+      matrix:
+        check: ["lint", "test", "build"]
+        include:
+          - check: lint
+            command: yarn lint
+          - check: test
+            command: yarn test --ci --coverage --maxWorkers=2
+          - check: build
+            command: yarn build
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run ${{ matrix.check }}
+        run: ${{ matrix.command }}
+        env: ${{ matrix.env || fromJSON('{}') }}
