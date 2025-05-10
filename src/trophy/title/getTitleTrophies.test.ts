@@ -1,18 +1,10 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type { AuthorizationPayload, TitleTrophiesResponse } from "../../models";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getTitleTrophies } from "./getTitleTrophies";
 
-const server = setupServer();
-
 describe("Function: getTitleTrophies", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
-
   it("is defined #sanity", () => {
     // ASSERT
     expect(getTitleTrophies).toBeDefined();
@@ -34,14 +26,11 @@ describe("Function: getTitleTrophies", () => {
       totalItemCount: 0
     };
 
-    server.use(
-      rest.get(
-        `${TROPHY_BASE_URL}/v1/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
+    nock(TROPHY_BASE_URL)
+      .get(
+        `/v1/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`
       )
-    );
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getTitleTrophies(

@@ -1,17 +1,13 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type { AuthorizationPayload, BasicPresenceResponse } from "../models";
 import { getBasicPresence } from "./getBasicPresence";
 import { USER_BASE_URL } from "./USER_BASE_URL";
 
-const server = setupServer();
-
 describe("Function: getBasicPresence", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -46,14 +42,14 @@ describe("Function: getBasicPresence", () => {
       }
     };
 
-    server.use(
-      rest.get(
-        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/basicPresences?type=primary",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/111222333444/basicPresences`)
+      .query({ type: "primary" })
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getBasicPresence(mockAuthorization, "111222333444");
@@ -72,11 +68,14 @@ describe("Function: getBasicPresence", () => {
       error: { code: 2_105_356, message: "User not found (user: 'xeln12ia')" }
     };
 
-    server.use(
-      rest.get(`${USER_BASE_URL}/111222333444/profiles`, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/111222333444/basicPresences`)
+      .query({ type: "primary" })
+      .reply(200, mockResponse);
 
     // ASSERT
     await expect(

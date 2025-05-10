@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -8,13 +7,10 @@ import type {
 import { getUserFriendsAccountIds } from "./getUserFriendsAccountIds";
 import { USER_BASE_URL } from "./USER_BASE_URL";
 
-const server = setupServer();
-
 describe("Function: getUserFriendsAccountIds", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -32,11 +28,14 @@ describe("Function: getUserFriendsAccountIds", () => {
       totalItemCount: 2
     };
 
-    server.use(
-      rest.get(`${USER_BASE_URL}/me/friends`, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/me/friends`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getUserFriendsAccountIds(mockAuthorization, "me");
@@ -59,14 +58,10 @@ describe("Function: getUserFriendsAccountIds", () => {
       }
     };
 
-    server.use(
-      rest.get(
-        "https://m.np.playstation.com/api/userProfile/v1/internal/users/111222333444/friends",
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    nock("https://m.np.playstation.com")
+      .get("/api/userProfile/v1/internal/users/111222333444/friends")
+      .query(true)
+      .reply(200, mockResponse);
 
     // ASSERT
     await expect(

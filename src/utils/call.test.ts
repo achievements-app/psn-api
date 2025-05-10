@@ -1,18 +1,14 @@
 /* eslint-disable sonarjs/no-duplicate-string */
 
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type { AuthorizationPayload, CallValidHeaders } from "../models";
 import { call } from "./call";
 
-const server = setupServer();
-
 describe("Util: call", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -21,45 +17,37 @@ describe("Util: call", () => {
 
   it("uses a GET request by default", async () => {
     // ARRANGE
-    let receivedMethod = "";
-
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
     };
 
     const mockRequestUrl = "https://abc.xyz/v1/endpoint";
+    const baseUrl = "https://abc.xyz";
+    const path = "/v1/endpoint";
 
-    server.use(
-      rest.get(mockRequestUrl, (req, res, ctx) => {
-        receivedMethod = req.method;
-        return res(ctx.json({ foo: "bar" }));
-      })
-    );
+    // ... ensure we intercept a GET request ...
+    const mockScope = nock(baseUrl).get(path).reply(200, { foo: "bar" });
 
     // ACT
     const response = await call({ url: mockRequestUrl }, mockAuthorization);
 
     // ASSERT
     expect(response).toEqual({ foo: "bar" });
-    expect(receivedMethod).toEqual("GET");
+    expect(mockScope.isDone()).toBeTruthy(); // Verify the request was made
   });
 
   it("can accept a custom method", async () => {
     // ARRANGE
-    let receivedMethod = "";
-
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
     };
 
     const mockRequestUrl = "https://abc.xyz/v1/endpoint";
+    const baseUrl = "https://abc.xyz";
+    const path = "/v1/endpoint";
 
-    server.use(
-      rest.post(mockRequestUrl, (req, res, ctx) => {
-        receivedMethod = req.method;
-        return res(ctx.json({ foo: "bar" }));
-      })
-    );
+    // Ensure we intercept a POST request
+    const mockScope = nock(baseUrl).post(path).reply(200, { foo: "bar" });
 
     // ACT
     const response = await call(
@@ -69,14 +57,11 @@ describe("Util: call", () => {
 
     // ASSERT
     expect(response).toEqual({ foo: "bar" });
-    expect(receivedMethod).toEqual("POST");
+    expect(mockScope.isDone()).toBeTruthy(); // Verify the request was made
   });
 
   it("makes an authenticated fetch call with a given configuration", async () => {
     // ARRANGE
-    let receivedMockHeader = false;
-    let receivedMockAuthorization = false;
-
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
     };
@@ -86,21 +71,15 @@ describe("Util: call", () => {
     };
 
     const mockRequestUrl = "https://abc.xyz/v1/endpoint";
+    const baseUrl = "https://abc.xyz";
+    const path = "/v1/endpoint";
 
-    server.use(
-      rest.post(mockRequestUrl, (req, res, ctx) => {
-        receivedMockHeader =
-          req.headers.get("Accept-Language") === "en-us" ? true : false;
-
-        receivedMockAuthorization =
-          req.headers.get("Authorization") ===
-          `Bearer ${mockAuthorization.accessToken}`
-            ? true
-            : false;
-
-        return res(ctx.json({ foo: "bar" }));
-      })
-    );
+    // Check for the expected headers
+    const mockScope = nock(baseUrl)
+      .post(path)
+      .matchHeader("Accept-Language", "en-us")
+      .matchHeader("Authorization", `Bearer ${mockAuthorization.accessToken}`)
+      .reply(200, { foo: "bar" });
 
     // ACT
     await call(
@@ -113,7 +92,6 @@ describe("Util: call", () => {
     );
 
     // ASSERT
-    expect(receivedMockHeader).toEqual(true);
-    expect(receivedMockAuthorization).toEqual(true);
+    expect(mockScope.isDone()).toBeTruthy(); // Verify the request was made with correct headers
   });
 });

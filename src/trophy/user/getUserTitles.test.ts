@@ -1,18 +1,14 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type { AuthorizationPayload, UserTitlesResponse } from "../../models";
 import { generateTrophyTitle } from "../../test/generators";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserTitles } from "./getUserTitles";
 
-const server = setupServer();
-
 describe("Function: getUserTitles", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -32,14 +28,14 @@ describe("Function: getUserTitles", () => {
       totalItemCount: 1
     };
 
-    server.use(
-      rest.get(
-        `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/trophyTitles`,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
-      )
-    );
+    const baseUrlObj = new URL(TROPHY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/v1/users/${mockAccountId}/trophyTitles`)
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getUserTitles(mockAuthorization, mockAccountId);

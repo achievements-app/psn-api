@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -8,13 +7,10 @@ import type {
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserTrophiesEarnedForTitle } from "./getUserTrophiesEarnedForTitle";
 
-const server = setupServer();
-
 describe("Function: getUserTrophiesEarnedForTitle", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -39,14 +35,16 @@ describe("Function: getUserTrophiesEarnedForTitle", () => {
       totalItemCount: 0
     };
 
-    server.use(
-      rest.get(
-        `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
+    const baseUrlObj = new URL(TROPHY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(
+        `${basePath}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`
       )
-    );
+      .query(true)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getUserTrophiesEarnedForTitle(
@@ -78,14 +76,16 @@ describe("Function: getUserTrophiesEarnedForTitle", () => {
       }
     };
 
-    server.use(
-      rest.get(
-        `${TROPHY_BASE_URL}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`,
-        (_, res, ctx) => {
-          return res(ctx.json(mockResponse));
-        }
+    const baseUrlObj = new URL(TROPHY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(
+        `${basePath}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`
       )
-    );
+      .query(true)
+      .reply(200, mockResponse);
 
     // ASSERT
     await expect(

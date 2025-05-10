@@ -1,19 +1,17 @@
 name: Publish Coverage
 on: [push]
+
 jobs:
   coverage:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: ["16.x"]
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Use Node ${{ matrix.node }}
-        uses: actions/setup-node@v1
+      - name: Use Node 20
+        uses: actions/setup-node@v3
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 20
 
       - name: Install deps and build (with cache)
         uses: bahmutov/npm-install@v1

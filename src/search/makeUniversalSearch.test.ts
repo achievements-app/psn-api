@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -9,13 +8,10 @@ import type {
 import { makeUniversalSearch } from "./makeUniversalSearch";
 import { SEARCH_BASE_URL } from "./SEARCH_BASE_URL";
 
-const server = setupServer();
-
 describe("Function: makeUniversalSearch", () => {
-  // MSW Setup
-  beforeAll(() => server.listen());
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -35,11 +31,13 @@ describe("Function: makeUniversalSearch", () => {
       domainResponses: []
     };
 
-    server.use(
-      rest.post(`${SEARCH_BASE_URL}/v1/universalSearch`, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    const baseUrlObj = new URL(SEARCH_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .post(`${basePath}/v1/universalSearch`)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await makeUniversalSearch(

@@ -1,5 +1,4 @@
-import { rest } from "msw";
-import { setupServer } from "msw/node";
+import nock from "nock";
 
 import type {
   AuthorizationPayload,
@@ -8,18 +7,12 @@ import type {
 import { getRecentlyPlayedGames } from "./getRecentlyPlayedGames";
 import { GRAPHQL_BASE_URL } from "./GRAPHQL_BASE_URL";
 
-const server = setupServer();
 const accessToken = "mockAccessToken";
 
 describe("Function: getRecentlyPlayedGames", () => {
-  // MSW Setup
-  beforeAll(() =>
-    server.listen({
-      onUnhandledRequest: "error"
-    })
-  );
-  afterEach(() => server.resetHandlers());
-  afterAll(() => server.close());
+  afterEach(() => {
+    nock.cleanAll();
+  });
 
   it("is defined #sanity", () => {
     // ASSERT
@@ -74,17 +67,33 @@ describe("Function: getRecentlyPlayedGames", () => {
       }
     };
 
-    let headers!: Record<string, string>;
-    let searchParams!: URLSearchParams;
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
 
-    server.use(
-      rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
-        headers = _.headers.raw();
-        searchParams = _.url.searchParams;
+    // ... we need to use a nock matcher to verify the query parameters ...
+    const expectedVariables = JSON.stringify({
+      limit: 2,
+      categories: "ps4_game,ps5_native_game"
+    });
+    const expectedExtensions = JSON.stringify({
+      persistedQuery: {
+        version: 1,
+        sha256Hash:
+          "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
+      }
+    });
 
-        return res(ctx.json(mockResponse));
+    const mockScope = nock(baseUrl)
+      .get(basePath)
+      .query((params) => {
+        expect(params.operationName).toEqual("getUserGameList");
+        expect(params.variables).toEqual(expectedVariables);
+        expect(params.extensions).toEqual(expectedExtensions);
+        return true;
       })
-    );
+      .matchHeader("authorization", `Bearer ${accessToken}`)
+      .reply(200, mockResponse);
 
     // ACT
     const response = await getRecentlyPlayedGames(mockAuthorization, {
@@ -94,20 +103,7 @@ describe("Function: getRecentlyPlayedGames", () => {
 
     // ASSERT
     expect(response).toEqual(mockResponse);
-    expect(headers["authorization"]).toEqual(`Bearer ${accessToken}`);
-    expect(searchParams.get("operationName")).toEqual("getUserGameList");
-    expect(searchParams.get("variables")).toEqual(
-      JSON.stringify({ limit: 2, categories: "ps4_game,ps5_native_game" })
-    );
-    expect(searchParams.get("extensions")).toEqual(
-      JSON.stringify({
-        persistedQuery: {
-          version: 1,
-          sha256Hash:
-            "e780a6d8b921ef0c59ec01ea5c5255671272ca0d819edb61320914cf7a78b3ae"
-        }
-      })
-    );
+    expect(mockScope.isDone()).toBeTruthy();
   });
 
   it("throws an error if we receive a malformed response", async () => {
@@ -117,16 +113,16 @@ describe("Function: getRecentlyPlayedGames", () => {
     };
 
     const mockResponse = {
-      // This response occurs if the query/hash is not what the server expected
+      // This response occurs if the query/hash is not what the server expected.
       message:
         "Query 4e8add9915e3cb6870d778cff38e7f81899066f5603ced4c87d6d7c0abc99941 not whitelisted"
     };
 
-    server.use(
-      rest.get(GRAPHQL_BASE_URL, (_, res, ctx) => {
-        return res(ctx.json(mockResponse));
-      })
-    );
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl).get(basePath).query(true).reply(200, mockResponse);
 
     // ASSERT
     await expect(getRecentlyPlayedGames(mockAuthorization)).rejects.toThrow(
