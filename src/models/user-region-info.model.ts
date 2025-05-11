@@ -1,5 +1,5 @@
 /**
- * Interface representing region information for a PlayStation Network user.
+ * Represents region information for a PlayStation Network user.
  */
 export interface UserRegionInfo {
   /**
