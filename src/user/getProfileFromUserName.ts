@@ -2,7 +2,9 @@ import type {
   AuthorizationPayload,
   ProfileFromUserNameResponse
 } from "../models";
+import { buildRequestUrl } from "../utils/buildRequestUrl";
 import { call } from "../utils/call";
+import { USER_LEGACY_BASE_URL } from "./USER_BASE_URL";
 
 /**
  * A call to this function will retrieve the profile of the username being requested.
@@ -21,7 +23,33 @@ export const getProfileFromUserName = async (
   authorization: AuthorizationPayload,
   userName: string
 ): Promise<ProfileFromUserNameResponse> => {
-  const url = `https://us-prof.np.community.playstation.net/userProfile/v1/users/${userName}/profile2?fields=npId,onlineId,accountId,avatarUrls,plus,aboutMe,languagesUsed,trophySummary(@default,level,progress,earnedTrophies),isOfficiallyVerified,personalDetail(@default,profilePictureUrls),personalDetailSharing,personalDetailSharingRequestMessageFlag,primaryOnlineStatus,presences(@default,@titleInfo,platform,lastOnlineDate,hasBroadcastData),requestMessageFlag,blocking,friendRelation,following,consoleAvailability`;
+  const basicFields =
+    "npId,onlineId,accountId,avatarUrls,plus,aboutMe,languagesUsed";
+  const trophyFields = "trophySummary(@default,level,progress,earnedTrophies)";
+  const profileFields =
+    "isOfficiallyVerified,personalDetail(@default,profilePictureUrls),personalDetailSharing,personalDetailSharingRequestMessageFlag";
+  const statusFields =
+    "primaryOnlineStatus,presences(@default,@titleInfo,platform,lastOnlineDate,hasBroadcastData)";
+  const socialFields =
+    "requestMessageFlag,blocking,friendRelation,following,consoleAvailability";
+
+  const fields = [
+    basicFields,
+    trophyFields,
+    profileFields,
+    statusFields,
+    socialFields
+  ].join(",");
+
+  const url = buildRequestUrl(
+    USER_LEGACY_BASE_URL,
+    ":userName/profile2",
+    {},
+    {
+      userName,
+      fields
+    }
+  );
 
   const response = await call<ProfileFromUserNameResponse>(
     { url },
