@@ -4,6 +4,7 @@
 export interface UserRegionInfo {
   /**
    * The two-letter country code (ISO 3166-1 alpha-2)
+   *
    * @example "US"
    */
   code: RegionCode;
@@ -18,6 +19,7 @@ export interface UserRegionInfo {
 
 /**
  * Represents a two-letter uppercase ISO 3166-1 alpha-2 region code.
- * For example: "US", "JP", "GB".
+ *
+ * @example "US"
  */
-export type RegionCode = string;
+export type RegionCode = `${Uppercase<string>}${Uppercase<string>}`;
