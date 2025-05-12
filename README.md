@@ -115,6 +115,7 @@ Click the function names to open their complete docs on the docs site.
   of `accountId` values present on a target account's friends list.
 - [`getBasicPresence()`](https://psn-api.achievements.app/api-docs/users#getbasicpresence) - Get a user's basic presence
   information.
+- [`getUserRegion()`](https://psn-api.achievements.app/api-docs/users#getuserregion) - Get a user's region information based on their username.
 
 ### Trophies
 
