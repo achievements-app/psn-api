@@ -23,6 +23,7 @@ export * from "./trophy-type.model";
 export * from "./universal-search-domains.model";
 export * from "./universal-search-response.model";
 export * from "./user-played-games-response.model";
+export * from "./user-region-info.model";
 export * from "./user-thin-trophy.model";
 export * from "./user-titles-response.model";
 export * from "./user-trophies-earned-for-title-response.model";

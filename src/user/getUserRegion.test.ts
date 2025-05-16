@@ -4,20 +4,20 @@ import type {
   AuthorizationPayload,
   ProfileFromUserNameResponse
 } from "../models";
-import { getProfileFromUserName } from "./getProfileFromUserName";
+import { getUserRegion } from "./getUserRegion";
 import { USER_LEGACY_BASE_URL } from "./USER_BASE_URL";
 
-describe("Function: getProfileFromUserName", () => {
+describe("Function: getUserRegion", () => {
   afterEach(() => {
     nock.cleanAll();
   });
 
   it("is defined #sanity", () => {
     // ASSERT
-    expect(getProfileFromUserName).toBeDefined();
+    expect(getUserRegion).toBeDefined();
   });
 
-  it("retrieves the profile for a given username", async () => {
+  it("returns the region for a given username", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
@@ -27,7 +27,7 @@ describe("Function: getProfileFromUserName", () => {
       profile: {
         onlineId: "xelnia",
         accountId: "asdf",
-        npId: "asdf",
+        npId: "eGVsbmlhQGM2LnVz", // This decodes to xelnia@c6.us
         avatarUrls: [],
         plus: 1,
         aboutMe: "",
@@ -53,7 +53,7 @@ describe("Function: getProfileFromUserName", () => {
         following: true,
         consoleAvailability: { availabilityStatus: "offline" }
       }
-    };
+    }; // Extract the base URL and path from USER_LEGACY_BASE_URL
     const baseUrlObj = new URL(USER_LEGACY_BASE_URL);
     const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
     const basePath = baseUrlObj.pathname;
@@ -64,13 +64,13 @@ describe("Function: getProfileFromUserName", () => {
       .reply(200, mockResponse);
 
     // ACT
-    const response = await getProfileFromUserName(mockAuthorization, "xelnia");
+    const region = await getUserRegion(mockAuthorization, "xelnia");
 
     // ASSERT
-    expect(response).toEqual(mockResponse);
+    expect(region?.code).toEqual("US");
   });
 
-  it("throws an error if we receive a response containing an `error` object", async () => {
+  it("throws an error if there's a problem with the request", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
       accessToken: "mockAccessToken"
@@ -78,7 +78,7 @@ describe("Function: getProfileFromUserName", () => {
 
     const mockResponse = {
       error: { code: 2_105_356, message: "User not found (user: 'xeln12ia')" }
-    };
+    }; // Extract the base URL and path from USER_LEGACY_BASE_URL
     const baseUrlObj = new URL(USER_LEGACY_BASE_URL);
     const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
     const basePath = baseUrlObj.pathname;
@@ -90,7 +90,7 @@ describe("Function: getProfileFromUserName", () => {
 
     // ASSERT
     await expect(
-      getProfileFromUserName(mockAuthorization, "xeln12ia")
+      getUserRegion(mockAuthorization, "xeln12ia")
     ).rejects.toThrow();
   });
 });
