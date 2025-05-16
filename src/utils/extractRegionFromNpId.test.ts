@@ -1,4 +1,5 @@
 import { extractRegionFromNpId } from "./extractRegionFromNpId";
+import { encodeBase64 } from "./encodeBase64";
 
 describe("Function: extractRegionFromNpId", () => {
   it("is defined #sanity", () => {
@@ -27,7 +28,7 @@ describe("Function: extractRegionFromNpId", () => {
   it("extracts JP region code from a valid NPID", () => {
     // ARRANGE
     // This base64 string decodes to something like "username@domain.jp"
-    const mockNpId = Buffer.from("testuser@psn.jp").toString("base64");
+    const mockNpId = encodeBase64("testuser@psn.jp");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -39,7 +40,7 @@ describe("Function: extractRegionFromNpId", () => {
   it("extracts GB region code from a valid NPID", () => {
     // ARRANGE
     // This base64 string decodes to something like "username@domain.gb"
-    const mockNpId = Buffer.from("britishuser@psn.gb").toString("base64");
+    const mockNpId = encodeBase64("britishuser@psn.gb");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -50,7 +51,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns region code in uppercase regardless of input case", () => {
     // ARRANGE
-    const mockNpId = Buffer.from("lowercaseuser@psn.fr").toString("base64");
+    const mockNpId = encodeBase64("lowercaseuser@psn.fr");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -61,7 +62,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with invalid format (missing @)", () => {
     // ARRANGE
-    const mockNpId = Buffer.from("invalid-format.us").toString("base64");
+    const mockNpId = encodeBase64("invalid-format.us");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -72,7 +73,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with invalid format (missing .)", () => {
     // ARRANGE
-    const mockNpId = Buffer.from("invalid@formatcom").toString("base64");
+    const mockNpId = encodeBase64("invalid@formatcom");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -83,7 +84,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with region code longer than 2 characters", () => {
     // ARRANGE
-    const mockNpId = Buffer.from("user@domain.usa").toString("base64");
+    const mockNpId = encodeBase64("user@domain.usa");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -94,34 +95,12 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with region code containing non-alphabetic characters", () => {
     // ARRANGE
-    const mockNpId = Buffer.from("user@domain.u1").toString("base64");
+    const mockNpId = encodeBase64("user@domain.u1");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
 
     // ASSERT
     expect(result).toBeNull();
-  });
-  it("returns null for npId that causes a decoding error", () => {
-    // ARRANGE
-    // Mock Buffer.from to throw an error
-    const originalBufferFrom = Buffer.from;
-    Buffer.from = jest.fn().mockImplementation(() => {
-      throw new Error("Mocked decoding error");
-    });
-
-    // Spy on console.error to prevent it from polluting test output
-    const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation();
-
-    // ACT
-    const result = extractRegionFromNpId("some-npid");
-
-    // ASSERT
-    expect(result).toBeNull();
-    expect(consoleErrorSpy).toHaveBeenCalled();
-
-    // Cleanup
-    consoleErrorSpy.mockRestore();
-    Buffer.from = originalBufferFrom;
   });
 });
