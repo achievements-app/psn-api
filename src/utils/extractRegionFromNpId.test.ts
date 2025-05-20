@@ -1,5 +1,5 @@
-import { extractRegionFromNpId } from "./extractRegionFromNpId";
 import { encodeBase64 } from "./encodeBase64";
+import { extractRegionFromNpId } from "./extractRegionFromNpId";
 
 describe("Function: extractRegionFromNpId", () => {
   it("is defined #sanity", () => {
