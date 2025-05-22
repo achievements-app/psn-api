@@ -331,3 +331,49 @@ These are the possible values that can be in the `options` object (the third par
 ### Source
 
 [user/getUserPlayedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserPlayedGames.ts)
+
+---
+
+## getUserRegion
+
+A call to this function will retrieve the region information of a PlayStation Network user based on their username. The region is extracted from the base64-encoded npId in the user's profile and returned as an object containing both the two-letter country code (ISO 3166-1 alpha-2) and the full country name.
+
+### Examples
+
+#### Get a user's region
+
+```ts
+import { getUserRegion } from "psn-api";
+
+const region = await getUserRegion(authorization, "xelnia");
+console.log(region); // { code: "US", name: "United States" }
+```
+
+#### Get a user's region with a specific locale
+
+```ts
+import { getUserRegion } from "psn-api";
+
+// Get the region name in French
+const region = await getUserRegion(authorization, "xelnia", "fr");
+console.log(region); // { code: "US", name: "États-Unis" }
+```
+
+### Returns
+
+| Name   | Type     | Description                                                         |
+| :----- | :------- | :------------------------------------------------------------------ |
+| `code` | `string` | The two-letter country code (ISO 3166-1 alpha-2) of the user.       |
+| `name` | `string` | The full name of the country in the locale specified (default: en). |
+
+### Parameters
+
+| Name            | Type                                                                                                                             | Description                                                                                                                |
+| :-------------- | :------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload)                                                            | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `userName`      | `string`                                                                                                                         | The username for the user whose region you want to determine.                                                              |
+| `locales`       | [`Intl.LocalesArgument`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl#locales_argument) | Optional. A string with a BCP 47 language tag, or an array of such strings. Defaults to ['en'] (English) if not specified. |
+
+### Source
+
+[user/getUserRegion.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserRegion.ts)
