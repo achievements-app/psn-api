@@ -63,7 +63,7 @@ describe("Function: getProfileShareableLink", () => {
     const mockResponse = {
       error: {
         referenceId: "d71bd8ff-5f63-11ec-87da-d5dfd3bc6e67",
-        code: 2105356,
+        code: 2_105_356,
         message: "User not found"
       }
     };
