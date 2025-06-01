@@ -106,6 +106,49 @@ The following properties are contained within a `profile` object that is returne
 
 ---
 
+## getProfileShareableLink
+
+A call to this function will retrieve a shareable link and QR code for a PlayStation Network user's profile. The shareable link allows others to view the user's public profile information, and the QR code provides a convenient way to share the profile via scanning.
+
+If the user's profile cannot be found or accessed, an error will be thrown.
+
+### Examples
+
+#### Get a shareable link for a user's profile
+
+```ts
+import { getProfileShareableLink } from "psn-api";
+
+const shareableLink = await getProfileShareableLink(
+  authorization,
+  "962157895908076652"
+);
+
+console.log(shareableLink.shareUrl); // Direct link to the profile
+console.log(shareableLink.shareImageUrl); // QR code image URL
+```
+
+### Returns
+
+| Name                       | Type     | Description                                                                                     |
+| :------------------------- | :------- | :---------------------------------------------------------------------------------------------- |
+| `shareUrl`                 | `string` | The shareable URL for the user's PlayStation profile that can be shared with others.           |
+| `shareImageUrl`            | `string` | The URL to a shareable image (QR code) representing the user's profile for social media sharing. |
+| `shareImageUrlDestination` | `string` | The destination URL that the shareable image links to when accessed via the shared image.      |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
+| :-------------- | :-------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
+| `accountId`     | `string`                                                              | The account whose shareable profile link is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+
+### Source
+
+[user/getProfileShareableLink.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getProfileShareableLink.ts)
+
+---
+
 ## getUserFriendsAccountIds
 
 A call to this function will retrieve the list of friended `accountId` values associated with the given `accountId` parameter. If the friends list cannot be retrieved (either due to the given `accountId` not existing or due to the user's privacy settings), an error will be thrown.

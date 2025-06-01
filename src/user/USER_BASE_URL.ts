@@ -6,3 +6,6 @@ export const USER_GAMES_BASE_URL =
 
 export const USER_LEGACY_BASE_URL =
   "https://us-prof.np.community.playstation.net/userProfile/v1/users";
+
+export const USER_CPSS_BASE_URL = 
+  "https://m.np.playstation.com/api/cpss";
