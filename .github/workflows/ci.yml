@@ -28,7 +28,7 @@ jobs:
     name: Node.js Checks
     strategy:
       matrix:
-        check: ["lint", "test", "build"]
+        check: ["format:check", "lint", "test", "build"]
         include:
           - check: lint
             command: pnpm lint
