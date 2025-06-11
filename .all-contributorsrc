@@ -121,6 +121,16 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "JxJuly",
+      "name": "July",
+      "avatar_url": "https://avatars.githubusercontent.com/u/26817261?v=4",
+      "profile": "https://www.july.icu/",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
