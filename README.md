@@ -126,6 +126,7 @@ Click the function names to open their complete docs on the docs site.
 - [`getUserTrophiesEarnedForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophiesearnedfortitle) - Retrieve the earned status of trophies for a user from either a single or all trophy groups in a title.
 - [`getUserTrophyGroupEarningsForTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophygroupearningsfortitle) - Get a summary of trophies earned for a user broken down by trophy group within a title.
 - [`getUserTrophyProfileSummary()`](https://psn-api.achievements.app/api-docs/user-trophies#getusertrophyprofilesummary) - Retrieve an overall summary of the number of trophies earned for a user broken down by type.
+- [`getUserTrophiesForSpecificTitle()`](https://psn-api.achievements.app/api-docs/user-trophies#getUserTrophiesForSpecificTitle) - Retrieve a summary of the trophies earned by a user for specific titles.
 - [`getRecentlyPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getrecentlyplayedgames) - Retrieve a list of recently played games for the user associated with the access token provided to this function.
 - [`getUserPlayedGames()`](https://psn-api.achievements.app/api-docs/users#getuserplayedgames) - Retrieve a list of played games and playtime info (ordered by recency) associated with a user (either from token or external if privacy settings allow).
 

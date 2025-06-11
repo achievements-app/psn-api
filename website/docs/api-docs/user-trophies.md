@@ -253,3 +253,58 @@ const response = await getUserTrophyProfileSummary(authorization, "me");
 ### Source
 
 [trophy/user/getUserTrophyProfileSummary](https://github.com/achievements-app/psn-api/blob/main/src/trophy/user/getUserTrophyProfileSummary.ts)
+
+---
+
+## getUserTrophiesForSpecificTitle
+
+A call to this function will retrieve a summary of the trophies earned by a user for specific titles.
+
+The titleId can be a single title ID, or it can be a comma separated list of title IDs (%2C when used in a URL). Every title has an ID assigned to it with these typically starting "CUSA" for PS4 titles and "PPSA" for PS5 titles.
+
+The numeric accountId can be that of any PSN account for which the authenticating account has permissions to view the trophy list. When querying the titles associated with the authenticating account the numeric accountId can be substituted with me.
+
+If optional parameter includeNotEarnedTrophyIds is included and set to true then the response will contain a list of IDs for the individual trophies which the user has not earned for each title ID queried. This functionality was added to the endpoint post release, most likely early 2023.
+
+This endpoint can be used as a way of linking the npCommunicationId of a Trophy Set to a titles npTitleId, but as with the other user based endpoints in this version of the API you will only get a useful response back if the account you are querying against has played the title.
+
+**If you attempt to query a title ID which does not exist then a Resource not found error will be returned.**
+
+**There is a limit of 5 title IDs which can be included in the npTitleIds query. Trying to include more than 5 will result in a Bad Request (query: npTitleId) error being returned.**
+
+### Examples
+
+```ts
+import { getUserTrophiesForSpecificTitle } from "psn-api";
+
+const response = await getUserTrophiesForSpecificTitle(authorization, "me", {
+  npTitleIds: 'PPSA13195_00,PPSA27366_00',
+  includeNotEarnedTrophyIds: true
+});
+```
+
+### Returns
+
+| Name             | Type                                                  | Description                                                     |
+| :--------------- | :---------------------------------------------------- | :-------------------------------------------------------------- |
+| `titles`   | `{ npTitleId: string; trophyTitles: TrophyTitle[] }[]` | Individual object for each title returned.`trophyTitles` is [`TrophyTitle`](/api-docs/data-models/trophy-title) type. |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                    |
+| :-------------- | :-------------------------------------------------------------------- | :--------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `accountId`     | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
+| `options`       | `GetUserTrophiesForSpecificTitleOptions`                                                | search options                                                        |
+
+### GetUserTrophiesForSpecificTitleOptions
+
+| Name              | Type                                      |Description                                                                         |
+| :---------------- | :------------------------------------------------------------- | :---------------------------------------------------------------------- |
+| `npTitleIds` | `string` | The titleId can be a single title ID, or it can be a comma separated list of title IDs (%2C when used in a URL). |
+| `includeNotEarnedTrophyIds` | `boolean` | The response will include the IDs for the individual trophies which have not been earned |
+| `headerOverrides` | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
+
+### Source
+
+[trophy/user/getUserTrophiesForSpecificTitle.ts](https://github.com/achievements-app/psn-api/blob/main/src/trophy/user/getUserTrophiesForSpecificTitle.ts)
