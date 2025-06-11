@@ -4,7 +4,7 @@ export const buildRequestUrl = (
   baseUrl: string,
   endpointUrl: string,
   options: Partial<AllCallOptions> = {},
-  args: Record<string, string | number> = {}
+  args: Record<string, string | number | boolean> = {}
 ) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars -- This is an intentional pick.
   const { headerOverrides, ...pickedOptions } = options;

@@ -28,5 +28,6 @@ export * from "./user-region-info.model";
 export * from "./user-thin-trophy.model";
 export * from "./user-titles-response.model";
 export * from "./user-trophies-earned-for-title-response.model";
+export * from "./user-trophies-for-specific-title-response.model";
 export * from "./user-trophy-group-earnings-for-title-response.model";
 export * from "./user-trophy-profile-summary-response.model";
