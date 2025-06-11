@@ -278,32 +278,32 @@ This endpoint can be used as a way of linking the npCommunicationId of a Trophy 
 import { getUserTrophiesForSpecificTitle } from "psn-api";
 
 const response = await getUserTrophiesForSpecificTitle(authorization, "me", {
-  npTitleIds: 'PPSA13195_00,PPSA27366_00',
+  npTitleIds: "PPSA13195_00,PPSA27366_00",
   includeNotEarnedTrophyIds: true
 });
 ```
 
 ### Returns
 
-| Name             | Type                                                  | Description                                                     |
-| :--------------- | :---------------------------------------------------- | :-------------------------------------------------------------- |
-| `titles`   | `{ npTitleId: string; trophyTitles: TrophyTitle[] }[]` | Individual object for each title returned.`trophyTitles` is [`TrophyTitle`](/api-docs/data-models/trophy-title) type. |
+| Name     | Type                                                   | Description                                                                                                           |
+| :------- | :----------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------- |
+| `titles` | `{ npTitleId: string; trophyTitles: TrophyTitle[] }[]` | Individual object for each title returned.`trophyTitles` is [`TrophyTitle`](/api-docs/data-models/trophy-title) type. |
 
 ### Parameters
 
-| Name            | Type                                                                  | Description                    |
-| :-------------- | :-------------------------------------------------------------------- | :--------------------------------------------------- |
-| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                   |
+| :-------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                    |
 | `accountId`     | `string`                                                              | The account whose title list is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
-| `options`       | `GetUserTrophiesForSpecificTitleOptions`                                                | search options                                                        |
+| `options`       | `GetUserTrophiesForSpecificTitleOptions`                              | search options                                                                                                                                                                                                                |
 
 ### GetUserTrophiesForSpecificTitleOptions
 
-| Name              | Type                                      |Description                                                                         |
-| :---------------- | :------------------------------------------------------------- | :---------------------------------------------------------------------- |
-| `npTitleIds` | `string` | The titleId can be a single title ID, or it can be a comma separated list of title IDs (%2C when used in a URL). |
-| `includeNotEarnedTrophyIds` | `boolean` | The response will include the IDs for the individual trophies which have not been earned |
-| `headerOverrides` | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
+| Name                        | Type                                                           | Description                                                                                                      |
+| :-------------------------- | :------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------- |
+| `npTitleIds`                | `string`                                                       | The titleId can be a single title ID, or it can be a comma separated list of title IDs (%2C when used in a URL). |
+| `includeNotEarnedTrophyIds` | `boolean`                                                      | The response will include the IDs for the individual trophies which have not been earned                         |
+| `headerOverrides`           | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language.                              |
 
 ### Source
 

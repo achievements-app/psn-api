@@ -1,6 +1,9 @@
 import nock from "nock";
 
-import type { AuthorizationPayload, UserTrophiesBySpecificTitleResponse } from "../../models";
+import type {
+  AuthorizationPayload,
+  UserTrophiesBySpecificTitleResponse
+} from "../../models";
 import { generateTrophyTitle } from "../../test/generators";
 import { TROPHY_BASE_URL } from "../TROPHY_BASE_URL";
 import { getUserTrophiesForSpecificTitle } from "./getUserTrophiesForSpecificTitle";
@@ -23,21 +26,21 @@ describe("Function: getUserTrophiesForSpecificTitle", () => {
       accessToken: "mockAccessToken"
     };
     const mockOptions = {
-      npTitleIds: 'PPSA13195_00,PPSA27366_00',
+      npTitleIds: "PPSA13195_00,PPSA27366_00",
       includeNotEarnedTrophyIds: true
-    }
+    };
 
     const mockResponse: UserTrophiesBySpecificTitleResponse = {
       titles: [
         {
-          npTitleId: 'PPSA13195_00',
+          npTitleId: "PPSA13195_00",
           trophyTitles: [generateTrophyTitle()]
         },
         {
-          npTitleId: 'PPSA27366_00',
+          npTitleId: "PPSA27366_00",
           trophyTitles: [generateTrophyTitle()]
         }
-      ],
+      ]
     };
 
     const baseUrlObj = new URL(TROPHY_BASE_URL);
@@ -50,7 +53,11 @@ describe("Function: getUserTrophiesForSpecificTitle", () => {
       .reply(200, mockResponse);
 
     // ACT
-    const response = await getUserTrophiesForSpecificTitle(mockAuthorization, mockAccountId, mockOptions);
+    const response = await getUserTrophiesForSpecificTitle(
+      mockAuthorization,
+      mockAccountId,
+      mockOptions
+    );
 
     // ASSERT
     expect(response).toEqual(mockResponse);

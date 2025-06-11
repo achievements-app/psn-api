@@ -130,17 +130,17 @@ console.log(shareableLink.shareImageUrl); // QR code image URL
 
 ### Returns
 
-| Name                       | Type     | Description                                                                                     |
-| :------------------------- | :------- | :---------------------------------------------------------------------------------------------- |
-| `shareUrl`                 | `string` | The shareable URL for the user's PlayStation profile that can be shared with others.           |
+| Name                       | Type     | Description                                                                                      |
+| :------------------------- | :------- | :----------------------------------------------------------------------------------------------- |
+| `shareUrl`                 | `string` | The shareable URL for the user's PlayStation profile that can be shared with others.             |
 | `shareImageUrl`            | `string` | The URL to a shareable image (QR code) representing the user's profile for social media sharing. |
-| `shareImageUrlDestination` | `string` | The destination URL that the shareable image links to when accessed via the shared image.      |
+| `shareImageUrlDestination` | `string` | The destination URL that the shareable image links to when accessed via the shared image.        |
 
 ### Parameters
 
-| Name            | Type                                                                  | Description                                                                                                                                                                                                                 |
-| :-------------- | :-------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                  |
+| Name            | Type                                                                  | Description                                                                                                                                                                                                                               |
+| :-------------- | :-------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one.                                                                                                                |
 | `accountId`     | `string`                                                              | The account whose shareable profile link is being retrieved. Use `"me"` for the authenticating account. To find a user's `accountId`, the [`makeUniversalSearch()`](/api-docs/universal-search#makeuniversalsearch) function can be used. |
 
 ### Source
