@@ -420,3 +420,45 @@ console.log(region); // { code: "US", name: "États-Unis" }
 ### Source
 
 [user/getUserRegion.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserRegion.ts)
+
+---
+
+## getAccountDevices
+
+A call to this function will retrieve the list of devices the client is logged into. This includes information about PlayStation consoles (PS5, PS4, PS3) and handheld devices (PSVita) that are associated with the account.
+
+### Examples
+
+#### Get your account devices
+
+```ts
+import { getAccountDevices } from "psn-api";
+
+const response = await getAccountDevices(authorization);
+```
+
+### Returns
+
+| Name             | Type                                                                          | Description                                |
+| :--------------- | :---------------------------------------------------------------------------- | :----------------------------------------- |
+| `accountId`      | `string`                                                                      | The User's account ID                      |
+| `accountDevices` | [`Array<AccountDevice>`](/api-docs/data-models/account-devices#accountdevice) | List of devices the account is logged into |
+
+For detailed information about the response structure, see [`AccountDevicesResponse`](/api-docs/data-models/account-devices).
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+| `options`       | `GetAccountDevicesOptions`                                            | Optional configuration options (see Options section below).                                                                |
+
+### Options
+
+| Name              | Type                                                           | Description                                                                         |
+| :---------------- | :------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| `headerOverrides` | [`CallValidHeaders`](/api-docs/data-models/call-valid-headers) | Override the headers in the request to the PSN API, such as to change the language. |
+
+### Source
+
+[user/getAccountDevices.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getAccountDevices.ts)
