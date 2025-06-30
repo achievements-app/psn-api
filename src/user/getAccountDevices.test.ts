@@ -1,8 +1,11 @@
 import nock from "nock";
 
-import type { AuthorizationPayload, AccountDevicesResponse } from "../models";
+import type { AccountDevicesResponse, AuthorizationPayload } from "../models";
 import { getAccountDevices } from "./getAccountDevices";
 import { USER_DMS_BASE_URL } from "./USER_BASE_URL";
+
+const MOCK_ACCESS_TOKEN = "mockAccessToken";
+const MOCK_ACCOUNT_ID = "1234567890123456789";
 
 describe("Function: getAccountDevices", () => {
   afterEach(() => {
@@ -17,11 +20,11 @@ describe("Function: getAccountDevices", () => {
   it("retrieves the account devices for the current user", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse: AccountDevicesResponse = {
-      accountId: "1234567890123456789",
+      accountId: MOCK_ACCOUNT_ID,
       accountDevices: [
         {
           deviceId: "ps5-device-12345",
@@ -74,11 +77,11 @@ describe("Function: getAccountDevices", () => {
   it("returns empty devices list when user has no devices", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse: AccountDevicesResponse = {
-      accountId: "1234567890123456789",
+      accountId: MOCK_ACCOUNT_ID,
       accountDevices: []
     };
 
@@ -105,7 +108,7 @@ describe("Function: getAccountDevices", () => {
   it("handles a single PS5 device correctly", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse: AccountDevicesResponse = {
@@ -146,7 +149,7 @@ describe("Function: getAccountDevices", () => {
   it("passes header overrides correctly", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockOptions = {
@@ -156,7 +159,7 @@ describe("Function: getAccountDevices", () => {
     };
 
     const mockResponse: AccountDevicesResponse = {
-      accountId: "1234567890123456789",
+      accountId: MOCK_ACCOUNT_ID,
       accountDevices: []
     };
 
@@ -182,7 +185,7 @@ describe("Function: getAccountDevices", () => {
   it("throws an error if we receive a response containing an `error` object with message", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse = {
@@ -214,7 +217,7 @@ describe("Function: getAccountDevices", () => {
   it("throws an error with default message if error object has no message", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse = {
@@ -245,7 +248,7 @@ describe("Function: getAccountDevices", () => {
   it("handles HTTP 404 response correctly", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const baseUrlObj = new URL(USER_DMS_BASE_URL);
@@ -289,11 +292,11 @@ describe("Function: getAccountDevices", () => {
   it("handles different device types correctly", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse: AccountDevicesResponse = {
-      accountId: "1234567890123456789",
+      accountId: MOCK_ACCOUNT_ID,
       accountDevices: [
         {
           deviceId: "ps3-device-001",
@@ -373,11 +376,11 @@ describe("Function: getAccountDevices", () => {
   it("verifies correct API endpoint and query parameters are used", async () => {
     // ARRANGE
     const mockAuthorization: AuthorizationPayload = {
-      accessToken: "mockAccessToken"
+      accessToken: MOCK_ACCESS_TOKEN
     };
 
     const mockResponse: AccountDevicesResponse = {
-      accountId: "1234567890123456789",
+      accountId: MOCK_ACCOUNT_ID,
       accountDevices: []
     };
 

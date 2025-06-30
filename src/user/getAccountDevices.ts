@@ -1,7 +1,7 @@
 import type {
+  AccountDevicesResponse,
   AllCallOptions,
-  AuthorizationPayload,
-  AccountDevicesResponse
+  AuthorizationPayload
 } from "../models";
 import { buildRequestUrl } from "../utils/buildRequestUrl";
 import { call } from "../utils/call";
