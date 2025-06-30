@@ -1,4 +1,5 @@
 export * from "./getBasicPresence";
+export * from "./getAccountDevices";
 export * from "./getProfileFromAccountId";
 export * from "./getProfileFromUserName";
 export * from "./getProfileShareableLink";
