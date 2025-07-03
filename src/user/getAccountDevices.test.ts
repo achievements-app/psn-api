@@ -6,6 +6,10 @@ import { USER_DMS_BASE_URL } from "./USER_BASE_URL";
 
 const MOCK_ACCESS_TOKEN = "mockAccessToken";
 const MOCK_ACCOUNT_ID = "1234567890123456789";
+const INCLUDE_FIELDS = "device,systemData";
+const PLATFORM = "PS5,PS4,PS3,PSVita";
+const MOCK_ACTIVATION_PRIMARY = "PRIMARY";
+const MOCK_ACTIVATION_PSN_GAME_V3 = "PSN_GAME_V3";
 
 describe("Function: getAccountDevices", () => {
   afterEach(() => {
@@ -29,21 +33,21 @@ describe("Function: getAccountDevices", () => {
         {
           deviceId: "ps5-device-12345",
           deviceType: "PS5",
-          activationType: "PRIMARY",
+          activationType: MOCK_ACTIVATION_PRIMARY,
           activationDate: "2023-06-03T21:25:28.987Z",
           accountDeviceVector: "vector123abc"
         },
         {
           deviceId: "ps4-device-67890",
           deviceType: "PS4",
-          activationType: "PSN_GAME_V3",
+          activationType: MOCK_ACTIVATION_PSN_GAME_V3,
           activationDate: "2023-01-15T10:30:00.000Z",
           accountDeviceVector: "vector456def"
         },
         {
           deviceId: "psvita-device-11111",
           deviceType: "PSVita",
-          activationType: "PSN_GAME_V3",
+          activationType: MOCK_ACTIVATION_PSN_GAME_V3,
           activationDate: "2022-08-20T14:22:33.000Z",
           accountDeviceVector: "vector789ghi"
         }
@@ -57,8 +61,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -69,7 +73,7 @@ describe("Function: getAccountDevices", () => {
     expect(response).toEqual(mockResponse);
     expect(response.accountDevices).toHaveLength(3);
     expect(response.accountDevices[0].deviceType).toBe("PS5");
-    expect(response.accountDevices[0].activationType).toBe("PRIMARY");
+    expect(response.accountDevices[0].activationType).toBe(MOCK_ACTIVATION_PRIMARY);
     expect(response.accountDevices[1].deviceType).toBe("PS4");
     expect(response.accountDevices[2].deviceType).toBe("PSVita");
   });
@@ -92,8 +96,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -117,7 +121,7 @@ describe("Function: getAccountDevices", () => {
         {
           deviceId: "ps5-primary-device",
           deviceType: "PS5",
-          activationType: "PRIMARY",
+          activationType: MOCK_ACTIVATION_PRIMARY,
           activationDate: "2024-01-01T00:00:00.000Z",
           accountDeviceVector: "primaryvector123"
         }
@@ -131,8 +135,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -142,7 +146,7 @@ describe("Function: getAccountDevices", () => {
     // ASSERT
     expect(response.accountDevices).toHaveLength(1);
     expect(response.accountDevices[0].deviceType).toBe("PS5");
-    expect(response.accountDevices[0].activationType).toBe("PRIMARY");
+    expect(response.accountDevices[0].activationType).toBe(MOCK_ACTIVATION_PRIMARY);
     expect(response.accountDevices[0].deviceId).toBe("ps5-primary-device");
   });
 
@@ -170,8 +174,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -203,8 +207,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -234,8 +238,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -258,8 +262,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(404, { error: { message: "User not found" } });
 
@@ -280,8 +284,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(401, { error: { message: "Unauthorized" } });
 
@@ -301,28 +305,28 @@ describe("Function: getAccountDevices", () => {
         {
           deviceId: "ps3-device-001",
           deviceType: "PS3",
-          activationType: "PSN_GAME_V3",
+          activationType: MOCK_ACTIVATION_PSN_GAME_V3,
           activationDate: "2020-05-15T08:30:00.000Z",
           accountDeviceVector: "ps3vector001"
         },
         {
           deviceId: "ps4-device-002",
           deviceType: "PS4",
-          activationType: "PRIMARY",
+          activationType: MOCK_ACTIVATION_PRIMARY,
           activationDate: "2021-03-20T12:45:30.000Z",
           accountDeviceVector: "ps4vector002"
         },
         {
           deviceId: "ps5-device-003",
           deviceType: "PS5",
-          activationType: "PRIMARY",
+          activationType: MOCK_ACTIVATION_PRIMARY,
           activationDate: "2023-11-10T16:20:15.000Z",
           accountDeviceVector: "ps5vector003"
         },
         {
           deviceId: "vita-device-004",
           deviceType: "PSVita",
-          activationType: "PSN_GAME_V3",
+          activationType: MOCK_ACTIVATION_PSN_GAME_V3,
           activationDate: "2019-12-01T09:15:45.000Z",
           accountDeviceVector: "vitavector004"
         }
@@ -336,8 +340,8 @@ describe("Function: getAccountDevices", () => {
     nock(baseUrl)
       .get(`${basePath}/v1/devices/accounts/me`)
       .query({
-        includeFields: "device,systemData",
-        platform: "PS5,PS4,PS3,PSVita"
+        includeFields: INCLUDE_FIELDS,
+        platform: PLATFORM
       })
       .reply(200, mockResponse);
 
@@ -361,16 +365,16 @@ describe("Function: getAccountDevices", () => {
     );
 
     expect(ps3Device).toBeDefined();
-    expect(ps3Device?.activationType).toBe("PSN_GAME_V3");
+    expect(ps3Device?.activationType).toBe(MOCK_ACTIVATION_PSN_GAME_V3);
 
     expect(ps4Device).toBeDefined();
-    expect(ps4Device?.activationType).toBe("PRIMARY");
+    expect(ps4Device?.activationType).toBe(MOCK_ACTIVATION_PRIMARY);
 
     expect(ps5Device).toBeDefined();
-    expect(ps5Device?.activationType).toBe("PRIMARY");
+    expect(ps5Device?.activationType).toBe(MOCK_ACTIVATION_PRIMARY);
 
     expect(vitaDevice).toBeDefined();
-    expect(vitaDevice?.activationType).toBe("PSN_GAME_V3");
+    expect(vitaDevice?.activationType).toBe(MOCK_ACTIVATION_PSN_GAME_V3);
   });
 
   it("verifies correct API endpoint and query parameters are used", async () => {
@@ -393,8 +397,8 @@ describe("Function: getAccountDevices", () => {
       .get(`${basePath}/v1/devices/accounts/me`)
       .query((query) => {
         return (
-          query.includeFields === "device,systemData" &&
-          query.platform === "PS5,PS4,PS3,PSVita"
+          query.includeFields === INCLUDE_FIELDS &&
+          query.platform === PLATFORM
         );
       })
       .reply(200, mockResponse);
