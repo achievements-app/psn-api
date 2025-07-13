@@ -1,3 +1,4 @@
+export * from "./getAccountDevices";
 export * from "./getBasicPresence";
 export * from "./getProfileFromAccountId";
 export * from "./getProfileFromUserName";
