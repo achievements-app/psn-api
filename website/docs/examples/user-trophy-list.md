@@ -54,8 +54,9 @@ async function main() {
       title.npCommunicationId,
       "all",
       {
-        npServiceName:
-          title.trophyTitlePlatform.includes("PS5") ? undefined : "trophy"
+        npServiceName: title.trophyTitlePlatform.includes("PS5")
+          ? undefined
+          : "trophy"
       }
     );
 
@@ -66,8 +67,9 @@ async function main() {
       title.npCommunicationId,
       "all",
       {
-        npServiceName:
-          title.trophyTitlePlatform.includes("PS5") ? undefined : "trophy"
+        npServiceName: title.trophyTitlePlatform.includes("PS5")
+          ? undefined
+          : "trophy"
       }
     );
 

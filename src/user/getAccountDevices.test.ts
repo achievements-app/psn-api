@@ -73,7 +73,9 @@ describe("Function: getAccountDevices", () => {
     expect(response).toEqual(mockResponse);
     expect(response.accountDevices).toHaveLength(3);
     expect(response.accountDevices[0].deviceType).toBe("PS5");
-    expect(response.accountDevices[0].activationType).toBe(MOCK_ACTIVATION_PRIMARY);
+    expect(response.accountDevices[0].activationType).toBe(
+      MOCK_ACTIVATION_PRIMARY
+    );
     expect(response.accountDevices[1].deviceType).toBe("PS4");
     expect(response.accountDevices[2].deviceType).toBe("PSVita");
   });
@@ -146,7 +148,9 @@ describe("Function: getAccountDevices", () => {
     // ASSERT
     expect(response.accountDevices).toHaveLength(1);
     expect(response.accountDevices[0].deviceType).toBe("PS5");
-    expect(response.accountDevices[0].activationType).toBe(MOCK_ACTIVATION_PRIMARY);
+    expect(response.accountDevices[0].activationType).toBe(
+      MOCK_ACTIVATION_PRIMARY
+    );
     expect(response.accountDevices[0].deviceId).toBe("ps5-primary-device");
   });
 
@@ -397,8 +401,7 @@ describe("Function: getAccountDevices", () => {
       .get(`${basePath}/v1/devices/accounts/me`)
       .query((query) => {
         return (
-          query.includeFields === INCLUDE_FIELDS &&
-          query.platform === PLATFORM
+          query.includeFields === INCLUDE_FIELDS && query.platform === PLATFORM
         );
       })
       .reply(200, mockResponse);
