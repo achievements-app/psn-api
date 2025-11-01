@@ -49,11 +49,36 @@ describe("Function: getPurchasedGames", () => {
       }
     };
 
-    nock(GRAPHQL_BASE_URL)
-      .get("")
-      .query((query) => {
-        return query.operationName === "getPurchasedGameList";
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    // ... we need to use a nock matcher to verify the query parameters ...
+    const expectedVariables = JSON.stringify({
+      isActive: true,
+      platform: ["ps4", "ps5"],
+      size: 24,
+      start: 0,
+      sortBy: "ACTIVE_DATE",
+      sortDirection: "desc"
+    });
+    const expectedExtensions = JSON.stringify({
+      persistedQuery: {
+        version: 1,
+        sha256Hash:
+          "827a423f6a8ddca4107ac01395af2ec0eafd8396fc7fa204aaf9b7ed2eefa168"
+      }
+    });
+
+    const mockScope = nock(baseUrl)
+      .get(basePath)
+      .query((params) => {
+        expect(params.operationName).toEqual("getPurchasedGameList");
+        expect(params.variables).toEqual(expectedVariables);
+        expect(params.extensions).toEqual(expectedExtensions);
+        return true;
       })
+      .matchHeader("authorization", `Bearer ${accessToken}`)
       .reply(200, mockResponse);
 
     // ACT
@@ -61,6 +86,7 @@ describe("Function: getPurchasedGames", () => {
 
     // ASSERT
     expect(response).toEqual(mockResponse);
+    expect(mockScope.isDone()).toBeTruthy();
   });
 
   it("retrieves purchased games with custom options", async () => {
@@ -78,28 +104,47 @@ describe("Function: getPurchasedGames", () => {
       }
     };
 
-    nock(GRAPHQL_BASE_URL)
-      .get("")
-      .query((query) => {
-        const variables = JSON.parse(query.variables as string);
-        return (
-          query.operationName === "getPurchasedGameList" &&
-          variables.isActive === false &&
-          variables.size === 50 &&
-          variables.sortBy === "NAME"
-        );
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    const expectedVariables = JSON.stringify({
+      isActive: false,
+      platform: ["ps4", "ps5"],
+      size: 50,
+      start: 0,
+      sortBy: "ACTIVE_DATE",
+      sortDirection: "desc"
+    });
+    const expectedExtensions = JSON.stringify({
+      persistedQuery: {
+        version: 1,
+        sha256Hash:
+          "827a423f6a8ddca4107ac01395af2ec0eafd8396fc7fa204aaf9b7ed2eefa168"
+      }
+    });
+
+    const mockScope = nock(baseUrl)
+      .get(basePath)
+      .query((params) => {
+        expect(params.operationName).toEqual("getPurchasedGameList");
+        expect(params.variables).toEqual(expectedVariables);
+        expect(params.extensions).toEqual(expectedExtensions);
+        return true;
       })
+      .matchHeader("authorization", `Bearer ${accessToken}`)
       .reply(200, mockResponse);
 
     // ACT
     const response = await getPurchasedGames(mockAuthorization, {
       isActive: false,
       size: 50,
-      sortBy: "NAME"
+      sortBy: "ACTIVE_DATE"
     });
 
     // ASSERT
     expect(response).toEqual(mockResponse);
+    expect(mockScope.isDone()).toBeTruthy();
   });
 
   it("throws an error if response data is null", async () => {
@@ -112,11 +157,14 @@ describe("Function: getPurchasedGames", () => {
       data: null
     };
 
-    nock(GRAPHQL_BASE_URL)
-      .get("")
-      .query((query) => {
-        return query.operationName === "getPurchasedGameList";
-      })
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(basePath)
+      .query(true)
+      .matchHeader("authorization", `Bearer ${accessToken}`)
       .reply(200, mockErrorResponse);
 
     // ASSERT
@@ -137,11 +185,14 @@ describe("Function: getPurchasedGames", () => {
       }
     };
 
-    nock(GRAPHQL_BASE_URL)
-      .get("")
-      .query((query) => {
-        return query.operationName === "getPurchasedGameList";
-      })
+    const baseUrlObj = new URL(GRAPHQL_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(basePath)
+      .query(true)
+      .matchHeader("authorization", `Bearer ${accessToken}`)
       .reply(200, mockErrorResponse);
 
     // ASSERT
