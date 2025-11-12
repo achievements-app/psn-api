@@ -332,7 +332,7 @@ const purchasedGames = await getPurchasedGames(authorization, {
   platform: ["ps5"],
   size: 50,
   start: 0,
-  sortBy: "NAME",
+  sortBy: "ACTIVE_DATE",
   sortDirection: "asc",
   membership: "PS_PLUS"
 });
