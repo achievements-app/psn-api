@@ -140,6 +140,16 @@
       "contributions": [
         "doc"
       ]
+    },
+    {
+      "login": "bartektricks",
+      "name": "Bartek",
+      "avatar_url": "https://avatars.githubusercontent.com/u/22157966?v=4",
+      "profile": "http://instagram.com/bartektricks",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
