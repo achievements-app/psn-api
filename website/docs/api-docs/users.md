@@ -302,6 +302,74 @@ These are the possible values that can be in the `options` object (the second pa
 
 ---
 
+## getPurchasedGames
+
+A call to this function will retrieve purchased games for the user associated with the `accessToken` in
+the provided [AuthorizationPayload](/api-docs/data-models/authorization-payload). This endpoint returns only PS4 and PS5 games.
+
+### Examples
+
+#### Get purchased games
+
+```ts
+import { getPurchasedGames } from "psn-api";
+
+const purchasedGames = await getPurchasedGames(authorization, {
+  platform: ["ps4", "ps5"],
+  size: 24,
+  sortBy: "ACTIVE_DATE",
+  sortDirection: "desc"
+});
+```
+
+#### Get purchased games with specific filters
+
+```ts
+import { getPurchasedGames } from "psn-api";
+
+const purchasedGames = await getPurchasedGames(authorization, {
+  isActive: true,
+  platform: ["ps5"],
+  size: 50,
+  start: 0,
+  sortBy: "ACTIVE_DATE",
+  sortDirection: "asc",
+  membership: "PS_PLUS"
+});
+```
+
+### Returns
+
+| Name                                 | Type                                                    | Description              |
+| :----------------------------------- | :------------------------------------------------------ | :----------------------- |
+| `data.purchasedTitlesRetrieve.games` | [PurchasedGame](/api-docs/data-models/purchased-game)[] | List of purchased games. |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the second parameter of the function).
+
+| Name            | Type                                             | Description                                                    |
+| :-------------- | :----------------------------------------------- | :------------------------------------------------------------- |
+| `isActive`      | `boolean`                                        | Whether to include only active games. Defaults to `true`.      |
+| `platform`      | <code>("ps4" &#124; "ps5")[]</code>              | Array of platforms to filter by. Defaults to `["ps4", "ps5"]`. |
+| `size`          | `number`                                         | Number of games to retrieve per page. Defaults to `24`.        |
+| `start`         | `number`                                         | Starting offset for pagination. Defaults to `0`.               |
+| `sortBy`        | `"ACTIVE_DATE"`                                  | Field to sort by. Defaults to `"ACTIVE_DATE"`.                 |
+| `sortDirection` | <code>"asc" &#124; "desc"</code>                 | Sort direction. Defaults to `"desc"`.                          |
+| `membership`    | [`Membership`](/api-docs/data-models/membership) | Filter by membership type.                                     |
+
+### Source
+
+[graphql/getPurchasedGames.ts](https://github.com/achievements-app/psn-api/blob/main/src/graphql/getPurchasedGames.ts)
+
+---
+
 ## getUserPlayedGames
 
 A call to this function will retrieve a list of games (ordered by recently played) for a user associated with the `accountId` provided.  

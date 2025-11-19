@@ -13,7 +13,7 @@ export interface AccountDevicesResponse {
      */
     deviceType: string;
 
-    /** 
+    /**
      * The activation type.
      * @example "PRIMARY" | "PSN_GAME_V3"
      */
