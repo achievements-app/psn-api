@@ -175,6 +175,9 @@ This project is not intended to be used for spam or abuse. Please use this proje
       <td align="center" valign="top" width="14.28%"><a href="https://www.july.icu/"><img src="https://avatars.githubusercontent.com/u/26817261?v=4?s=100" width="100px;" alt="July"/><br /><sub><b>July</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=JxJuly" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=JxJuly" title="Documentation">📖</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/silmarillenschnaps"><img src="https://avatars.githubusercontent.com/u/200592732?v=4?s=100" width="100px;" alt="silmarillenschnaps"/><br /><sub><b>silmarillenschnaps</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=silmarillenschnaps" title="Documentation">📖</a></td>
     </tr>
+    <tr>
+      <td align="center" valign="top" width="14.28%"><a href="http://instagram.com/bartektricks"><img src="https://avatars.githubusercontent.com/u/22157966?v=4?s=100" width="100px;" alt="Bartek"/><br /><sub><b>Bartek</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=bartektricks" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=bartektricks" title="Documentation">📖</a></td>
+    </tr>
   </tbody>
 </table>
 
