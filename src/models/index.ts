@@ -4,6 +4,7 @@ export * from "./authorization-payload.model";
 export * from "./basic-presence-response.model";
 export * from "./call-valid-headers.model";
 export * from "./get-user-friends-account-ids-response.model";
+export * from "./get-user-friends-requests-response.model";
 export * from "./membership.model";
 export * from "./profile-from-account-id-response.model";
 export * from "./profile-from-user-name-response.model";
