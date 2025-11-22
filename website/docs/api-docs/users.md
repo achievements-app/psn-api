@@ -217,6 +217,48 @@ These are the possible values that can be in the `options` object (the third par
 
 ---
 
+## getUserFriendsRequests
+
+A call to this function will retrieve the list of received friend requests (as `accountId` values) for the account the client is logged into.
+
+### Examples
+
+#### Get received friend requests
+
+```ts
+import { getUserFriendsRequests } from "psn-api";
+
+const response = await getUserFriendsRequests(authorization);
+```
+
+### Returns
+
+| Name               | Type       | Description                                                                      |
+| :----------------- | :--------- | :------------------------------------------------------------------------------- |
+| `receivedRequests` | `string[]` | The `accountId` values of the users who have sent friend requests to your account. |
+| `totalItemCount`   | `number`   | The total number of friend requests received.                                    |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the second parameter of the function).
+
+| Name     | Type     | Description                                          |
+| :------- | :------- | :--------------------------------------------------- |
+| `limit`  | `number` | Limit the number of friend requests returned.        |
+| `offset` | `number` | Return friend request data from this result onwards. |
+
+### Source
+
+[user/getUserFriendsRequests.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserFriendsRequests.ts)
+
+---
+
 ## getBasicPresence
 
 A call to this function will retrieve the presence of the accountId being requested. If the user cannot be found (either
