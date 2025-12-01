@@ -4,5 +4,6 @@ export * from "./getProfileFromAccountId";
 export * from "./getProfileFromUserName";
 export * from "./getProfileShareableLink";
 export * from "./getUserFriendsAccountIds";
+export * from "./getUserFriendsRequests";
 export * from "./getUserPlayedGames";
 export * from "./getUserRegion";
