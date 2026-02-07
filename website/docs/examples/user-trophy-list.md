@@ -32,7 +32,8 @@ async function main() {
   const accessCode = await exchangeNpssoForAccessCode(process.env["NPSSO"]);
   const authorization = await exchangeAccessCodeForAuthTokens(accessCode);
 
-  // 2. Get the user's `accountId` from the username.
+  // 2. Get the user's `accountId` from the username 'xelnia'.
+  // If you set `targetAccountId` to "me", it would download data for your own account.
   const allAccountsSearchResults = await makeUniversalSearch(
     authorization,
     "xelnia",
@@ -44,10 +45,23 @@ async function main() {
       .accountId;
 
   // 3. Get the user's list of titles (games).
-  const { trophyTitles } = await getUserTitles(authorization, targetAccountId);
-
+  // Ensure all data is fetched when the totalItemCount exceeds the limit.
+  const allTitles: TrophyTitle[] = [];
+  let offset = 0;
+  while (true) {
+    const { totalItemCount, trophyTitles } = await getUserTitles( authorization, targetAccountId, { offset });
+    if (!trophyTitles || trophyTitles.length === 0) {
+      break;
+    }
+    allTitles.push(...trophyTitles);
+    if (allTitles.length >= totalItemCount) {
+      break;
+    }
+    offset += trophyTitles.length;
+  }
+  
   const games: any[] = [];
-  for (const title of trophyTitles) {
+  for (const title of allTitles) {
     // 4. Get the list of trophies for each of the user's titles.
     const { trophies: titleTrophies } = await getTitleTrophies(
       authorization,
