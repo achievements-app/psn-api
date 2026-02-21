@@ -22,3 +22,6 @@ export const getUserGameListHash =
 
 export const getPurchasedGameListHash =
   "827a423f6a8ddca4107ac01395af2ec0eafd8396fc7fa204aaf9b7ed2eefa168";
+
+export const getSearchResultsHash =
+  "6ef5e809c35a056a1150fdcf513d9c505484dd1a946b6208888435c3182f105a";
