@@ -47,3 +47,64 @@ const response = await makeUniversalSearch(
 ### Source
 
 [search/makeUniversalSearch.ts](https://github.com/achievements-app/psn-api/blob/main/src/search/makeUniversalSearch.ts)
+
+## getSearchResults
+
+A call to this function will retrieve search results from the PlayStation Store based on the provided search term. This function searches for games, DLC, and other PlayStation Store products.
+
+:::warning
+This endpoint should be called **WITHOUT** authorization to receive price information. When called with authorization, price data may be filtered or unavailable.
+:::
+
+### Examples
+
+#### Search for games in the PlayStation Store
+
+```ts
+import { getSearchResults } from "psn-api";
+
+const response = await getSearchResults("batman", {
+  countryCode: "US",
+  languageCode: "en",
+  pageSize: 24,
+  pageOffset: 0
+});
+```
+
+### Returns
+
+[`SearchResultsResponse`](/api-docs/data-models/search-results-response)
+
+The response contains:
+
+| Name                            | Type                    | Description                                       |
+| :------------------------------ | :---------------------- | :------------------------------------------------ |
+| `data.universalSearch`          | `object`                | The main search results container                 |
+| `data.universalSearch.next`     | `string \| null`        | Pagination cursor for the next page of results    |
+| `data.universalSearch.pageInfo` | `SearchResultPageInfo`  | Pagination information (offset, size, totalCount) |
+| `data.universalSearch.results`  | `SearchResultProduct[]` | Array of product results with details and pricing |
+
+Each product result includes:
+
+- `id` - Product ID
+- `name` - Product name
+- `npTitleId` - PlayStation Network title ID
+- `platforms` - Array of platforms (e.g., ["PS4", "PS5"])
+- `media` - Array of images and videos
+- `price` - Pricing information including base price, discounts, etc.
+- `storeDisplayClassification` - Product type (e.g., "FULL_GAME", "LEVEL")
+
+### Parameters
+
+| Name                   | Type     | Description                                                                       |
+| :--------------------- | :------- | :-------------------------------------------------------------------------------- |
+| `searchTerm`           | `string` | The search term to query for (e.g., game name, publisher).                        |
+| `options`              | `object` | Search options including country, language, and pagination settings.              |
+| `options.countryCode`  | `string` | Two-letter country code (e.g., "US", "GB", "NL") to determine region and pricing. |
+| `options.languageCode` | `string` | Two-letter language code (e.g., "en", "es", "nl") for localized content.          |
+| `options.pageSize`     | `number` | _(Optional)_ Number of results per page. Defaults to `24`.                        |
+| `options.pageOffset`   | `number` | _(Optional)_ Offset for pagination (0 for first page). Defaults to `0`.           |
+
+### Source
+
+[graphql/getSearchResults.ts](https://github.com/achievements-app/psn-api/blob/main/src/graphql/getSearchResults.ts)
