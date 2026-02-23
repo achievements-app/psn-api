@@ -66,7 +66,7 @@ describe("Function: getSearchResults", () => {
                 isExclusive: false,
                 isFree: false,
                 isTiedToSubscription: null,
-                serviceBranding: null,
+                serviceBranding: [],
                 upsellServiceBranding: [],
                 upsellText: null
               },
@@ -115,7 +115,7 @@ describe("Function: getSearchResults", () => {
                 isExclusive: false,
                 isFree: false,
                 isTiedToSubscription: null,
-                serviceBranding: null,
+                serviceBranding: [],
                 upsellServiceBranding: [],
                 upsellText: null
               },
@@ -141,7 +141,6 @@ describe("Function: getSearchResults", () => {
       countryCode: "NL",
       languageCode: "nl",
       pageSize: 2,
-      pageOffset: 0,
       searchTerm: "batman"
     });
     const expectedExtensions = JSON.stringify({

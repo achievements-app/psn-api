@@ -8,6 +8,7 @@ type GetSearchResultsOptions = {
   languageCode: string;
   pageSize?: number;
   pageOffset?: number;
+  nextCursor?: string;
 };
 
 /**
@@ -24,7 +25,7 @@ export const getSearchResults = async (
   searchTerm: string,
   options: GetSearchResultsOptions
 ): Promise<SearchResultsResponse> => {
-  const { countryCode, languageCode, pageSize = 24, pageOffset = 0 } = options;
+  const { countryCode, languageCode, pageSize, pageOffset, nextCursor } = options;
 
   const url = new URL(GRAPHQL_BASE_URL);
 
@@ -35,7 +36,8 @@ export const getSearchResults = async (
     languageCode,
     pageSize,
     pageOffset,
-    searchTerm
+    searchTerm,
+    nextCursor
   };
 
   url.searchParams.set("variables", JSON.stringify(variables));
