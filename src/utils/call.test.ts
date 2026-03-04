@@ -1,5 +1,3 @@
-/* eslint-disable sonarjs/no-duplicate-string */
-
 import nock from "nock";
 
 import type { AuthorizationPayload, CallValidHeaders } from "../models";
