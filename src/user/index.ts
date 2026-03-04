@@ -3,6 +3,7 @@ export * from "./getBasicPresence";
 export * from "./getProfileFromAccountId";
 export * from "./getProfileFromUserName";
 export * from "./getProfileShareableLink";
+export * from "./getUserBlockedAccountIds";
 export * from "./getUserFriendsAccountIds";
 export * from "./getUserFriendsRequests";
 export * from "./getUserPlayedGames";

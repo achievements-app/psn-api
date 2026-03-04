@@ -3,6 +3,7 @@ export * from "./auth-tokens-response.model";
 export * from "./authorization-payload.model";
 export * from "./basic-presence-response.model";
 export * from "./call-valid-headers.model";
+export * from "./get-user-blocked-account-ids-response.model";
 export * from "./get-user-friends-account-ids-response.model";
 export * from "./get-user-friends-requests-response.model";
 export * from "./membership.model";

@@ -217,6 +217,49 @@ These are the possible values that can be in the `options` object (the third par
 
 ---
 
+## getUserBlockedAccountIds
+
+A call to this function will retrieve the list of blocked `accountId` values for the account the client is logged into.
+
+### Examples
+
+#### Get blocked account IDs
+
+```ts
+import { getUserBlockedAccountIds } from "psn-api";
+
+const response = await getUserBlockedAccountIds(authorization);
+```
+
+### Returns
+
+| Name             | Type       | Description                                                                |
+| :--------------- | :--------- | :------------------------------------------------------------------------- |
+| `blockList`      | `string[]` | The `accountId` values of the users who have been blocked by your account. |
+| `nextOffset`     | `number`   | The offset for the next page of results.                                   |
+| `previousOffset` | `number`   | The offset for the previous page of results.                               |
+
+### Parameters
+
+| Name            | Type                                                                  | Description                                                                                                                |
+| :-------------- | :-------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------- |
+| `authorization` | [`AuthorizationPayload`](/api-docs/data-models/authorization-payload) | An object that must contain an `accessToken`. See [this page](/authentication/authenticating-manually) for how to get one. |
+
+### Options
+
+These are the possible values that can be in the `options` object (the second parameter of the function).
+
+| Name     | Type     | Description                                           |
+| :------- | :------- | :---------------------------------------------------- |
+| `limit`  | `number` | Limit the number of blocked accounts returned.        |
+| `offset` | `number` | Return blocked account data from this result onwards. |
+
+### Source
+
+[user/getUserBlockedAccountIds.ts](https://github.com/achievements-app/psn-api/blob/main/src/user/getUserBlockedAccountIds.ts)
+
+---
+
 ## getUserFriendsRequests
 
 A call to this function will retrieve the list of received friend requests (as `accountId` values) for the account the client is logged into.
