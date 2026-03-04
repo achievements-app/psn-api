@@ -28,10 +28,10 @@
 
 ✅ &nbsp;Modular by design, and supports tree-shaking.  
 ✅ &nbsp;Aligns with the [community API documentation](https://andshrew.github.io/PlayStation-Trophies/#/).  
-✅ &nbsp;Supports Node environments (14 and above).  
-✅ &nbsp;Supports browsers.  
-✅ &nbsp;Ships with TypeScript support and types.  
-✅ &nbsp;Small, <5Kb.
+✅ &nbsp;Supports Node environments (20 and above).
+✅ &nbsp;Supports browsers.
+✅ &nbsp;Ships with TypeScript support and types.
+✅ &nbsp;Zero production dependencies.
 
 <hr />
 
@@ -154,39 +154,3 @@ Click the function names to open their complete docs on the docs site.
 ## Disclaimer
 
 This project is not intended to be used for spam or abuse. Please use this project to elevate the PlayStation Network experience, not damage it.
-
-## Contributors
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<table>
-  <tbody>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/wescopeland"><img src="https://avatars.githubusercontent.com/u/3984985?v=4?s=100" width="100px;" alt="Wes Copeland"/><br /><sub><b>Wes Copeland</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=wescopeland" title="Code">💻</a> <a href="#example-wescopeland" title="Examples">💡</a> <a href="https://github.com/achievements-app/psn-api/commits?author=wescopeland" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/xelnia"><img src="https://avatars.githubusercontent.com/u/14896738?v=4?s=100" width="100px;" alt="xelnia"/><br /><sub><b>xelnia</b></sub></a><br /><a href="#ideas-xelnia" title="Ideas, Planning, & Feedback">🤔</a> <a href="#userTesting-xelnia" title="User Testing">📓</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/andshrew"><img src="https://avatars.githubusercontent.com/u/7409326?v=4?s=100" width="100px;" alt="andshrew"/><br /><sub><b>andshrew</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=andshrew" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/purplem1lk"><img src="https://avatars.githubusercontent.com/u/49956513?v=4?s=100" width="100px;" alt="Susan Ma"/><br /><sub><b>Susan Ma</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=purplem1lk" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/travisrroy"><img src="https://avatars.githubusercontent.com/u/24424190?v=4?s=100" width="100px;" alt="Travis Roy"/><br /><sub><b>Travis Roy</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=travisrroy" title="Code">💻</a> <a href="#example-travisrroy" title="Examples">💡</a> <a href="https://github.com/achievements-app/psn-api/commits?author=travisrroy" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Azimiao"><img src="https://avatars.githubusercontent.com/u/11534726?v=4?s=100" width="100px;" alt="Yetu"/><br /><sub><b>Yetu</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=Azimiao" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://jojo.fandom.com/wiki/Yoshikage_Kira"><img src="https://avatars.githubusercontent.com/u/65515165?v=4?s=100" width="100px;" alt="Yoshikage Kira"/><br /><sub><b>Yoshikage Kira</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=isFakeAccount" title="Documentation">📖</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="https://evanshortiss.com"><img src="https://avatars.githubusercontent.com/u/1303687?v=4?s=100" width="100px;" alt="Evan Shortiss"/><br /><sub><b>Evan Shortiss</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=evanshortiss" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=evanshortiss" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/JenCrawford"><img src="https://avatars.githubusercontent.com/u/12951917?v=4?s=100" width="100px;" alt="crawfordj"/><br /><sub><b>crawfordj</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=JenCrawford" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=JenCrawford" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://hartaithan.github.io/"><img src="https://avatars.githubusercontent.com/u/62736094?v=4?s=100" width="100px;" alt="Hartaithan."/><br /><sub><b>Hartaithan.</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=Hartaithan" title="Code">💻</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://lamarcke.github.io"><img src="https://avatars.githubusercontent.com/u/23425058?v=4?s=100" width="100px;" alt="Cássio Lamarck"/><br /><sub><b>Cássio Lamarck</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=Lamarcke" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=Lamarcke" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/Dev-R"><img src="https://avatars.githubusercontent.com/u/83784102?v=4?s=100" width="100px;" alt="R"/><br /><sub><b>R</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=Dev-R" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=Dev-R" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://www.july.icu/"><img src="https://avatars.githubusercontent.com/u/26817261?v=4?s=100" width="100px;" alt="July"/><br /><sub><b>July</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=JxJuly" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=JxJuly" title="Documentation">📖</a></td>
-      <td align="center" valign="top" width="14.28%"><a href="https://github.com/silmarillenschnaps"><img src="https://avatars.githubusercontent.com/u/200592732?v=4?s=100" width="100px;" alt="silmarillenschnaps"/><br /><sub><b>silmarillenschnaps</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=silmarillenschnaps" title="Documentation">📖</a></td>
-    </tr>
-    <tr>
-      <td align="center" valign="top" width="14.28%"><a href="http://instagram.com/bartektricks"><img src="https://avatars.githubusercontent.com/u/22157966?v=4?s=100" width="100px;" alt="Bartek"/><br /><sub><b>Bartek</b></sub></a><br /><a href="https://github.com/achievements-app/psn-api/commits?author=bartektricks" title="Code">💻</a> <a href="https://github.com/achievements-app/psn-api/commits?author=bartektricks" title="Documentation">📖</a></td>
-    </tr>
-  </tbody>
-</table>
-
-<!-- markdownlint-restore -->
-<!-- prettier-ignore-end -->
-
-<!-- ALL-CONTRIBUTORS-LIST:END -->

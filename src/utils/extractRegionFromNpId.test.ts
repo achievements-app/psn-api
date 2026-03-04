@@ -1,4 +1,3 @@
-import { encodeBase64 } from "./encodeBase64";
 import { extractRegionFromNpId } from "./extractRegionFromNpId";
 
 describe("Function: extractRegionFromNpId", () => {
@@ -15,7 +14,6 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("extracts US region code from a valid NPID", () => {
     // ARRANGE
-    // This base64 string decodes to something like "username@domain.us"
     const mockNpId = "eGVsbmlhQGM2LnVz"; // Decodes to "xelnia@c6.us"
 
     // ACT
@@ -27,8 +25,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("extracts JP region code from a valid NPID", () => {
     // ARRANGE
-    // This base64 string decodes to something like "username@domain.jp"
-    const mockNpId = encodeBase64("testuser@psn.jp");
+    const mockNpId = btoa("testuser@psn.jp");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -39,8 +36,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("extracts GB region code from a valid NPID", () => {
     // ARRANGE
-    // This base64 string decodes to something like "username@domain.gb"
-    const mockNpId = encodeBase64("britishuser@psn.gb");
+    const mockNpId = btoa("britishuser@psn.gb");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -51,18 +47,18 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns region code in uppercase regardless of input case", () => {
     // ARRANGE
-    const mockNpId = encodeBase64("lowercaseuser@psn.fr");
+    const mockNpId = btoa("lowercaseuser@psn.fr");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
 
     // ASSERT
-    expect(result).toEqual("FR"); // Ensure uppercase even though "fr" is lowercase in the input
+    expect(result).toEqual("FR");
   });
 
   it("returns null for npId with invalid format (missing @)", () => {
     // ARRANGE
-    const mockNpId = encodeBase64("invalid-format.us");
+    const mockNpId = btoa("invalid-format.us");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -73,7 +69,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with invalid format (missing .)", () => {
     // ARRANGE
-    const mockNpId = encodeBase64("invalid@formatcom");
+    const mockNpId = btoa("invalid@formatcom");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -84,7 +80,7 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with region code longer than 2 characters", () => {
     // ARRANGE
-    const mockNpId = encodeBase64("user@domain.usa");
+    const mockNpId = btoa("user@domain.usa");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
@@ -95,12 +91,34 @@ describe("Function: extractRegionFromNpId", () => {
 
   it("returns null for npId with region code containing non-alphabetic characters", () => {
     // ARRANGE
-    const mockNpId = encodeBase64("user@domain.u1");
+    const mockNpId = btoa("user@domain.u1");
 
     // ACT
     const result = extractRegionFromNpId(mockNpId);
 
     // ASSERT
     expect(result).toBeNull();
+  });
+
+  it("returns null and logs an error when base64 decoding fails", () => {
+    // ARRANGE
+    // atob throws on strings with characters outside the base64 alphabet.
+    const consoleSpy = vi.spyOn(console, "error").mockImplementation((() => {
+      //
+    }) as () => void);
+
+    try {
+      // ACT
+      const result = extractRegionFromNpId("!!!invalid-base64!!!");
+
+      // ASSERT
+      expect(result).toBeNull();
+      expect(consoleSpy).toHaveBeenCalledWith(
+        "Failed to extract region from NPID:",
+        expect.any(Error)
+      );
+    } finally {
+      consoleSpy.mockRestore();
+    }
   });
 });

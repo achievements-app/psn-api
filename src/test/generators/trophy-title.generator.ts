@@ -11,7 +11,7 @@ export const generateTrophyTitle = (
     trophyTitleProps?.trophyTitlePlatform ?? generateTitlePlatform();
 
   const npServiceName =
-    trophyTitleProps?.npServiceName ?? trophyTitlePlatform === "PS5"
+    (trophyTitleProps?.npServiceName ?? trophyTitlePlatform === "PS5")
       ? "trophy2"
       : "trophy";
 

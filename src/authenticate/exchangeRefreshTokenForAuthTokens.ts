@@ -1,5 +1,3 @@
-import fetch from "isomorphic-unfetch";
-
 import type { AuthTokensResponse } from "../models";
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 

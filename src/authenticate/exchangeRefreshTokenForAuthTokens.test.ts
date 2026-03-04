@@ -33,9 +33,8 @@ describe("Function: exchangeRefreshTokenForAuthTokens", () => {
     });
 
     // ACT
-    const tokenResponse = await exchangeRefreshTokenForAuthTokens(
-      "mockAccessCode"
-    );
+    const tokenResponse =
+      await exchangeRefreshTokenForAuthTokens("mockAccessCode");
 
     // ASSERT
     expect(tokenResponse).toEqual(mockAuthTokensResponse);

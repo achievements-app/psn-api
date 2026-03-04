@@ -1,5 +1,4 @@
 import { RegionCode } from "../models";
-import { decodeBase64 } from "./decodeBase64";
 
 /**
  * Extracts the region code from a base64-encoded NPID string and returns the region code.
@@ -17,10 +16,7 @@ export const extractRegionFromNpId = (npId: string): RegionCode | null => {
   }
 
   try {
-    // Decode the base64-encoded NPID
-    // Note: Buffer is Node.js specific. For cross-platform (browser/Node)
-    // consider alternatives if needed, though NPID format might be ASCII-safe for atob.
-    const decodedNpId = decodeBase64(npId);
+    const decodedNpId = atob(npId);
 
     // Assuming a decoded npid format (e.g. VaultTec-Co@b7.us), extract the region part.
     if (decodedNpId.includes("@") && decodedNpId.includes(".")) {

@@ -93,4 +93,29 @@ describe("Function: getProfileFromUserName", () => {
       getProfileFromUserName(mockAuthorization, "xeln12ia")
     ).rejects.toThrow();
   });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    const baseUrlObj = new URL(USER_LEGACY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/xeln12ia/profile2`)
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(
+      getProfileFromUserName(mockAuthorization, "xeln12ia")
+    ).rejects.toThrow("Unexpected Error");
+  });
 });

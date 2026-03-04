@@ -15,14 +15,14 @@
     "pnpm": ">=10"
   },
   "version": "0.0.0-development",
-  "main": "dist/index.js",
-  "module": "dist/psn-api.esm.js",
-  "typings": "dist/index.d.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.js",
-      "import": "./dist/psn-api.esm.js",
-      "types": "./dist/index.d.ts"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "author": "Wes Copeland",
@@ -32,86 +32,47 @@
     "src"
   ],
   "scripts": {
-    "dev": "dts watch",
-    "playground": "esrun --watch src/__playground.ts",
-    "build": "dts build",
-    "prepare": "dts build",
+    "dev": "vite build --watch",
+    "playground": "vite-node --watch src/__playground.ts",
+    "build": "vite build",
+    "prepare": "vite build",
     "format": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
-    "format:write": "prettier --write . '**/*.{json,md,js,ts,tsx}'",
     "format:check": "prettier --check . '**/*.{json,md,js,ts,tsx}'",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "lint:fix": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . --fix",
-    "test": "jest --selectProjects UNIT",
-    "test:coverage": "jest --selectProjects UNIT --coverage",
-    "verify": "npm run format:check && npm run lint && npm run test:coverage && npm run build && npm run size",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "verify": "pnpm format && pnpm lint:fix && pnpm test:coverage && pnpm build",
     "semantic-release": "semantic-release"
   },
-  "dependencies": {
-    "isomorphic-unfetch": "^3.1.0"
-  },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@digitak/esrun": "^3.2.19",
     "@faker-js/faker": "^7.6.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.5",
     "@semantic-release/release-notes-generator": "^14.1.0",
-    "@size-limit/preset-small-lib": "^8.1.2",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.12",
+    "@types/node": "^22.0.0",
     "@typescript-eslint/eslint-plugin": "^5.50.0",
     "@typescript-eslint/parser": "^5.50.0",
-    "cz-conventional-changelog": "^3.3.0",
-    "dotenv-flow-cli": "^1.0.0",
-    "dts-cli": "^1.6.3",
-    "eslint": "^8.33.0",
+    "@vitest/coverage-istanbul": "^4.0.18",
+    "eslint": "^8.57.1",
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-simple-import-sort": "^8.0.0",
-    "eslint-plugin-sonarjs": "^0.16.0",
-    "eslint-plugin-unicorn": "^44.0.2",
-    "husky": "^4.3.8",
-    "jest": "^29.4.1",
+    "eslint-plugin-sonarjs": "^0.25.0",
+    "eslint-plugin-unicorn": "^56.0.1",
     "nock": "^14.0.4",
-    "prettier": "2.7.1",
-    "pretty-quick": "^3.1.3",
+    "prettier": "^3.8.1",
     "semantic-release": "^25.0.3",
-    "size-limit": "^8.1.2",
-    "ts-jest": "^29.0.5",
-    "tslib": "^2.5.0",
-    "typescript": "^4.9.5"
-  },
-  "size-limit": [
-    {
-      "path": "dist/psn-api.cjs.production.min.js",
-      "limit": "10 KB",
-      "brotli": true
-    },
-    {
-      "path": "dist/psn-api.esm.js",
-      "limit": "10 KB",
-      "brotli": true
-    }
-  ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "pretty-quick --staged && npm run lint",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
-  },
-  "config": {
-    "commitizen": {
-      "path": "./node_modules/cz-conventional-changelog"
-    }
+    "typescript": "^5.8.0",
+    "vite": "^7.3.1",
+    "vite-plugin-dts": "^4.5.4",
+    "vitest": "^4.0.18"
   },
   "release": {
     "branches": [
-      "master",
+      "main",
       "next"
     ]
   },
@@ -121,8 +82,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/achievements-app/psn-api.git"
-  },
-  "resolutions": {
-    "rxjs": "^6.6.0"
   }
 }

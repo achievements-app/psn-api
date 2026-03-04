@@ -97,4 +97,40 @@ describe("Function: getUserTrophiesEarnedForTitle", () => {
       )
     ).rejects.toThrow();
   });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockAccountId = "mockAccountId";
+    const mockNpCommunicationId = "mockNpCommunicationId";
+    const mockTrophyGroupId = "mockTrophyGroupId";
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    const baseUrlObj = new URL(TROPHY_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(
+        `${basePath}/v1/users/${mockAccountId}/npCommunicationIds/${mockNpCommunicationId}/trophyGroups/${mockTrophyGroupId}/trophies`
+      )
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(
+      getUserTrophiesEarnedForTitle(
+        mockAuthorization,
+        mockAccountId,
+        mockNpCommunicationId,
+        mockTrophyGroupId
+      )
+    ).rejects.toThrow("Unexpected Error");
+  });
 });

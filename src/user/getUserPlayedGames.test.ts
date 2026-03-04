@@ -49,4 +49,54 @@ describe("Function: getUserPlayedGames", () => {
     // ASSERT
     expect(response).toEqual(mockResponse);
   });
+
+  it("throws an error if we receive a response containing an `error` object", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 2_105_356, message: "User not found" }
+    };
+
+    const baseUrlObj = new URL(USER_GAMES_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/me/titles`)
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(getUserPlayedGames(mockAuthorization, "me")).rejects.toThrow(
+      "User not found"
+    );
+  });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    const baseUrlObj = new URL(USER_GAMES_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/me/titles`)
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(getUserPlayedGames(mockAuthorization, "me")).rejects.toThrow(
+      "Unexpected Error"
+    );
+  });
 });
