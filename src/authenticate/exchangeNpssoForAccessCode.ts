@@ -1,5 +1,3 @@
-import fetch from "isomorphic-unfetch";
-
 import { AUTH_BASE_URL } from "./AUTH_BASE_URL";
 
 /**

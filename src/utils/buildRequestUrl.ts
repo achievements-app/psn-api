@@ -10,7 +10,7 @@ export const buildRequestUrl = (
   const { headerOverrides, ...pickedOptions } = options;
 
   const concatenated = `${baseUrl}/${endpointUrl}`;
-  const withoutDoubleSlashes = concatenated.replace(/([^:]\/)\/+/g, "$1");
+  const withoutDoubleSlashes = concatenated.replaceAll(/([^:]\/)\/+/g, "$1");
 
   let withArgs = withoutDoubleSlashes;
   const queryParamValues: Record<string, string> = {};

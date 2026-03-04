@@ -64,8 +64,27 @@ describe("Function: getUserFriendsRequests", () => {
       .reply(200, mockResponse);
 
     // ASSERT
-    await expect(
-      getUserFriendsRequests(mockAuthorization)
-    ).rejects.toThrow();
+    await expect(getUserFriendsRequests(mockAuthorization)).rejects.toThrow();
+  });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    nock("https://m.np.playstation.com")
+      .get("/api/userProfile/v1/internal/users/me/friends/receivedRequests")
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(getUserFriendsRequests(mockAuthorization)).rejects.toThrow(
+      "Unexpected Error"
+    );
   });
 });

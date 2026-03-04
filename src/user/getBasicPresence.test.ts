@@ -82,4 +82,29 @@ describe("Function: getBasicPresence", () => {
       getBasicPresence(mockAuthorization, "111222333444")
     ).rejects.toThrow();
   });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    const baseUrlObj = new URL(USER_BASE_URL);
+    const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
+    const basePath = baseUrlObj.pathname;
+
+    nock(baseUrl)
+      .get(`${basePath}/111222333444/basicPresences`)
+      .query({ type: "primary" })
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(
+      getBasicPresence(mockAuthorization, "111222333444")
+    ).rejects.toThrow("Unexpected Error");
+  });
 });

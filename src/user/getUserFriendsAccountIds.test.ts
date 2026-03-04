@@ -68,4 +68,25 @@ describe("Function: getUserFriendsAccountIds", () => {
       getUserFriendsAccountIds(mockAuthorization, "111222333444")
     ).rejects.toThrow();
   });
+
+  it("throws with default message if error object has no message", async () => {
+    // ARRANGE
+    const mockAuthorization: AuthorizationPayload = {
+      accessToken: "mockAccessToken"
+    };
+
+    const mockResponse = {
+      error: { code: 500 }
+    };
+
+    nock("https://m.np.playstation.com")
+      .get("/api/userProfile/v1/internal/users/111222333444/friends")
+      .query(true)
+      .reply(200, mockResponse);
+
+    // ASSERT
+    await expect(
+      getUserFriendsAccountIds(mockAuthorization, "111222333444")
+    ).rejects.toThrow("Unexpected Error");
+  });
 });

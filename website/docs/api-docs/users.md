@@ -276,10 +276,10 @@ const response = await getUserFriendsRequests(authorization);
 
 ### Returns
 
-| Name               | Type       | Description                                                                      |
-| :----------------- | :--------- | :------------------------------------------------------------------------------- |
+| Name               | Type       | Description                                                                        |
+| :----------------- | :--------- | :--------------------------------------------------------------------------------- |
 | `receivedRequests` | `string[]` | The `accountId` values of the users who have sent friend requests to your account. |
-| `totalItemCount`   | `number`   | The total number of friend requests received.                                    |
+| `totalItemCount`   | `number`   | The total number of friend requests received.                                      |
 
 ### Parameters
 

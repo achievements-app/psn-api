@@ -33,9 +33,8 @@ describe("Function: exchangeAccessCodeForAuthTokens", () => {
     });
 
     // ACT
-    const tokenResponse = await exchangeAccessCodeForAuthTokens(
-      "mockAccessCode"
-    );
+    const tokenResponse =
+      await exchangeAccessCodeForAuthTokens("mockAccessCode");
 
     // ASSERT
     expect(tokenResponse).toEqual(mockAuthTokensResponse);

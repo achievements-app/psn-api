@@ -70,13 +70,11 @@ pnpm test -- -t "name of test or test file"
 ## Code Conventions
 
 1. All API functions follow a similar pattern:
-
    - They accept an authorization object as their first parameter
    - Additional parameters follow
    - Each function is well-typed with appropriate request/response interfaces
 
 2. Testing:
-
    - Mock responses are used to test API endpoints
    - Each function has tests for successful responses and error handling
 
