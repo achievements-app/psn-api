@@ -1,5 +1,3 @@
-/* eslint-disable unicorn/prefer-top-level-await */
-
 /**
  * PLEASE ONLY COMMIT CHANGES TO THIS FILE IF YOU WANT THEM
  * TO DIRECTLY IMPACT EVERY DEV WORKING ON THE PROJECT.

@@ -24,24 +24,19 @@ pnpm test
 # Run tests with coverage
 pnpm test:coverage
 
-# Format code
+# Format code (oxfmt)
 pnpm format
-pnpm format:write
 pnpm format:check
 
-# Lint code
+# Lint code (oxlint)
 pnpm lint
 pnpm lint:fix
 
 # Build the project
 pnpm build
 
-# Verify everything (format, lint, test, build, size)
+# Verify everything (format, lint, test, build)
 pnpm verify
-
-# Check bundle size
-pnpm size
-pnpm analyze
 ```
 
 ## Project Structure
@@ -59,7 +54,7 @@ pnpm analyze
 
 ## Testing
 
-Tests are written using Jest. Each API function has a corresponding `.test.ts` file. The project maintains 100% test coverage for branches, functions, lines, and statements.
+Tests are written using Vitest. Each API function has a corresponding `.test.ts` file. The project maintains 100% test coverage for branches, functions, lines, and statements.
 
 To run a single test file:
 

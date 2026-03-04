@@ -12,25 +12,15 @@
   <br />
 </p>
 
-<p align="center">
-  <a href="https://github.com/prettier/prettier">
-    <img src="https://img.shields.io/badge/styled_with-prettier-ff69b4.svg?style=flat-square" alt="Styled with Prettier" />
-  </a>
-
-  <a href="https://github.com/semantic-release/semantic-release">
-    <img src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg" alt="Semantic Release" />
-  </a>
-</p>
-
 <hr />
 
 ## Features
 
 ✅ &nbsp;Modular by design, and supports tree-shaking.  
 ✅ &nbsp;Aligns with the [community API documentation](https://andshrew.github.io/PlayStation-Trophies/#/).  
-✅ &nbsp;Supports Node environments (20 and above).
-✅ &nbsp;Supports browsers.
-✅ &nbsp;Ships with TypeScript support and types.
+✅ &nbsp;Supports Node environments (20 and above).  
+✅ &nbsp;Supports browsers.  
+✅ &nbsp;Ships with TypeScript support and types.  
 ✅ &nbsp;Zero production dependencies.
 
 <hr />
