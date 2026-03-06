@@ -136,12 +136,14 @@ describe("Function: getSearchResults", () => {
     const baseUrl = `${baseUrlObj.protocol}//${baseUrlObj.host}`;
     const basePath = baseUrlObj.pathname;
 
-    // ... we need to use a nock matcher to verify the query parameters ...
+    const cursor = "CDAaVQolYjg5ODE2ODk0Y2ZiNDU2ZGIzNTU5MjIwOWM5YTdjODQ";
     const expectedVariables = JSON.stringify({
       countryCode: "NL",
       languageCode: "nl",
+      searchTerm: "batman",
       pageSize: 2,
-      searchTerm: "batman"
+      pageOffset: 0,
+      nextCursor: cursor
     });
     const expectedExtensions = JSON.stringify({
       persistedQuery: {
@@ -151,6 +153,7 @@ describe("Function: getSearchResults", () => {
       }
     });
 
+    // ... we need to use a nock matcher to verify the query parameters ...
     const mockScope = nock(baseUrl)
       .get(basePath)
       .query((params) => {
@@ -165,7 +168,9 @@ describe("Function: getSearchResults", () => {
     const response = await getSearchResults("batman", {
       countryCode: "NL",
       languageCode: "nl",
-      pageSize: 2
+      pageSize: 2,
+      pageOffset: 0,
+      nextCursor: cursor
     });
 
     // ASSERT
