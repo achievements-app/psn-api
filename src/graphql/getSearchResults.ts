@@ -40,9 +40,9 @@ export const getSearchResults = async (
     countryCode,
     languageCode,
     searchTerm,
-    pageSize,
-    pageOffset,
-    nextCursor
+    ...(pageSize !== undefined && { pageSize }),
+    ...(pageOffset !== undefined && { pageOffset }),
+    ...(nextCursor !== undefined && { nextCursor })
   };
 
   url.searchParams.set("variables", JSON.stringify(variables));
