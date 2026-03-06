@@ -19,7 +19,12 @@ type GetSearchResultsOptions = {
  * When called with authorization, price data may be filtered or unavailable.
  *
  * @param searchTerm The search term to query for.
- * @param options An object containing search options including countryCode and languageCode.
+ * @param options An object containing search options.
+ * @param options.countryCode Two-letter country code (e.g., `"US"`, `"GB"`, `"NL"`) to determine region and pricing.
+ * @param options.languageCode Two-letter language code (e.g., `"en"`, `"es"`, `"nl"`) for localized content.
+ * @param options.pageSize _(Optional)_ Number of results per page.
+ * @param options.pageOffset _(Optional)_ Offset for pagination (0 for first page).
+ * @param options.nextCursor _(Optional)_ Pagination cursor.
  */
 export const getSearchResults = async (
   searchTerm: string,
@@ -34,9 +39,9 @@ export const getSearchResults = async (
   const variables: Record<string, unknown> = {
     countryCode,
     languageCode,
+    searchTerm,
     pageSize,
     pageOffset,
-    searchTerm,
     nextCursor
   };
 
