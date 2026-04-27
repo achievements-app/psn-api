@@ -28,8 +28,7 @@
   "author": "Wes Copeland",
   "license": "MIT",
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "scripts": {
     "dev": "vite build --watch",
