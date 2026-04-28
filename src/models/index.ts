@@ -12,6 +12,7 @@ export * from "./profile-from-user-name-response.model";
 export * from "./purchased-games-response.model";
 export * from "./rarest-thin-trophy.model";
 export * from "./recently-played-games-response.model";
+export * from "./search-results-response.model";
 export * from "./shareable-profile-link-response.model";
 export * from "./social-account-result.model";
 export * from "./title-platform.model";
