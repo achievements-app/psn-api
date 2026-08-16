@@ -6,16 +6,21 @@ export const call = async <T>(
     method?: "GET" | "POST";
     headers?: CallValidHeaders;
   },
-  authorization: AuthorizationPayload,
+  authorization?: AuthorizationPayload,
   bodyPayload?: Record<string, any>
 ) => {
+  const headers: Record<string, string> = {
+    "Content-Type": "application/json",
+    ...config.headers
+  };
+
+  if (authorization?.accessToken) {
+    headers.Authorization = `Bearer ${authorization.accessToken}`;
+  }
+
   const response = await fetch(config.url, {
     method: config?.method ?? "GET",
-    headers: {
-      Authorization: `Bearer ${authorization.accessToken}`,
-      "Content-Type": "application/json",
-      ...config?.headers
-    },
+    headers,
     body: JSON.stringify(bodyPayload)
   });
 

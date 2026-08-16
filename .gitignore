@@ -14,6 +14,9 @@ coverage
 !.vscode/extensions.json
 !.vscode/settings.json
 
+# IntelliJ IDEA
+.idea/
+
 # Docusaurus
 website/node_modules
 website/.docusaurus
