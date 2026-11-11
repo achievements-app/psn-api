@@ -33,6 +33,7 @@ Learn how to authenticate and start fetching data from the PlayStation Network o
 - [How to authenticate](https://psn-api.achievements.app/authentication/authenticating-manually)
 - [Get all trophies for a game](https://psn-api.achievements.app/api-docs/title-trophies#gettitletrophies)
 - [Search for a user](https://psn-api.achievements.app/api-docs/universal-search#makeuniversalsearch)
+- [Community OpenAPI 3.1 contract for core trophy endpoints](./openapi/README.md)
 
 ## Installation
 
