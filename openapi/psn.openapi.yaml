@@ -26,7 +26,15 @@ paths:
       tags: [User trophies]
       parameters:
         - $ref: "#/components/parameters/AccountId"
-        - $ref: "#/components/parameters/Limit"
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            Maximum number of titles to return in this page.
+            One call returns at most 800 titles.
+          schema:
+            type: integer
+            maximum: 800
         - $ref: "#/components/parameters/Offset"
         - $ref: "#/components/parameters/AcceptLanguage"
       responses:

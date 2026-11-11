@@ -17,6 +17,11 @@ const contract = parse(
     {
       get: {
         operationId: string;
+        parameters?: Array<{
+          $ref?: string;
+          name?: string;
+          schema?: { type?: string; maximum?: number };
+        }>;
         responses: {
           "200": {
             content: {
@@ -109,6 +114,22 @@ describe("OpenAPI response fixtures", () => {
 
     expect(validateUserTrophies(data)).toBe(true);
     expect(data).toEqual(original);
+  });
+
+  it("caps getUserTitles at 800 titles per page", () => {
+    const parameters =
+      contract.paths["/v1/users/{accountId}/trophyTitles"].get.parameters ?? [];
+    const limit = parameters.find((parameter) => parameter.name === "limit");
+    expect(limit?.schema).toEqual({ type: "integer", maximum: 800 });
+
+    for (const path of [
+      "/v1/npCommunicationIds/{npCommunicationId}/trophyGroups/{trophyGroupId}/trophies",
+      "/v1/users/{accountId}/npCommunicationIds/{npCommunicationId}/trophyGroups/{trophyGroupId}/trophies"
+    ]) {
+      expect(contract.paths[path].get.parameters).toContainEqual({
+        $ref: "#/components/parameters/Limit"
+      });
+    }
   });
 
   it("allows an empty terminal page without optional pagination fields", () => {
