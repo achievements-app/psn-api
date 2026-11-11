@@ -86,6 +86,15 @@ describe("OpenAPI response fixtures", () => {
     expect(validateUserTrophies(data)).toBe(false);
   });
 
+  it("rejects a platinum count other than 0 or 1", async () => {
+    const data = await readFixture("./fixtures/user-titles.json");
+    data.trophyTitles[0].definedTrophies.platinum = 5;
+    const validate = ajv.compile({
+      $ref: "psn#/components/schemas/UserTitlesResponse"
+    });
+    expect(validate(data)).toBe(false);
+  });
+
   it("rejects a missing required trophy field", async () => {
     const data = await readFixture("./fixtures/user-trophies-ps4.json");
     delete data.trophies[0].trophyHidden;

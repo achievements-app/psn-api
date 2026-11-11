@@ -182,7 +182,10 @@ components:
         bronze: { type: integer }
         silver: { type: integer }
         gold: { type: integer }
-        platinum: { type: integer }
+        platinum:
+          type: integer
+          enum: [0, 1]
+          description: 1 if the group contains a platinum trophy.
       additionalProperties: true
     TrophyTitle:
       type: object
