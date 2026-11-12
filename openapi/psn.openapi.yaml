@@ -219,12 +219,10 @@ components:
         trophyTitleName: { type: string }
         trophyTitleDetail: { type: string }
         trophyTitleIconUrl: { type: string, format: uri }
-        platinumTrophyIconUrl: { type: string, format: uri }
         trophyTitlePlatform:
           type: string
           description: Platform name or comma-separated platforms for shared trophy sets, such as PS4,PSVITA.
         hasTrophyGroups: { type: boolean }
-        trophyGroupCount: { type: integer }
         definedTrophies: { $ref: "#/components/schemas/Counts" }
         progress: { type: integer }
         earnedTrophies: { $ref: "#/components/schemas/Counts" }
@@ -265,8 +263,6 @@ components:
           trophyGroups
         ]
       properties:
-        npServiceName: { type: string, enum: [trophy, trophy2] }
-        npCommunicationId: { type: string }
         trophySetVersion: { type: string }
         trophyTitleName: { type: string }
         trophyTitleDetail: { type: string }
@@ -334,6 +330,22 @@ components:
           type: string
           description: PS5 reward name when present. Not observed in the included captures.
       additionalProperties: true
+    RarestThinTrophy:
+      type: object
+      required: [trophyId, trophyHidden, trophyType]
+      properties:
+        trophyId: { type: integer }
+        trophyHidden: { type: boolean }
+        earned: { type: boolean }
+        trophyType: { type: string, enum: [bronze, silver, gold, platinum] }
+        trophyRare:
+          type: integer
+          enum: [0, 1, 2, 3]
+          description: 0 is ultra rare, 1 very rare, 2 rare, and 3 common.
+        trophyEarnedRate:
+          type: string
+          description: Percentage of players who earned the trophy, returned as a decimal string.
+      additionalProperties: true
     UserTrophiesEarnedForTitleResponse:
       type: object
       required:
@@ -353,7 +365,7 @@ components:
           items: { $ref: "#/components/schemas/UserTrophy" }
         rarestTrophies:
           type: array
-          items: { $ref: "#/components/schemas/UserTrophy" }
+          items: { $ref: "#/components/schemas/RarestThinTrophy" }
         totalItemCount: { type: integer }
         nextOffset: { type: integer }
         previousOffset: { type: integer }

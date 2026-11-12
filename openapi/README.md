@@ -12,3 +12,5 @@ pnpm openapi:test   # fixture-reference coverage and endpoint-specific contract 
 ```
 
 Both checks run as part of [`pnpm verify`](../package.json), without PSN credentials or live API calls. The contract tests also run in the normal Vitest suite.
+
+For now, keep this specification and the matching TypeScript models and endpoints in sync when changing either. We plan to generate the TypeScript client from OpenAPI soon so this manual step will eventually be replaced by code generation and CI checks.
