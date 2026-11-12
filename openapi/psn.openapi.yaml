@@ -360,17 +360,16 @@ components:
       additionalProperties: true
   examples:
     UserTitles:
-      summary: One PS4 and one PS5 title (names anonymized)
-      externalValue: ./fixtures/user-titles.json
+      $ref: ./fixtures/user-titles.json
     TitleTrophyGroupsPs4:
-      externalValue: ./fixtures/title-trophy-groups-ps4.json
+      $ref: ./fixtures/title-trophy-groups-ps4.json
     TitleTrophyGroupsPs5:
-      externalValue: ./fixtures/title-trophy-groups-ps5.json
+      $ref: ./fixtures/title-trophy-groups-ps5.json
     TitleTrophiesPs4:
-      externalValue: ./fixtures/title-trophies-ps4.json
+      $ref: ./fixtures/title-trophies-ps4.json
     TitleTrophiesPs5:
-      externalValue: ./fixtures/title-trophies-ps5.json
+      $ref: ./fixtures/title-trophies-ps5.json
     UserTrophiesPs4:
-      externalValue: ./fixtures/user-trophies-ps4.json
+      $ref: ./fixtures/user-trophies-ps4.json
     UserTrophiesPs5:
-      externalValue: ./fixtures/user-trophies-ps5.json
+      $ref: ./fixtures/user-trophies-ps5.json

@@ -4,5 +4,8 @@ apis:
 extends:
   - recommended
 rules:
+  no-invalid-media-type-examples:
+    severity: error
+    allowAdditionalProperties: true
   # Specific error statuses and payloads have not yet been captured.
   operation-4xx-response: off

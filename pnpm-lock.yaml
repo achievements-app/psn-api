@@ -49,12 +49,6 @@ importers:
       '@vitest/coverage-istanbul':
         specifier: ^4.0.18
         version: 4.0.18(vitest@4.0.18(@types/node@22.19.13)(jsdom@16.7.0)(yaml@2.9.1))
-      ajv:
-        specifier: '>=6.14.0'
-        version: 8.18.0
-      ajv-formats:
-        specifier: ^3.0.1
-        version: 3.0.1(ajv@8.18.0)
       eslint-plugin-no-only-tests:
         specifier: ^3.3.0
         version: 3.3.0
