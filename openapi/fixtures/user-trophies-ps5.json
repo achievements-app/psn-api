@@ -1,0 +1,40 @@
+{
+  "summary": "Sanitized PS5 earned and unearned trophy excerpt",
+  "value": {
+    "trophySetVersion": "01.00",
+    "hasTrophyGroups": true,
+    "lastUpdatedDateTime": "2026-01-01T00:00:00Z",
+    "trophies": [
+      {
+        "trophyId": 0,
+        "trophyHidden": false,
+        "earned": true,
+        "earnedDateTime": "2026-01-01T00:00:00Z",
+        "trophyType": "platinum",
+        "trophyRare": 0,
+        "trophyEarnedRate": "0.1"
+      },
+      {
+        "trophyId": 25,
+        "trophyHidden": false,
+        "earned": false,
+        "trophyType": "gold",
+        "trophyRare": 1,
+        "trophyEarnedRate": "14.6"
+      }
+    ],
+    "rarestTrophies": [
+      {
+        "trophyId": 0,
+        "trophyHidden": false,
+        "earned": true,
+        "earnedDateTime": "2026-01-01T00:00:00Z",
+        "trophyType": "platinum",
+        "trophyRare": 0,
+        "trophyEarnedRate": "0.1"
+      }
+    ],
+    "nextOffset": 100,
+    "totalItemCount": 176
+  }
+}

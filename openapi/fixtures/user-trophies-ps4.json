@@ -1,0 +1,39 @@
+{
+  "summary": "Sanitized PS4 earned and unearned trophy excerpt",
+  "value": {
+    "trophySetVersion": "01.01",
+    "hasTrophyGroups": true,
+    "lastUpdatedDateTime": "2026-01-01T00:00:00Z",
+    "trophies": [
+      {
+        "trophyId": 38,
+        "trophyHidden": false,
+        "earned": true,
+        "earnedDateTime": "2026-01-01T00:00:00Z",
+        "trophyType": "bronze",
+        "trophyRare": 2,
+        "trophyEarnedRate": "20.8"
+      },
+      {
+        "trophyId": 0,
+        "trophyHidden": false,
+        "earned": false,
+        "trophyType": "platinum",
+        "trophyRare": 0,
+        "trophyEarnedRate": "0.9"
+      }
+    ],
+    "rarestTrophies": [
+      {
+        "trophyId": 38,
+        "trophyHidden": false,
+        "earned": true,
+        "earnedDateTime": "2026-01-01T00:00:00Z",
+        "trophyType": "bronze",
+        "trophyRare": 2,
+        "trophyEarnedRate": "20.8"
+      }
+    ],
+    "totalItemCount": 91
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "summary": "Sanitized PS5 trophy definition excerpt",
+  "value": {
+    "trophySetVersion": "01.00",
+    "hasTrophyGroups": true,
+    "trophies": [
+      {
+        "trophyId": 0,
+        "trophyHidden": false,
+        "trophyType": "platinum",
+        "trophyName": "Sample Platinum",
+        "trophyDetail": "Sanitized captured trophy description.",
+        "trophyIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/trophy.png",
+        "trophyGroupId": "default"
+      },
+      {
+        "trophyId": 1,
+        "trophyHidden": false,
+        "trophyType": "silver",
+        "trophyName": "Sample Trophy",
+        "trophyDetail": "Sanitized captured trophy description.",
+        "trophyIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/trophy2.png",
+        "trophyGroupId": "default"
+      }
+    ],
+    "nextOffset": 3,
+    "totalItemCount": 176
+  }
+}

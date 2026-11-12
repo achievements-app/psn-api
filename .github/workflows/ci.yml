@@ -28,7 +28,7 @@ jobs:
     name: Node.js Checks
     strategy:
       matrix:
-        check: ["format:check", "lint", "test", "build"]
+        check: ["format:check", "lint", "test", "build", "openapi:lint"]
         include:
           - check: format:check
             command: pnpm format:check
@@ -38,6 +38,8 @@ jobs:
             command: pnpm test:coverage
           - check: build
             command: pnpm build
+          - check: openapi:lint
+            command: pnpm openapi:lint
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

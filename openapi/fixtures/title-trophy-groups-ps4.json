@@ -1,0 +1,39 @@
+{
+  "summary": "Sanitized PS4 trophy group excerpt",
+  "value": {
+    "npServiceName": "trophy",
+    "npCommunicationId": "NPWR59723_00",
+    "trophySetVersion": "01.01",
+    "trophyTitleName": "Sample PS4 Game",
+    "trophyTitleDetail": "Sanitized captured title description.",
+    "trophyTitleIconUrl": "https://image.api.playstation.com/trophy/sample.png",
+    "trophyTitlePlatform": "PS4",
+    "definedTrophies": { "bronze": 78, "silver": 10, "gold": 2, "platinum": 1 },
+    "trophyGroups": [
+      {
+        "trophyGroupId": "default",
+        "trophyGroupName": "Sample PS4 Game",
+        "trophyGroupDetail": "Sanitized captured group description.",
+        "trophyGroupIconUrl": "https://image.api.playstation.com/trophy/sample.png",
+        "definedTrophies": {
+          "bronze": 42,
+          "silver": 6,
+          "gold": 2,
+          "platinum": 1
+        }
+      },
+      {
+        "trophyGroupId": "001",
+        "trophyGroupName": "Sample PS4 Game: DLC 1",
+        "trophyGroupDetail": "Sanitized captured group description.",
+        "trophyGroupIconUrl": "https://image.api.playstation.com/trophy/dlc.png",
+        "definedTrophies": {
+          "bronze": 9,
+          "silver": 1,
+          "gold": 0,
+          "platinum": 0
+        }
+      }
+    ]
+  }
+}

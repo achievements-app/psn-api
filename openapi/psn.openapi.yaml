@@ -1,0 +1,387 @@
+openapi: 3.1.0
+info:
+  title: PlayStation Network Trophy API
+  version: 0.1.0
+  license:
+    name: MIT
+    identifier: MIT
+  description: >-
+    Community-maintained contract for the PSN trophy endpoints used by psn-api.
+    This describes observed responses and is not an official Sony specification.
+servers:
+  - url: https://m.np.playstation.com/api/trophy
+    description: PlayStation Network trophy API
+tags:
+  - name: User trophies
+    description: Trophy information associated with PSN accounts.
+  - name: Title trophies
+    description: Trophy definition and group information associated with games.
+security:
+  - bearerAuth: []
+paths:
+  /v1/users/{accountId}/trophyTitles:
+    get:
+      operationId: getUserTitles
+      summary: List trophy titles played by a user
+      tags: [User trophies]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - name: limit
+          in: query
+          required: false
+          description: >-
+            Maximum number of titles to return in this page.
+            One call returns at most 800 titles.
+          schema:
+            type: integer
+            maximum: 800
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/AcceptLanguage"
+      responses:
+        "200":
+          description: Paginated trophy titles, ordered by recent trophy activity.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTitlesResponse"
+              examples:
+                ps4AndPs5:
+                  $ref: "#/components/examples/UserTitles"
+        default:
+          $ref: "#/components/responses/Error"
+  /v1/npCommunicationIds/{npCommunicationId}/trophyGroups:
+    get:
+      operationId: getTitleTrophyGroups
+      summary: List trophy groups for a title
+      tags: [Title trophies]
+      parameters:
+        - $ref: "#/components/parameters/NpCommunicationId"
+        - $ref: "#/components/parameters/NpServiceName"
+        - $ref: "#/components/parameters/AcceptLanguage"
+      responses:
+        "200":
+          description: Trophy group summaries for the title.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TitleTrophyGroupsResponse"
+              examples:
+                ps4:
+                  $ref: "#/components/examples/TitleTrophyGroupsPs4"
+                ps5:
+                  $ref: "#/components/examples/TitleTrophyGroupsPs5"
+        default:
+          $ref: "#/components/responses/Error"
+  /v1/npCommunicationIds/{npCommunicationId}/trophyGroups/{trophyGroupId}/trophies:
+    get:
+      operationId: getTitleTrophies
+      summary: List trophy definitions for a title or group
+      description: "Use trophyGroupId `all` to request trophies across all groups."
+      tags: [Title trophies]
+      parameters:
+        - $ref: "#/components/parameters/NpCommunicationId"
+        - $ref: "#/components/parameters/TrophyGroupId"
+        - $ref: "#/components/parameters/NpServiceName"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/AcceptLanguage"
+      responses:
+        "200":
+          description: Paginated trophy definitions.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TitleTrophiesResponse"
+              examples:
+                ps4:
+                  $ref: "#/components/examples/TitleTrophiesPs4"
+                ps5:
+                  $ref: "#/components/examples/TitleTrophiesPs5"
+        default:
+          $ref: "#/components/responses/Error"
+  /v1/users/{accountId}/npCommunicationIds/{npCommunicationId}/trophyGroups/{trophyGroupId}/trophies:
+    get:
+      operationId: getUserTrophiesEarnedForTitle
+      summary: List a user's earned status for a title's trophies
+      description: "Use accountId `me` for the authenticated account and trophyGroupId `all` for all groups."
+      tags: [User trophies]
+      parameters:
+        - $ref: "#/components/parameters/AccountId"
+        - $ref: "#/components/parameters/NpCommunicationId"
+        - $ref: "#/components/parameters/TrophyGroupId"
+        - $ref: "#/components/parameters/NpServiceName"
+        - $ref: "#/components/parameters/Limit"
+        - $ref: "#/components/parameters/Offset"
+        - $ref: "#/components/parameters/AcceptLanguage"
+      responses:
+        "200":
+          description: Earned status and rarity details for trophies.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UserTrophiesEarnedForTitleResponse"
+              examples:
+                ps4:
+                  $ref: "#/components/examples/UserTrophiesPs4"
+                ps5:
+                  $ref: "#/components/examples/UserTrophiesPs5"
+        default:
+          $ref: "#/components/responses/Error"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth access token
+  parameters:
+    AcceptLanguage:
+      name: Accept-Language
+      in: header
+      description: Preferred language for localized title and trophy text.
+      schema: { type: string }
+    AccountId:
+      name: accountId
+      in: path
+      required: true
+      description: "Numeric PSN account ID or `me` for the authenticated account."
+      schema: { type: string }
+    NpCommunicationId:
+      name: npCommunicationId
+      in: path
+      required: true
+      description: Unique identifier of a trophy set, such as NPWR24223_00.
+      schema: { type: string }
+    TrophyGroupId:
+      name: trophyGroupId
+      in: path
+      required: true
+      description: "`default`, a group identifier such as `001`, or `all`."
+      schema: { type: string }
+    NpServiceName:
+      name: npServiceName
+      in: query
+      required: false
+      description: >-
+        Must be supplied as `trophy` for PS3, PS4, and PS Vita titles.
+        Use `trophy2` for PS5 titles; PS5 requests can omit this parameter.
+      schema: { type: string, enum: [trophy, trophy2] }
+    Limit:
+      name: limit
+      in: query
+      required: false
+      description: Maximum number of items to return in this page.
+      schema: { type: integer }
+    Offset:
+      name: offset
+      in: query
+      required: false
+      description: Start the page at this result offset. Use nextOffset from the preceding response.
+      schema: { type: integer }
+  responses:
+    Error:
+      description: >-
+        Unsuccessful PSN response. Specific status codes and payload schemas
+        are not yet covered by this contract.
+  schemas:
+    Counts:
+      type: object
+      required: [bronze, silver, gold, platinum]
+      properties:
+        bronze: { type: integer }
+        silver: { type: integer }
+        gold: { type: integer }
+        platinum:
+          type: integer
+          enum: [0, 1]
+          description: 1 if the group contains a platinum trophy.
+      additionalProperties: true
+    TrophyTitle:
+      type: object
+      required:
+        [
+          npServiceName,
+          npCommunicationId,
+          trophySetVersion,
+          trophyTitleName,
+          trophyTitleIconUrl,
+          trophyTitlePlatform,
+          hasTrophyGroups,
+          definedTrophies,
+          progress,
+          earnedTrophies,
+          hiddenFlag,
+          lastUpdatedDateTime
+        ]
+      properties:
+        npServiceName: { type: string, enum: [trophy, trophy2] }
+        npCommunicationId: { type: string }
+        trophySetVersion: { type: string }
+        trophyTitleName: { type: string }
+        trophyTitleDetail: { type: string }
+        trophyTitleIconUrl: { type: string, format: uri }
+        trophyTitlePlatform:
+          type: string
+          description: Platform name or comma-separated platforms for shared trophy sets, such as PS4,PSVITA.
+        hasTrophyGroups: { type: boolean }
+        definedTrophies: { $ref: "#/components/schemas/Counts" }
+        progress: { type: integer }
+        earnedTrophies: { $ref: "#/components/schemas/Counts" }
+        hiddenFlag: { type: boolean }
+        lastUpdatedDateTime: { type: string, format: date-time }
+      additionalProperties: true
+    UserTitlesResponse:
+      type: object
+      required: [trophyTitles, totalItemCount]
+      properties:
+        trophyTitles:
+          type: array
+          items: { $ref: "#/components/schemas/TrophyTitle" }
+        totalItemCount: { type: integer }
+        nextOffset: { type: integer }
+        previousOffset: { type: integer }
+      additionalProperties: true
+    TrophyGroup:
+      type: object
+      required:
+        [trophyGroupId, trophyGroupName, trophyGroupIconUrl, definedTrophies]
+      properties:
+        trophyGroupId: { type: string }
+        trophyGroupName: { type: string }
+        trophyGroupDetail: { type: string }
+        trophyGroupIconUrl: { type: string, format: uri }
+        definedTrophies: { $ref: "#/components/schemas/Counts" }
+      additionalProperties: true
+    TitleTrophyGroupsResponse:
+      type: object
+      required:
+        [
+          trophySetVersion,
+          trophyTitleName,
+          trophyTitleIconUrl,
+          trophyTitlePlatform,
+          definedTrophies,
+          trophyGroups
+        ]
+      properties:
+        trophySetVersion: { type: string }
+        trophyTitleName: { type: string }
+        trophyTitleDetail: { type: string }
+        trophyTitleIconUrl: { type: string, format: uri }
+        trophyTitlePlatform:
+          type: string
+          description: Platform name or comma-separated platforms for shared trophy sets, such as PS4,PSVITA.
+        definedTrophies: { $ref: "#/components/schemas/Counts" }
+        trophyGroups:
+          type: array
+          items: { $ref: "#/components/schemas/TrophyGroup" }
+      additionalProperties: true
+    TrophyDefinition:
+      type: object
+      required: [trophyId, trophyHidden, trophyType]
+      properties:
+        trophyId: { type: integer }
+        trophyHidden: { type: boolean }
+        trophyType: { type: string, enum: [bronze, silver, gold, platinum] }
+        trophyName: { type: string }
+        trophyDetail: { type: string }
+        trophyIconUrl: { type: string, format: uri }
+        trophyGroupId: { type: string }
+      additionalProperties: true
+    TitleTrophiesResponse:
+      type: object
+      required: [trophySetVersion, hasTrophyGroups, trophies, totalItemCount]
+      properties:
+        trophySetVersion: { type: string }
+        hasTrophyGroups: { type: boolean }
+        trophies:
+          type: array
+          items: { $ref: "#/components/schemas/TrophyDefinition" }
+        totalItemCount: { type: integer }
+        nextOffset: { type: integer }
+        previousOffset: { type: integer }
+      additionalProperties: true
+    UserTrophy:
+      type: object
+      required: [trophyId, trophyHidden, trophyType]
+      properties:
+        trophyId: { type: integer }
+        trophyHidden: { type: boolean }
+        earned: { type: boolean }
+        earnedDateTime:
+          type: string
+          format: date-time
+          description: Time the trophy was earned. Omitted for unearned trophies in the captures.
+        trophyType: { type: string, enum: [bronze, silver, gold, platinum] }
+        trophyRare:
+          type: integer
+          enum: [0, 1, 2, 3]
+          description: 0 is ultra rare, 1 very rare, 2 rare, and 3 common.
+        trophyEarnedRate:
+          type: string
+          description: Percentage of players who earned the trophy, returned as a decimal string.
+        trophyProgressTargetValue:
+          type: string
+          description: PS5 progress target when supported by the trophy. Not observed in the included captures.
+        trophyRewardImageUrl:
+          type: string
+          format: uri
+          description: PS5 reward image when present. Not observed in the included captures.
+        trophyRewardName:
+          type: string
+          description: PS5 reward name when present. Not observed in the included captures.
+      additionalProperties: true
+    RarestThinTrophy:
+      type: object
+      required: [trophyId, trophyHidden, trophyType]
+      properties:
+        trophyId: { type: integer }
+        trophyHidden: { type: boolean }
+        earned: { type: boolean }
+        trophyType: { type: string, enum: [bronze, silver, gold, platinum] }
+        trophyRare:
+          type: integer
+          enum: [0, 1, 2, 3]
+          description: 0 is ultra rare, 1 very rare, 2 rare, and 3 common.
+        trophyEarnedRate:
+          type: string
+          description: Percentage of players who earned the trophy, returned as a decimal string.
+      additionalProperties: true
+    UserTrophiesEarnedForTitleResponse:
+      type: object
+      required:
+        [
+          trophySetVersion,
+          hasTrophyGroups,
+          lastUpdatedDateTime,
+          trophies,
+          totalItemCount
+        ]
+      properties:
+        trophySetVersion: { type: string }
+        hasTrophyGroups: { type: boolean }
+        lastUpdatedDateTime: { type: string, format: date-time }
+        trophies:
+          type: array
+          items: { $ref: "#/components/schemas/UserTrophy" }
+        rarestTrophies:
+          type: array
+          items: { $ref: "#/components/schemas/RarestThinTrophy" }
+        totalItemCount: { type: integer }
+        nextOffset: { type: integer }
+        previousOffset: { type: integer }
+      additionalProperties: true
+  examples:
+    UserTitles:
+      $ref: ./fixtures/user-titles.json
+    TitleTrophyGroupsPs4:
+      $ref: ./fixtures/title-trophy-groups-ps4.json
+    TitleTrophyGroupsPs5:
+      $ref: ./fixtures/title-trophy-groups-ps5.json
+    TitleTrophiesPs4:
+      $ref: ./fixtures/title-trophies-ps4.json
+    TitleTrophiesPs5:
+      $ref: ./fixtures/title-trophies-ps5.json
+    UserTrophiesPs4:
+      $ref: ./fixtures/user-trophies-ps4.json
+    UserTrophiesPs5:
+      $ref: ./fixtures/user-trophies-ps5.json

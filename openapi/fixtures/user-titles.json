@@ -1,0 +1,62 @@
+{
+  "summary": "Sanitized PS4 and PS5 user title listing excerpt",
+  "value": {
+    "trophyTitles": [
+      {
+        "npServiceName": "trophy",
+        "npCommunicationId": "NPWR59723_00",
+        "trophySetVersion": "01.01",
+        "trophyTitleName": "Sample PS4 Game",
+        "trophyTitleDetail": "Sanitized captured title description.",
+        "trophyTitleIconUrl": "https://image.api.playstation.com/trophy/sample.png",
+        "platinumTrophyIconUrl": "https://image.api.playstation.com/trophy/platinum.png",
+        "trophyTitlePlatform": "PS4",
+        "hasTrophyGroups": true,
+        "trophyGroupCount": 5,
+        "definedTrophies": {
+          "bronze": 78,
+          "silver": 10,
+          "gold": 2,
+          "platinum": 1
+        },
+        "progress": 1,
+        "earnedTrophies": {
+          "bronze": 1,
+          "silver": 0,
+          "gold": 0,
+          "platinum": 0
+        },
+        "hiddenFlag": false,
+        "lastUpdatedDateTime": "2026-01-01T00:00:00Z"
+      },
+      {
+        "npServiceName": "trophy2",
+        "npCommunicationId": "NPWR24223_00",
+        "trophySetVersion": "01.00",
+        "trophyTitleName": "Sample PS5 Game",
+        "trophyTitleIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/sample.png",
+        "platinumTrophyIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/platinum.png",
+        "trophyTitlePlatform": "PS5",
+        "hasTrophyGroups": true,
+        "trophyGroupCount": 5,
+        "definedTrophies": {
+          "bronze": 102,
+          "silver": 49,
+          "gold": 24,
+          "platinum": 1
+        },
+        "progress": 65,
+        "earnedTrophies": {
+          "bronze": 68,
+          "silver": 28,
+          "gold": 17,
+          "platinum": 1
+        },
+        "hiddenFlag": false,
+        "lastUpdatedDateTime": "2026-01-01T00:00:00Z"
+      }
+    ],
+    "nextOffset": 100,
+    "totalItemCount": 297
+  }
+}

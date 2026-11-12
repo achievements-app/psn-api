@@ -41,12 +41,15 @@
     "lint:fix": "oxlint --fix",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
-    "verify": "npm-run-all --parallel format:check lint && npm-run-all test:coverage build",
+    "openapi:lint": "redocly lint --config openapi/redocly.yaml",
+    "openapi:test": "vitest run openapi/tests",
+    "verify": "npm-run-all --parallel format:check lint openapi:lint && npm-run-all test:coverage build",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
     "@nkzw/oxlint-config": "^1.0.1",
+    "@redocly/cli": "^2.77.0",
     "@semantic-release/commit-analyzer": "^13.0.1",
     "@semantic-release/github": "^12.0.6",
     "@semantic-release/npm": "^13.1.5",
@@ -64,7 +67,8 @@
     "typescript": "^5.8.0",
     "vite": "^7.3.1",
     "vite-plugin-dts": "^4.5.4",
-    "vitest": "^4.0.18"
+    "vitest": "^4.0.18",
+    "yaml": "^2.9.1"
   },
   "release": {
     "branches": [

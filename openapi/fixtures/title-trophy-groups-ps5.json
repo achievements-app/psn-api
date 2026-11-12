@@ -1,0 +1,41 @@
+{
+  "summary": "Sanitized PS5 trophy group excerpt",
+  "value": {
+    "npServiceName": "trophy2",
+    "npCommunicationId": "NPWR24223_00",
+    "trophySetVersion": "01.00",
+    "trophyTitleName": "Sample PS5 Game",
+    "trophyTitleIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/sample.png",
+    "trophyTitlePlatform": "PS5",
+    "definedTrophies": {
+      "bronze": 102,
+      "silver": 49,
+      "gold": 24,
+      "platinum": 1
+    },
+    "trophyGroups": [
+      {
+        "trophyGroupId": "default",
+        "trophyGroupName": "Sample PS5 Game",
+        "trophyGroupIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/sample.png",
+        "definedTrophies": {
+          "bronze": 4,
+          "silver": 14,
+          "gold": 6,
+          "platinum": 1
+        }
+      },
+      {
+        "trophyGroupId": "001",
+        "trophyGroupName": "Sample PS5 Game: DLC 1",
+        "trophyGroupIconUrl": "https://psnobj.prod.dl.playstation.net/psnobj/dlc.png",
+        "definedTrophies": {
+          "bronze": 29,
+          "silver": 5,
+          "gold": 5,
+          "platinum": 0
+        }
+      }
+    ]
+  }
+}
